@@ -40,8 +40,11 @@ jobs:
       - name: Collect data, preserve history, and generate pages
         run: python run.py
 
-      - name: Smoke test
+      - name: Core smoke test
         run: python smoke_test.py
+
+      - name: V4 discovery and SEO smoke test
+        run: python v4_smoke_test.py
 
       - name: Persist durable history
         if: github.ref == 'refs/heads/main'

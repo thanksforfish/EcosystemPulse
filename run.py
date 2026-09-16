@@ -1,4 +1,4 @@
-"""EcosystemPulse V3 main runner."""
+"""EcosystemPulse V4 main runner."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).parent / "engine"))
 
 from config import DATA_DIR, OUTPUT_DIR, TRACKED_ECOSYSTEMS
 from data_collector import DataCollector
+from discovery_builder import DiscoveryBuilder
 from history_store import HistoryStore
 from page_generator import PageGenerator
 from trend_analyzer import TrendAnalyzer
@@ -38,27 +39,30 @@ def install_analytics(output_dir: Path) -> int:
 
 
 def main() -> None:
-    """Collect -> preserve history -> calculate trends -> render -> instrument."""
+    """Collect -> preserve -> analyze -> render -> build discovery -> instrument."""
     print("=" * 64)
-    print("EcosystemPulse V3 — Durable Developer Ecosystem Trends")
+    print("EcosystemPulse V4 — Trends, Comparisons, and Search Discovery")
     print("=" * 64)
 
-    print("\n[1/5] Collecting current npm and PyPI registry data...")
+    print("\n[1/6] Collecting current npm and PyPI registry data...")
     collector = DataCollector(DATA_DIR)
     data = collector.collect_ecosystem_data(TRACKED_ECOSYSTEMS)
 
-    print("\n[2/5] Preserving durable observations and backfilling npm history...")
+    print("\n[2/6] Preserving durable observations and validating npm history...")
     history = HistoryStore(DATA_DIR)
     history_result = history.update(data, collector)
 
-    print("\n[3/5] Calculating explainable trend metrics...")
+    print("\n[3/6] Calculating explainable trend metrics...")
     trends = TrendAnalyzer(DATA_DIR).analyze(data)
 
-    print("\n[4/5] Generating static site...")
+    print("\n[4/6] Generating core static site...")
     generator = PageGenerator(DATA_DIR, OUTPUT_DIR)
     result = generator.generate_all_pages()
 
-    print("\n[5/5] Installing Cloudflare Web Analytics...")
+    print("\n[5/6] Building movers, comparisons, internal discovery, and SEO structure...")
+    discovery_result = DiscoveryBuilder(DATA_DIR, OUTPUT_DIR).build()
+
+    print("\n[6/6] Installing Cloudflare Web Analytics...")
     analytics_pages = install_analytics(OUTPUT_DIR)
 
     npm_with_momentum = sum(
@@ -75,21 +79,25 @@ def main() -> None:
     print(f"npm history packages: {history_result['npm_packages']}")
     print(f"PyPI history packages: {history_result['pypi_packages']}")
     print(f"npm 30-day download series refreshed: {history_result['npm_download_series']}")
-    print(f"npm packages with 7-day momentum: {npm_with_momentum}")
+    print(f"npm packages with reliable 7-day momentum: {npm_with_momentum}")
     print(f"Individual package pages: {result['npm_pages'] + result['pypi_pages']}")
-    print(f"Listing pages: {result['listing_pages']}")
-    print(f"Index page: {'yes' if result['index'] else 'no'}")
+    print(f"Comparison pages: {discovery_result['comparison_pages']}")
+    print(f"Movers page: {'yes' if discovery_result['movers'] else 'no'}")
+    print(f"Comparison hub: {'yes' if discovery_result['comparison_hub'] else 'no'}")
+    print(f"Package pages SEO-enhanced: {discovery_result['package_pages_enhanced']}")
+    print(f"Sitemap discovery URLs added: {discovery_result['sitemap_urls_added']}")
     print(f"Analytics pages updated: {analytics_pages}")
     print(f"Durable history: {DATA_DIR / 'history'}")
     print(f"Output: {OUTPUT_DIR}")
     print()
-    print("V3 adds:")
-    print("  - Git-tracked durable package observations")
-    print("  - 30-day npm daily-download backfill")
-    print("  - 7-day vs prior-7-day momentum")
-    print("  - release recency and cadence measurements")
-    print("  - inline trend sparklines with no client chart dependency")
-    print("  - evidence-first metrics instead of a subjective health score")
+    print("V4 adds:")
+    print("  - a dedicated npm movers/search destination")
+    print("  - evidence-first package comparison pages")
+    print("  - search-intent titles and descriptions on package pages")
+    print("  - site-wide internal links to Movers and Compare")
+    print("  - BreadcrumbList and ItemList structured data where appropriate")
+    print("  - sitemap entries for the new discovery pages")
+    print("  - no meta-keyword stuffing and no fabricated package winner")
 
 
 if __name__ == "__main__":
