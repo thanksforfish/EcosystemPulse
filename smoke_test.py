@@ -1,13 +1,21 @@
-"""EcosystemPulse V3 smoke tests for fresh local/CI builds."""
+"""EcosystemPulse V3.1 smoke tests for fresh local/CI builds."""
 
 import json
 import re
+import sys
+import tempfile
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import urlsplit
 
 BASE = Path(__file__).resolve().parent
 OUTPUT = BASE / "output"
 DATA = BASE / "data"
+sys.path.insert(0, str(BASE / "engine"))
+
+from history_store import HistoryStore
+from trend_analyzer import TrendAnalyzer
+
 errors = []
 
 
@@ -158,7 +166,7 @@ series_with_14 = sum(
     1 for item in npm_hist_packages.values()
     if len(item.get("daily_downloads", [])) >= 14
 )
-record(series_with_14 >= 20, "CHECK 22", f"{series_with_14} npm packages have >=14 complete daily download points")
+record(series_with_14 >= 20, "CHECK 22", f"{series_with_14} npm packages have >=14 stored download observations")
 
 history_integrity_problems = []
 for name, item in npm_hist_packages.items():
@@ -177,24 +185,28 @@ trends = load_json(trends_path, {})
 npm_trends = trends.get("npm", {})
 pypi_trends = trends.get("pypi", {})
 with_change = [item for item in npm_trends.values() if item.get("change_7d_pct") is not None]
-record(trends_path.exists() and trends.get("schema_version") == 1 and len(npm_trends) >= 30 and len(pypi_trends) >= 25 and len(with_change) >= 20,
-       "CHECK 24", f"trends cover {len(npm_trends)} npm + {len(pypi_trends)} pypi; {len(with_change)} npm momentum values")
+quality_fields_present = all(
+    "momentum_available" in item and "download_observation_days" in item
+    for item in npm_trends.values()
+)
+record(trends_path.exists() and trends.get("schema_version") == 1 and len(npm_trends) >= 30 and len(pypi_trends) >= 25 and quality_fields_present,
+       "CHECK 24", f"trends cover {len(npm_trends)} npm + {len(pypi_trends)} pypi; {len(with_change)} reliable npm momentum values")
 
-trend_math_ok = False
-for item in with_change:
-    points = item.get("download_points", [])
-    values = [int(p.get("downloads", 0)) for p in points if isinstance(p, dict)]
-    if len(values) < 14:
-        continue
-    last7 = sum(values[-7:])
-    prev7 = sum(values[-14:-7])
-    if prev7 <= 0:
-        continue
-    expected_change = round(((last7 - prev7) / prev7) * 100, 1)
-    if expected_change == item.get("change_7d_pct") and last7 == item.get("downloads_7d") and prev7 == item.get("downloads_previous_7d"):
-        trend_math_ok = True
-        break
-record(trend_math_ok, "CHECK 25", "7-day momentum recomputes from stored evidence")
+# Momentum math must use 14 consecutive calendar days, not merely the last 14 stored points.
+start_day = date(2026, 1, 1)
+contiguous_points = [
+    {"day": (start_day + timedelta(days=i)).isoformat(), "downloads": 100 if i < 7 else 120}
+    for i in range(14)
+]
+synthetic_metrics = TrendAnalyzer._download_metrics({"daily_downloads": contiguous_points})
+record(
+    synthetic_metrics.get("momentum_available")
+    and synthetic_metrics.get("downloads_previous_7d") == 700
+    and synthetic_metrics.get("downloads_7d") == 840
+    and synthetic_metrics.get("change_7d_pct") == 20.0,
+    "CHECK 25",
+    "7-day momentum recomputes from 14 consecutive reliable days",
+)
 
 npm_trend_pages = 0
 pypi_release_pages = 0
@@ -202,13 +214,13 @@ for name in d.get("npm", {}):
     page = pages_dir / f"{name}.html"
     if page.exists():
         text = page.read_text(encoding="utf-8", errors="ignore")
-        if "Download momentum" in text and "class=\"sparkline\"" in text and "previous 7" in text:
+        if "Download momentum" in text and "class=\"sparkline\"" in text and "npm daily downloads" in text:
             npm_trend_pages += 1
 for name in d.get("pypi", {}):
     page = pages_dir / f"{name}.html"
     if page.exists() and "Release activity" in page.read_text(encoding="utf-8", errors="ignore"):
         pypi_release_pages += 1
-record(npm_trend_pages >= 20, "CHECK 26", f"{npm_trend_pages} npm package pages render evidence-backed trend panels")
+record(npm_trend_pages >= 20, "CHECK 26", f"{npm_trend_pages} npm package pages render quality-aware trend panels")
 record(pypi_release_pages >= 25, "CHECK 27", f"{pypi_release_pages} PyPI package pages render release activity")
 
 record("Fastest-rising tracked npm packages" in index_html or "Download momentum is warming up" in index_html,
@@ -221,9 +233,90 @@ for f in html_files:
         canonical_package_pages += 1
 record(canonical_package_pages >= 60, "CHECK 29", f"canonical custom-domain URLs on {canonical_package_pages} package pages")
 
+# V3.1 data-integrity regression checks.
+excluded = npm_history.get("excluded_download_days", {})
+if not isinstance(excluded, dict):
+    excluded = {}
+excluded_leaks = []
+for name, item in npm_hist_packages.items():
+    stored_days = {
+        str(point.get("day")) for point in item.get("daily_downloads", [])
+        if isinstance(point, dict) and point.get("day")
+    }
+    overlap = stored_days & set(excluded)
+    if overlap:
+        excluded_leaks.append(f"{name}: {sorted(overlap)}")
+record(not excluded_leaks, "CHECK 30", f"{len(excluded)} registry-wide anomaly day(s) excluded from stored series")
+
+synthetic_series = {}
+for i in range(12):
+    synthetic_series[f"pkg{i}"] = [
+        {"day": "2026-01-01", "downloads": 0 if i < 10 else 15},
+        {"day": "2026-01-02", "downloads": 100 + i},
+    ]
+flagged = HistoryStore._find_suspect_zero_days(synthetic_series)
+record("2026-01-01" in flagged and "2026-01-02" not in flagged,
+       "CHECK 31", "registry-wide zero anomaly detector flags coordinated zeros, not normal days")
+
+gapped_points = contiguous_points[:6] + contiguous_points[7:] + [
+    {"day": (start_day - timedelta(days=1)).isoformat(), "downloads": 100}
+]
+gapped_metrics = TrendAnalyzer._download_metrics({"daily_downloads": gapped_points})
+record(not gapped_metrics.get("momentum_available") and gapped_metrics.get("change_7d_pct") is None,
+       "CHECK 32", "momentum is withheld when the comparison window contains a calendar gap")
+
+# A later corrected npm range must restore a date that was previously excluded as a coordinated zero.
+repair_ok = False
+with tempfile.TemporaryDirectory() as tmp:
+    tmp_data = Path(tmp)
+    store = HistoryStore(tmp_data)
+    packages = {
+        f"pkg{i}": {
+            "name": f"pkg{i}",
+            "latest_version": "1.0.0",
+            "all_versions": ["1.0.0"],
+            "dependencies": [],
+        }
+        for i in range(12)
+    }
+    collected_stub = {"collected_at": "2026-01-03T00:00:00+00:00", "npm": packages, "pypi": {}}
+
+    class FakeCollector:
+        def __init__(self, corrected=False):
+            self.corrected = corrected
+
+        def get_npm_download_ranges(self, names, days=30):
+            value = 100 if self.corrected else 0
+            return {
+                name: {
+                    "daily": [{"day": "2026-01-01", "downloads": value}],
+                    "total": value,
+                }
+                for name in names
+            }
+
+    store.update(collected_stub, FakeCollector(corrected=False))
+    first = load_json(tmp_data / "history" / "npm.json", {})
+    first_excluded = "2026-01-01" in first.get("excluded_download_days", {})
+    first_absent = all(
+        not entry.get("daily_downloads")
+        for entry in first.get("packages", {}).values()
+    )
+
+    collected_stub["collected_at"] = "2026-01-04T00:00:00+00:00"
+    store.update(collected_stub, FakeCollector(corrected=True))
+    second = load_json(tmp_data / "history" / "npm.json", {})
+    second_restored = all(
+        entry.get("daily_downloads") == [{"day": "2026-01-01", "downloads": 100}]
+        for entry in second.get("packages", {}).values()
+    )
+    second_cleared = "2026-01-01" not in second.get("excluded_download_days", {})
+    repair_ok = first_excluded and first_absent and second_restored and second_cleared
+record(repair_ok, "CHECK 33", "later corrected npm data restores a previously excluded anomaly day")
+
 print("\n=== RESULT ===")
 if errors:
     for e in errors:
         print("  " + e)
     raise SystemExit(1)
-print("ALL 29 CHECKS PASSED")
+print("ALL 33 CHECKS PASSED")
