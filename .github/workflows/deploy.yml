@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SITE_URL: https://thanksforfish.github.io/EcosystemPulse
+  SITE_URL: https://ecosystempulse.dev
 
 jobs:
   build:
