@@ -120,9 +120,9 @@ for f in OUTPUT.rglob("*.html"):
             root_relative.append(f"{f.relative_to(OUTPUT)}: {attr}={val}")
 record(not root_relative, "CHECK 17", "no root-relative internal asset/navigation paths")
 
-placeholder_domain = "ecosystempulse.dev" in sc or "ecosystempulse.dev" in rc
-record(not placeholder_domain and "thanksforfish.github.io/EcosystemPulse" in sc and "thanksforfish.github.io/EcosystemPulse" in rc,
-       "CHECK 18", "deployment URLs target GitHub Pages")
+custom_domain = "ecosystempulse.dev"
+record(custom_domain in sc and custom_domain in rc and "thanksforfish.github.io/EcosystemPulse" not in sc and "thanksforfish.github.io/EcosystemPulse" not in rc,
+       "CHECK 18", "deployment URLs target ecosystempulse.dev")
 
 print("\n=== RESULT ===")
 if errors:
