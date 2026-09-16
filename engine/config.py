@@ -14,7 +14,7 @@ PAGES_DIR = OUTPUT_DIR / "pages"
 SITE_CONFIG = {
     "name": "EcosystemPulse",
     "description": "Real-time developer ecosystem data. Track package health, downloads, versions, and trends across npm and PyPI.",
-    "url": os.environ.get("SITE_URL", "https://thanksforfish.github.io/EcosystemPulse").rstrip("/"),
+    "url": os.environ.get("SITE_URL", "https://ecosystempulse.dev").rstrip("/"),
     "tagline": "No fluff. Just data.",
 }
 
