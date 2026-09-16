@@ -1,11 +1,13 @@
-"""
-EcosystemPulse V3 — Real Data Collector
-Pulls package data from npm and PyPI public APIs.
+"""EcosystemPulse V4.1 real-data collector.
+
+Collects current npm/PyPI facts plus a few deliberately preserved fields whose
+historical state is difficult to reconstruct later.
 """
 
 from __future__ import annotations
 
 import json
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -16,7 +18,7 @@ from typing import Dict, List, Optional
 
 
 class DataCollector:
-    """Collects real package data from public APIs."""
+    """Collect real package data from public registry APIs."""
 
     def __init__(self, data_dir: Path):
         self.data_dir = data_dir
@@ -35,7 +37,7 @@ class DataCollector:
         )
 
     def _fetch_json(self, url: str, cache_key: Optional[str] = None) -> Optional[Dict]:
-        """Fetch JSON with a 24-hour local cache and bounded 429 retry."""
+        """Fetch JSON with a 24-hour local cache and bounded retry."""
         cache_path = None
         if cache_key:
             cache_path = self.cache_dir / f"{self._safe_cache_key(cache_key)}.json"
@@ -52,7 +54,7 @@ class DataCollector:
             try:
                 req = urllib.request.Request(
                     url,
-                    headers={"User-Agent": "EcosystemPulse/3.0 (+https://ecosystempulse.dev)"},
+                    headers={"User-Agent": "EcosystemPulse/4.1 (+https://ecosystempulse.dev)"},
                 )
                 with urllib.request.urlopen(req, timeout=20) as response:
                     data = json.loads(response.read().decode())
@@ -80,7 +82,8 @@ class DataCollector:
                 return None
         return None
 
-    def _extract_pkg_name(self, dep_str: str) -> str:
+    @staticmethod
+    def _extract_pkg_name(dep_str: str) -> str:
         if not dep_str:
             return ""
         return (
@@ -95,6 +98,20 @@ class DataCollector:
             .strip()
         )
 
+    @staticmethod
+    def _looks_prerelease(version: str) -> bool:
+        value = str(version or "").lower()
+        if "-" in value.split("+", 1)[0]:
+            return True
+        return bool(re.search(r"(?:a|b|rc|alpha|beta|preview|pre|dev)\d*", value))
+
+    @staticmethod
+    def _versions_by_date(versions: List[str], dates: Dict[str, str]) -> List[str]:
+        return sorted(
+            versions,
+            key=lambda version: (dates.get(version, ""), str(version)),
+        )
+
     def get_npm_package(self, name: str) -> Optional[Dict]:
         encoded = urllib.parse.quote(name, safe="@/")
         data = self._fetch_json(f"https://registry.npmjs.org/{encoded}", f"npm_{name}")
@@ -102,11 +119,32 @@ class DataCollector:
             return None
 
         latest_version = data.get("dist-tags", {}).get("latest", "")
-        versions = list(data.get("versions", {}).keys())
-        times = data.get("time", {})
-        latest_data = data.get("versions", {}).get(latest_version, {}) if latest_version else {}
+        raw_versions = data.get("versions", {}) or {}
+        times = data.get("time", {}) or {}
+        version_dates = {
+            version: times.get(version, "")
+            for version in raw_versions
+            if times.get(version)
+        }
+        versions = self._versions_by_date(list(raw_versions.keys()), version_dates)
+        stable_version_dates = {
+            version: date
+            for version, date in version_dates.items()
+            if not self._looks_prerelease(version)
+        }
+        latest_data = raw_versions.get(latest_version, {}) if latest_version else {}
         repository = data.get("repository", {})
         author = data.get("author", {})
+
+        dependency_declarations = {
+            "dependencies": dict(latest_data.get("dependencies", {}) or {}),
+            "optional_dependencies": dict(latest_data.get("optionalDependencies", {}) or {}),
+            "peer_dependencies": dict(latest_data.get("peerDependencies", {}) or {}),
+            "dev_dependencies": dict(latest_data.get("devDependencies", {}) or {}),
+            "bundled_dependencies": list(
+                latest_data.get("bundledDependencies", latest_data.get("bundleDependencies", [])) or []
+            ),
+        }
 
         return {
             "name": name,
@@ -120,14 +158,22 @@ class DataCollector:
             "author": author.get("name", "") if isinstance(author, dict) else str(author or ""),
             "created": times.get("created", ""),
             "modified": times.get("modified", ""),
-            "version_dates": {v: times.get(v, "") for v in versions[-20:]},
+            # Preserve every known release timestamp. The prior last-20 truncation made
+            # 90-day release metrics materially wrong for fast-moving packages.
+            "version_dates": version_dates,
+            "stable_version_dates": stable_version_dates,
             "keywords": (data.get("keywords", []) or [])[:10],
             "dependencies": list((latest_data.get("dependencies", {}) or {}).keys()),
+            "dependency_declarations": dependency_declarations,
+            "dist_tags": dict(data.get("dist-tags", {}) or {}),
+            "deprecated": latest_data.get("deprecated") or None,
+            "engines": dict(latest_data.get("engines", {}) or {}),
+            "os": list(latest_data.get("os", []) or []),
+            "cpu": list(latest_data.get("cpu", []) or []),
         }
 
     @staticmethod
     def _split_bulk_names(names: List[str]) -> tuple[List[str], List[str]]:
-        """npm bulk downloads do not support scoped packages."""
         bulk = [name for name in names if not name.startswith("@")]
         scoped = [name for name in names if name.startswith("@")]
         return bulk, scoped
@@ -164,7 +210,7 @@ class DataCollector:
             )
             if data and data.get("downloads") is not None:
                 result[name] = int(data["downloads"])
-            time.sleep(0.25)
+            time.sleep(0.15)
         return result
 
     def get_npm_download_count(self, name: str) -> Optional[int]:
@@ -213,7 +259,6 @@ class DataCollector:
                             daily = self._normalize_daily(item.get("downloads"))
                             result[name] = {"start": item.get("start", start.isoformat()), "end": item.get("end", end.isoformat()), "total": sum(x["downloads"] for x in daily), "daily": daily}
 
-        # Scoped packages cannot use the bulk endpoint, so keep a slow bounded fallback.
         for name in scoped:
             encoded = urllib.parse.quote(name, safe="@/")
             data = self._fetch_json(
@@ -223,11 +268,41 @@ class DataCollector:
             if data and isinstance(data.get("downloads"), list):
                 daily = self._normalize_daily(data.get("downloads"))
                 result[name] = {"start": start.isoformat(), "end": end.isoformat(), "total": sum(x["downloads"] for x in daily), "daily": daily}
-            time.sleep(0.25)
+            time.sleep(0.15)
         return result
 
     def get_npm_download_range(self, name: str, days: int = 30) -> Optional[Dict]:
         return self.get_npm_download_ranges([name], days=days).get(name)
+
+    def get_npm_version_download_counts(self, names: List[str]) -> Dict[str, Dict]:
+        """Capture npm's per-version previous-seven-day distribution.
+
+        npm does not expose arbitrary historical queries for this endpoint, so these
+        observations are intentionally archived while they are available.
+        """
+        result: Dict[str, Dict] = {}
+        for name in list(dict.fromkeys(names)):
+            # npm's per-version endpoint requires the slash in scoped names to be encoded.
+            encoded = urllib.parse.quote(name, safe="@")
+            data = self._fetch_json(
+                f"https://api.npmjs.org/versions/{encoded}/last-week",
+                f"npm_versions_last_week_{name}",
+            )
+            downloads = data.get("downloads") if isinstance(data, dict) else None
+            if isinstance(downloads, dict):
+                clean = {}
+                for version, count in downloads.items():
+                    try:
+                        clean[str(version)] = int(count)
+                    except (TypeError, ValueError):
+                        continue
+                result[name] = {
+                    "package": data.get("package", name),
+                    "period": "last-week",
+                    "downloads": clean,
+                }
+            time.sleep(0.10)
+        return result
 
     def get_pypi_package(self, name: str) -> Optional[Dict]:
         encoded = urllib.parse.quote(name, safe="")
@@ -236,21 +311,41 @@ class DataCollector:
             return None
 
         info = data.get("info", {})
-        releases = data.get("releases", {})
+        releases = data.get("releases", {}) or {}
         version_dates = {}
         for ver, files in releases.items():
             if files and isinstance(files, list):
-                upload_time = files[0].get("upload_time", "")
-                if upload_time:
-                    version_dates[ver] = upload_time
+                times = [
+                    str(file.get("upload_time_iso_8601") or file.get("upload_time") or "")
+                    for file in files
+                    if isinstance(file, dict)
+                ]
+                times = [value for value in times if value]
+                if times:
+                    version_dates[ver] = min(times)
+        versions = self._versions_by_date(list(releases.keys()), version_dates)
+        stable_version_dates = {
+            version: date
+            for version, date in version_dates.items()
+            if not self._looks_prerelease(version)
+        }
         all_dates = sorted(version_dates.values()) if version_dates else []
+        latest_version = info.get("version", "")
+        latest_files = releases.get(latest_version, []) if latest_version else []
+        yanked_reasons = sorted({
+            str(file.get("yanked_reason") or "").strip()
+            for file in latest_files
+            if isinstance(file, dict) and file.get("yanked") and str(file.get("yanked_reason") or "").strip()
+        })
+        requires_dist_full = [str(item) for item in (info.get("requires_dist", []) or [])]
 
         return {
             "name": name,
             "registry": "pypi",
-            "latest_version": info.get("version", ""),
-            "all_versions": list(releases.keys()),
+            "latest_version": latest_version,
+            "all_versions": versions,
             "version_dates": version_dates,
+            "stable_version_dates": stable_version_dates,
             "created": all_dates[0] if all_dates else "",
             "modified": all_dates[-1] if all_dates else "",
             "description": info.get("summary", ""),
@@ -260,8 +355,12 @@ class DataCollector:
             "author": info.get("author", "") or info.get("author_email", ""),
             "requires_python": info.get("requires_python", ""),
             "keywords": info.get("keywords", ""),
-            "classifiers": (info.get("classifiers", []) or [])[:10],
-            "requires_dist": [self._extract_pkg_name(d) for d in (info.get("requires_dist", []) or [])[:20]],
+            "classifiers": (info.get("classifiers", []) or [])[:20],
+            "requires_dist": [self._extract_pkg_name(d) for d in requires_dist_full[:20]],
+            "requires_dist_full": requires_dist_full,
+            "dependency_declarations": {"requires_dist": requires_dist_full},
+            "latest_yanked": any(bool(file.get("yanked")) for file in latest_files if isinstance(file, dict)),
+            "latest_yanked_reasons": yanked_reasons,
         }
 
     def search_npm(self, query: str, size: int = 20) -> List[Dict]:
@@ -307,7 +406,6 @@ class DataCollector:
         if isinstance(pypi_list, dict):
             pypi_list = pypi_list.get("packages", [])
 
-        # Registry metadata first. Download totals are fetched in a single bulk request below.
         for pkg_name in npm_list:
             print(f"Collecting npm: {pkg_name}")
             pkg_info = self.get_npm_package(pkg_name)
@@ -334,7 +432,7 @@ class DataCollector:
 
 DEFAULT_PACKAGES = {
     "npm": [
-        "react", "vue", "angular", "svelte", "next", "nuxt", "express", "fastify",
+        "react", "vue", "svelte", "next", "nuxt", "express", "fastify",
         "typescript", "webpack", "vite", "esbuild", "tailwindcss", "prisma",
         "mongoose", "sequelize", "axios", "lodash", "date-fns", "zod",
     ],
