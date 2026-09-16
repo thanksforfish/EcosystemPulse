@@ -124,9 +124,18 @@ custom_domain = "ecosystempulse.dev"
 record(custom_domain in sc and custom_domain in rc and "thanksforfish.github.io/EcosystemPulse" not in sc and "thanksforfish.github.io/EcosystemPulse" not in rc,
        "CHECK 18", "deployment URLs target ecosystempulse.dev")
 
+all_html = list(OUTPUT.rglob("*.html"))
+missing_analytics = []
+for f in all_html:
+    c = f.read_text(encoding="utf-8", errors="ignore")
+    if "static.cloudflareinsights.com/beacon.min.js" not in c or "12deb59ddd504e9294658e00ad85255a" not in c:
+        missing_analytics.append(str(f.relative_to(OUTPUT)))
+record(bool(all_html) and not missing_analytics, "CHECK 19",
+       f"Cloudflare analytics present on {len(all_html)} HTML pages" if not missing_analytics else f"missing on {missing_analytics[:10]}")
+
 print("\n=== RESULT ===")
 if errors:
     for e in errors:
         print("  " + e)
     raise SystemExit(1)
-print("ALL 18 CHECKS PASSED")
+print("ALL 19 CHECKS PASSED")
