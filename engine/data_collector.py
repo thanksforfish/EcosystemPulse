@@ -6,6 +6,7 @@ Pulls package data from npm and PyPI public APIs.
 from __future__ import annotations
 
 import json
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -30,10 +31,11 @@ class DataCollector:
             .replace("\\", "__")
             .replace("@", "at_")
             .replace(":", "_")
+            .replace(",", "_")
         )
 
     def _fetch_json(self, url: str, cache_key: Optional[str] = None) -> Optional[Dict]:
-        """Fetch JSON from URL with optional 24-hour local caching."""
+        """Fetch JSON with a 24-hour local cache and bounded 429 retry."""
         cache_path = None
         if cache_key:
             cache_path = self.cache_dir / f"{self._safe_cache_key(cache_key)}.json"
@@ -46,26 +48,42 @@ class DataCollector:
                     except (OSError, json.JSONDecodeError):
                         pass
 
-        try:
-            req = urllib.request.Request(
-                url,
-                headers={"User-Agent": "EcosystemPulse/3.0 (+https://ecosystempulse.dev)"},
-            )
-            with urllib.request.urlopen(req, timeout=20) as response:
-                data = json.loads(response.read().decode())
-                if cache_path:
-                    with cache_path.open("w", encoding="utf-8") as f:
-                        json.dump(data, f, indent=2)
-                return data
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, OSError) as e:
-            print(f"Error fetching {url}: {e}")
-            return None
+        for attempt in range(3):
+            try:
+                req = urllib.request.Request(
+                    url,
+                    headers={"User-Agent": "EcosystemPulse/3.0 (+https://ecosystempulse.dev)"},
+                )
+                with urllib.request.urlopen(req, timeout=20) as response:
+                    data = json.loads(response.read().decode())
+                    if cache_path:
+                        with cache_path.open("w", encoding="utf-8") as f:
+                            json.dump(data, f, indent=2)
+                    return data
+            except urllib.error.HTTPError as e:
+                if e.code == 429 and attempt < 2:
+                    retry_after = e.headers.get("Retry-After") if e.headers else None
+                    try:
+                        delay = max(1.0, float(retry_after)) if retry_after else 2.0 * (attempt + 1)
+                    except (TypeError, ValueError):
+                        delay = 2.0 * (attempt + 1)
+                    print(f"Rate limited by {url}; retrying in {delay:.1f}s")
+                    time.sleep(delay)
+                    continue
+                print(f"Error fetching {url}: HTTP {e.code}")
+                return None
+            except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as e:
+                if attempt < 2:
+                    time.sleep(1.0 * (attempt + 1))
+                    continue
+                print(f"Error fetching {url}: {e}")
+                return None
+        return None
 
     def _extract_pkg_name(self, dep_str: str) -> str:
-        """Extract package name from a dependency string like 'package>=1.0'."""
         if not dep_str:
             return ""
-        name = (
+        return (
             dep_str.split(">=")[0]
             .split("<=")[0]
             .split("<")[0]
@@ -76,13 +94,10 @@ class DataCollector:
             .split(";")[0]
             .strip()
         )
-        return name
 
     def get_npm_package(self, name: str) -> Optional[Dict]:
-        """Get package metadata from the public npm registry."""
         encoded = urllib.parse.quote(name, safe="@/")
-        url = f"https://registry.npmjs.org/{encoded}"
-        data = self._fetch_json(url, f"npm_{name}")
+        data = self._fetch_json(f"https://registry.npmjs.org/{encoded}", f"npm_{name}")
         if not data:
             return None
 
@@ -90,11 +105,8 @@ class DataCollector:
         versions = list(data.get("versions", {}).keys())
         times = data.get("time", {})
         latest_data = data.get("versions", {}).get(latest_version, {}) if latest_version else {}
-
         repository = data.get("repository", {})
-        repository_url = repository.get("url", "") if isinstance(repository, dict) else ""
         author = data.get("author", {})
-        author_name = author.get("name", "") if isinstance(author, dict) else str(author or "")
 
         return {
             "name": name,
@@ -103,9 +115,9 @@ class DataCollector:
             "all_versions": versions,
             "description": data.get("description", ""),
             "homepage": data.get("homepage", ""),
-            "repository": repository_url,
+            "repository": repository.get("url", "") if isinstance(repository, dict) else "",
             "license": data.get("license", ""),
-            "author": author_name,
+            "author": author.get("name", "") if isinstance(author, dict) else str(author or ""),
             "created": times.get("created", ""),
             "modified": times.get("modified", ""),
             "version_dates": {v: times.get(v, "") for v in versions[-20:]},
@@ -113,33 +125,55 @@ class DataCollector:
             "dependencies": list((latest_data.get("dependencies", {}) or {}).keys()),
         }
 
+    @staticmethod
+    def _split_bulk_names(names: List[str]) -> tuple[List[str], List[str]]:
+        """npm bulk downloads do not support scoped packages."""
+        bulk = [name for name in names if not name.startswith("@")]
+        scoped = [name for name in names if name.startswith("@")]
+        return bulk, scoped
+
+    def get_npm_download_counts(self, names: List[str], period: str = "last-week") -> Dict[str, int]:
+        """Fetch download totals with one npm bulk request where possible."""
+        names = list(dict.fromkeys(names))
+        if not names:
+            return {}
+        bulk, scoped = self._split_bulk_names(names)
+        result: Dict[str, int] = {}
+
+        if bulk:
+            joined = ",".join(bulk)
+            encoded = urllib.parse.quote(joined, safe=",")
+            data = self._fetch_json(
+                f"https://api.npmjs.org/downloads/point/{period}/{encoded}",
+                f"npm_point_bulk_{period}_{len(bulk)}",
+            )
+            if isinstance(data, dict):
+                if len(bulk) == 1 and data.get("downloads") is not None:
+                    result[bulk[0]] = int(data["downloads"])
+                else:
+                    for name in bulk:
+                        item = data.get(name)
+                        if isinstance(item, dict) and item.get("downloads") is not None:
+                            result[name] = int(item["downloads"])
+
+        for name in scoped:
+            encoded = urllib.parse.quote(name, safe="@/")
+            data = self._fetch_json(
+                f"https://api.npmjs.org/downloads/point/{period}/{encoded}",
+                f"npm_point_{period}_{name}",
+            )
+            if data and data.get("downloads") is not None:
+                result[name] = int(data["downloads"])
+            time.sleep(0.25)
+        return result
+
     def get_npm_download_count(self, name: str) -> Optional[int]:
-        """Get npm's public trailing-week download count."""
-        encoded = urllib.parse.quote(name, safe="@/")
-        url = f"https://api.npmjs.org/downloads/point/last-week/{encoded}"
-        data = self._fetch_json(url, f"npm_downloads_{name}")
-        if data and data.get("downloads") is not None:
-            return int(data["downloads"])
-        return None
+        return self.get_npm_download_counts([name]).get(name)
 
-    def get_npm_download_range(self, name: str, days: int = 30) -> Optional[Dict]:
-        """Get complete daily npm download counts for the previous N days.
-
-        npm's range endpoint expects an explicit date range. We end at yesterday so
-        trend comparisons never mix a partial current day with complete past days.
-        """
-        days = max(1, min(int(days), 365))
-        end = datetime.now(timezone.utc).date() - timedelta(days=1)
-        start = end - timedelta(days=days - 1)
-        encoded = urllib.parse.quote(name, safe="@/")
-        url = f"https://api.npmjs.org/downloads/range/{start.isoformat()}:{end.isoformat()}/{encoded}"
-        cache_key = f"npm_range_{name}_{start.isoformat()}_{end.isoformat()}"
-        data = self._fetch_json(url, cache_key)
-        if not data or "downloads" not in data:
-            return None
-
+    @staticmethod
+    def _normalize_daily(items) -> List[Dict]:
         daily = []
-        for item in data.get("downloads", []):
+        for item in items or []:
             if not isinstance(item, dict) or not item.get("day"):
                 continue
             try:
@@ -147,35 +181,69 @@ class DataCollector:
             except (TypeError, ValueError):
                 downloads = 0
             daily.append({"day": item["day"], "downloads": downloads})
+        return daily
 
-        return {
-            "start": start.isoformat(),
-            "end": end.isoformat(),
-            "total": sum(item["downloads"] for item in daily),
-            "daily": daily,
-        }
+    def get_npm_download_ranges(self, names: List[str], days: int = 30) -> Dict[str, Dict]:
+        """Fetch complete daily download series using npm's bulk range endpoint."""
+        names = list(dict.fromkeys(names))
+        if not names:
+            return {}
+        days = max(1, min(int(days), 365))
+        end = datetime.now(timezone.utc).date() - timedelta(days=1)
+        start = end - timedelta(days=days - 1)
+        period = f"{start.isoformat()}:{end.isoformat()}"
+        bulk, scoped = self._split_bulk_names(names)
+        result: Dict[str, Dict] = {}
+
+        if bulk:
+            joined = ",".join(bulk)
+            encoded = urllib.parse.quote(joined, safe=",")
+            data = self._fetch_json(
+                f"https://api.npmjs.org/downloads/range/{period}/{encoded}",
+                f"npm_range_bulk_{period}_{len(bulk)}",
+            )
+            if isinstance(data, dict):
+                if len(bulk) == 1 and isinstance(data.get("downloads"), list):
+                    daily = self._normalize_daily(data.get("downloads"))
+                    result[bulk[0]] = {"start": start.isoformat(), "end": end.isoformat(), "total": sum(x["downloads"] for x in daily), "daily": daily}
+                else:
+                    for name in bulk:
+                        item = data.get(name)
+                        if isinstance(item, dict) and isinstance(item.get("downloads"), list):
+                            daily = self._normalize_daily(item.get("downloads"))
+                            result[name] = {"start": item.get("start", start.isoformat()), "end": item.get("end", end.isoformat()), "total": sum(x["downloads"] for x in daily), "daily": daily}
+
+        # Scoped packages cannot use the bulk endpoint, so keep a slow bounded fallback.
+        for name in scoped:
+            encoded = urllib.parse.quote(name, safe="@/")
+            data = self._fetch_json(
+                f"https://api.npmjs.org/downloads/range/{period}/{encoded}",
+                f"npm_range_{name}_{period}",
+            )
+            if data and isinstance(data.get("downloads"), list):
+                daily = self._normalize_daily(data.get("downloads"))
+                result[name] = {"start": start.isoformat(), "end": end.isoformat(), "total": sum(x["downloads"] for x in daily), "daily": daily}
+            time.sleep(0.25)
+        return result
+
+    def get_npm_download_range(self, name: str, days: int = 30) -> Optional[Dict]:
+        return self.get_npm_download_ranges([name], days=days).get(name)
 
     def get_pypi_package(self, name: str) -> Optional[Dict]:
-        """Get package metadata from the public PyPI JSON API."""
         encoded = urllib.parse.quote(name, safe="")
-        url = f"https://pypi.org/pypi/{encoded}/json"
-        data = self._fetch_json(url, f"pypi_{name}")
+        data = self._fetch_json(f"https://pypi.org/pypi/{encoded}/json", f"pypi_{name}")
         if not data:
             return None
 
         info = data.get("info", {})
         releases = data.get("releases", {})
-
         version_dates = {}
         for ver, files in releases.items():
             if files and isinstance(files, list):
                 upload_time = files[0].get("upload_time", "")
                 if upload_time:
                     version_dates[ver] = upload_time
-
         all_dates = sorted(version_dates.values()) if version_dates else []
-        created = all_dates[0] if all_dates else ""
-        modified = all_dates[-1] if all_dates else ""
 
         return {
             "name": name,
@@ -183,8 +251,8 @@ class DataCollector:
             "latest_version": info.get("version", ""),
             "all_versions": list(releases.keys()),
             "version_dates": version_dates,
-            "created": created,
-            "modified": modified,
+            "created": all_dates[0] if all_dates else "",
+            "modified": all_dates[-1] if all_dates else "",
             "description": info.get("summary", ""),
             "home_page": info.get("home_page", ""),
             "project_urls": info.get("project_urls", {}),
@@ -193,47 +261,39 @@ class DataCollector:
             "requires_python": info.get("requires_python", ""),
             "keywords": info.get("keywords", ""),
             "classifiers": (info.get("classifiers", []) or [])[:10],
-            "requires_dist": [
-                self._extract_pkg_name(d)
-                for d in (info.get("requires_dist", []) or [])[:20]
-            ],
+            "requires_dist": [self._extract_pkg_name(d) for d in (info.get("requires_dist", []) or [])[:20]],
         }
 
     def search_npm(self, query: str, size: int = 20) -> List[Dict]:
-        """Search npm packages using the public registry search endpoint."""
         encoded = urllib.parse.quote(query, safe="")
-        url = f"https://registry.npmjs.org/-/v1/search?text={encoded}&size={size}"
-        data = self._fetch_json(url, f"npm_search_{query.replace(' ', '_')}")
+        data = self._fetch_json(
+            f"https://registry.npmjs.org/-/v1/search?text={encoded}&size={size}",
+            f"npm_search_{query.replace(' ', '_')}",
+        )
         if not data:
             return []
-
         results = []
         for obj in data.get("objects", []):
             pkg = obj.get("package", {})
-            results.append(
-                {
-                    "name": pkg.get("name", ""),
-                    "description": pkg.get("description", ""),
-                    "version": pkg.get("version", ""),
-                    "score": obj.get("score", {}).get("final", 0),
-                }
-            )
+            results.append({
+                "name": pkg.get("name", ""),
+                "description": pkg.get("description", ""),
+                "version": pkg.get("version", ""),
+                "score": obj.get("score", {}).get("final", 0),
+            })
         return results
 
     def get_pypi_trending(self) -> List[Dict]:
-        """Fetch the optional third-party top-PyPI snapshot used for research only."""
         url = "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json"
         data = self._fetch_json(url, "pypi_trending")
         if not data:
             return []
-        rows = data.get("rows", [])[:50]
         return [
             {"name": row.get("project", ""), "downloads": row.get("download_count", 0)}
-            for row in rows
+            for row in data.get("rows", [])[:50]
         ]
 
     def collect_ecosystem_data(self, packages: Dict) -> Dict:
-        """Collect the configured npm and PyPI package sets."""
         results = {
             "npm": {},
             "pypi": {},
@@ -247,12 +307,16 @@ class DataCollector:
         if isinstance(pypi_list, dict):
             pypi_list = pypi_list.get("packages", [])
 
+        # Registry metadata first. Download totals are fetched in a single bulk request below.
         for pkg_name in npm_list:
             print(f"Collecting npm: {pkg_name}")
             pkg_info = self.get_npm_package(pkg_name)
             if pkg_info:
-                pkg_info["weekly_downloads"] = self.get_npm_download_count(pkg_name)
                 results["npm"][pkg_name] = pkg_info
+
+        download_counts = self.get_npm_download_counts(list(results["npm"]))
+        for pkg_name, pkg_info in results["npm"].items():
+            pkg_info["weekly_downloads"] = download_counts.get(pkg_name)
 
         for pkg_name in pypi_list:
             print(f"Collecting pypi: {pkg_name}")
@@ -260,15 +324,11 @@ class DataCollector:
             if pkg_info:
                 results["pypi"][pkg_name] = pkg_info
 
-        output_path = self.data_dir / "collected_data.json"
-        with output_path.open("w", encoding="utf-8") as f:
+        with (self.data_dir / "collected_data.json").open("w", encoding="utf-8") as f:
             json.dump(results, f, indent=2, default=str)
             f.write("\n")
 
-        print(
-            f"\nCollected data for {len(results['npm'])} npm + "
-            f"{len(results['pypi'])} pypi packages"
-        )
+        print(f"\nCollected data for {len(results['npm'])} npm + {len(results['pypi'])} pypi packages")
         return results
 
 
@@ -288,8 +348,7 @@ DEFAULT_PACKAGES = {
 
 
 def main():
-    collector = DataCollector(Path(__file__).parent.parent / "data")
-    collector.collect_ecosystem_data(DEFAULT_PACKAGES)
+    DataCollector(Path(__file__).parent.parent / "data").collect_ecosystem_data(DEFAULT_PACKAGES)
 
 
 if __name__ == "__main__":
