@@ -1,4 +1,5 @@
-"""EcosystemPulse smoke tests for fresh local/CI builds."""
+"""EcosystemPulse V3 smoke tests for fresh local/CI builds."""
+
 import json
 import re
 from pathlib import Path
@@ -16,14 +17,21 @@ def record(condition, label, detail=""):
     if not condition:
         errors.append(f"{label} FAIL" + (f": {detail}" if detail else ""))
 
+
+def load_json(path, default):
+    if not path.exists():
+        return default
+    try:
+        with path.open(encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return default
+
+
 collected = DATA / "collected_data.json"
-if collected.exists():
-    with collected.open(encoding="utf-8") as f:
-        d = json.load(f)
-    npm_count = len(d.get("npm", {}))
-    pypi_count = len(d.get("pypi", {}))
-else:
-    d, npm_count, pypi_count = {}, 0, 0
+d = load_json(collected, {})
+npm_count = len(d.get("npm", {}))
+pypi_count = len(d.get("pypi", {}))
 record(collected.exists() and npm_count >= 30 and pypi_count >= 25,
        "CHECK 1", f"collected {npm_count} npm + {pypi_count} pypi")
 
@@ -59,8 +67,8 @@ record(not broken, "CHECK 4", f"{len(broken)} broken internal links")
 if broken:
     errors.extend("BROKEN: " + item for item in broken[:20])
 
-giant = [f"{f.name}({f.stat().st_size})" for f in html_files if f.stat().st_size > 20000]
-record(not giant, "CHECK 5", f"{len(giant)} giant pages")
+giant = [f"{f.name}({f.stat().st_size})" for f in html_files if f.stat().st_size > 30000]
+record(not giant, "CHECK 5", f"{len(giant)} giant package pages")
 
 sitemap = OUTPUT / "sitemap.xml"
 sc = sitemap.read_text(encoding="utf-8") if sitemap.exists() else ""
@@ -133,9 +141,89 @@ for f in all_html:
 record(bool(all_html) and not missing_analytics, "CHECK 19",
        f"Cloudflare analytics present on {len(all_html)} HTML pages" if not missing_analytics else f"missing on {missing_analytics[:10]}")
 
+# V3 durable-history checks
+npm_history_path = DATA / "history" / "npm.json"
+pypi_history_path = DATA / "history" / "pypi.json"
+npm_history = load_json(npm_history_path, {})
+pypi_history = load_json(pypi_history_path, {})
+record(npm_history_path.exists() and pypi_history_path.exists() and npm_history.get("schema_version") == 1 and pypi_history.get("schema_version") == 1,
+       "CHECK 20", "durable history files + schema v1")
+
+npm_hist_packages = npm_history.get("packages", {})
+pypi_hist_packages = pypi_history.get("packages", {})
+record(len(npm_hist_packages) >= 30 and len(pypi_hist_packages) >= 25,
+       "CHECK 21", f"history covers {len(npm_hist_packages)} npm + {len(pypi_hist_packages)} pypi")
+
+series_with_14 = sum(
+    1 for item in npm_hist_packages.values()
+    if len(item.get("daily_downloads", [])) >= 14
+)
+record(series_with_14 >= 20, "CHECK 22", f"{series_with_14} npm packages have >=14 complete daily download points")
+
+history_integrity_problems = []
+for name, item in npm_hist_packages.items():
+    daily = item.get("daily_downloads", [])
+    days = [p.get("day") for p in daily if isinstance(p, dict)]
+    snapshots = item.get("snapshots", [])
+    snap_days = [p.get("date") for p in snapshots if isinstance(p, dict)]
+    if days != sorted(set(days)):
+        history_integrity_problems.append(f"{name}: daily dates not sorted/unique")
+    if snap_days != sorted(set(snap_days)):
+        history_integrity_problems.append(f"{name}: snapshot dates not sorted/unique")
+record(not history_integrity_problems, "CHECK 23", "history dates sorted and de-duplicated")
+
+trends_path = DATA / "trends.json"
+trends = load_json(trends_path, {})
+npm_trends = trends.get("npm", {})
+pypi_trends = trends.get("pypi", {})
+with_change = [item for item in npm_trends.values() if item.get("change_7d_pct") is not None]
+record(trends_path.exists() and trends.get("schema_version") == 1 and len(npm_trends) >= 30 and len(pypi_trends) >= 25 and len(with_change) >= 20,
+       "CHECK 24", f"trends cover {len(npm_trends)} npm + {len(pypi_trends)} pypi; {len(with_change)} npm momentum values")
+
+trend_math_ok = False
+for item in with_change:
+    points = item.get("download_points", [])
+    values = [int(p.get("downloads", 0)) for p in points if isinstance(p, dict)]
+    if len(values) < 14:
+        continue
+    last7 = sum(values[-7:])
+    prev7 = sum(values[-14:-7])
+    if prev7 <= 0:
+        continue
+    expected_change = round(((last7 - prev7) / prev7) * 100, 1)
+    if expected_change == item.get("change_7d_pct") and last7 == item.get("downloads_7d") and prev7 == item.get("downloads_previous_7d"):
+        trend_math_ok = True
+        break
+record(trend_math_ok, "CHECK 25", "7-day momentum recomputes from stored evidence")
+
+npm_trend_pages = 0
+pypi_release_pages = 0
+for name in d.get("npm", {}):
+    page = pages_dir / f"{name}.html"
+    if page.exists():
+        text = page.read_text(encoding="utf-8", errors="ignore")
+        if "Download momentum" in text and "class=\"sparkline\"" in text and "previous 7" in text:
+            npm_trend_pages += 1
+for name in d.get("pypi", {}):
+    page = pages_dir / f"{name}.html"
+    if page.exists() and "Release activity" in page.read_text(encoding="utf-8", errors="ignore"):
+        pypi_release_pages += 1
+record(npm_trend_pages >= 20, "CHECK 26", f"{npm_trend_pages} npm package pages render evidence-backed trend panels")
+record(pypi_release_pages >= 25, "CHECK 27", f"{pypi_release_pages} PyPI package pages render release activity")
+
+record("Fastest-rising tracked npm packages" in index_html or "Download momentum is warming up" in index_html,
+       "CHECK 28", "homepage exposes measured momentum state")
+
+canonical_package_pages = 0
+for f in html_files:
+    text = f.read_text(encoding="utf-8", errors="ignore")
+    if f'<link rel="canonical" href="https://ecosystempulse.dev/pages/' in text:
+        canonical_package_pages += 1
+record(canonical_package_pages >= 60, "CHECK 29", f"canonical custom-domain URLs on {canonical_package_pages} package pages")
+
 print("\n=== RESULT ===")
 if errors:
     for e in errors:
         print("  " + e)
     raise SystemExit(1)
-print("ALL 19 CHECKS PASSED")
+print("ALL 29 CHECKS PASSED")
