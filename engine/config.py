@@ -1,5 +1,5 @@
 """
-EcosystemPulse V2 Configuration
+EcosystemPulse V4.1 Configuration
 """
 import os
 from pathlib import Path
@@ -13,7 +13,7 @@ PAGES_DIR = OUTPUT_DIR / "pages"
 # Site configuration
 SITE_CONFIG = {
     "name": "EcosystemPulse",
-    "description": "Real-time developer ecosystem data. Track package health, downloads, versions, and trends across npm and PyPI.",
+    "description": "Measured developer ecosystem data. Track package downloads, versions, releases, and trends across npm and PyPI.",
     "url": os.environ.get("SITE_URL", "https://ecosystempulse.dev").rstrip("/"),
     "tagline": "No fluff. Just data.",
 }
@@ -22,7 +22,7 @@ SITE_CONFIG = {
 TRACKED_ECOSYSTEMS = {
     "npm": {
         "packages": [
-            "react", "vue", "angular", "svelte", "next", "nuxt",
+            "react", "vue", "svelte", "next", "nuxt",
             "express", "fastify", "hono",
             "typescript", "webpack", "vite", "esbuild", "rollup",
             "tailwindcss", "prisma", "drizzle-orm",
@@ -51,6 +51,10 @@ TRACKED_ECOSYSTEMS = {
         ],
     },
 }
+
+# The old unscoped `angular` npm package is AngularJS, not modern Angular.
+# Do not re-add it as an Angular proxy. Supporting modern @angular/core requires
+# an explicit scoped-package URL/slug design pass first.
 
 # Content generation
 CONTENT_CONFIG = {
