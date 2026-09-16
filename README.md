@@ -25,3 +25,5 @@ Then open `http://localhost:8000/`.
 ## Deployment
 
 The included workflow builds and validates the site on pushes to `main`, refreshes the data daily, and deploys `output/` to GitHub Pages.
+
+Deployment target: `https://thanksforfish.github.io/EcosystemPulse/`
