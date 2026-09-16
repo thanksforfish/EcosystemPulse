@@ -1,4 +1,4 @@
-"""Explainable trend calculations for EcosystemPulse V3."""
+"""Explainable trend calculations for EcosystemPulse V3.1."""
 
 from __future__ import annotations
 
@@ -93,6 +93,32 @@ class TrendAnalyzer:
         return data
 
     @staticmethod
+    def _consecutive_suffix(points: list[Dict]) -> list[Dict]:
+        """Return the newest uninterrupted calendar-day suffix of a download series."""
+        if not points:
+            return []
+        parsed = []
+        for item in points:
+            try:
+                day = datetime.strptime(str(item["day"]), "%Y-%m-%d").date()
+                downloads = int(item["downloads"])
+            except (KeyError, TypeError, ValueError):
+                continue
+            parsed.append((day, {"day": day.isoformat(), "downloads": downloads}))
+        parsed.sort(key=lambda pair: pair[0])
+        if not parsed:
+            return []
+
+        suffix = [parsed[-1]]
+        for pair in reversed(parsed[:-1]):
+            newer_day = suffix[-1][0]
+            if newer_day - pair[0] != timedelta(days=1):
+                break
+            suffix.append(pair)
+        suffix.reverse()
+        return [item for _, item in suffix]
+
+    @staticmethod
     def _download_metrics(entry: Dict) -> Dict:
         points = [
             item
@@ -102,36 +128,62 @@ class TrendAnalyzer:
             and isinstance(item.get("downloads"), (int, float))
         ]
         points = sorted(points, key=lambda item: item["day"])[-30:]
-        values = [int(item["downloads"]) for item in points]
+        contiguous = TrendAnalyzer._consecutive_suffix(points)
+        contiguous_days = len(contiguous)
 
-        last_7 = sum(values[-7:]) if len(values) >= 7 else None
-        previous_7 = sum(values[-14:-7]) if len(values) >= 14 else None
+        last_7 = None
+        previous_7 = None
         change_pct = None
-        if last_7 is not None and previous_7 and previous_7 > 0:
-            change_pct = round(((last_7 - previous_7) / previous_7) * 100, 1)
+        if contiguous_days >= 14:
+            comparison = contiguous[-14:]
+            previous_7 = sum(int(item["downloads"]) for item in comparison[:7])
+            last_7 = sum(int(item["downloads"]) for item in comparison[7:])
+            if previous_7 > 0:
+                change_pct = round(((last_7 - previous_7) / previous_7) * 100, 1)
+
+        downloads_30d = None
+        average_30d = None
+        if contiguous_days >= 30:
+            values_30 = [int(item["downloads"]) for item in contiguous[-30:]]
+            downloads_30d = sum(values_30)
+            average_30d = round(downloads_30d / 30)
 
         return {
-            "download_history_days": len(points),
+            # Kept for page compatibility: this now means uninterrupted reliable days at the
+            # newest end of the series, not merely the number of stored observations.
+            "download_history_days": contiguous_days,
+            "download_observation_days": len(points),
             "download_points": points,
             "downloads_7d": last_7,
             "downloads_previous_7d": previous_7,
-            "downloads_30d": sum(values) if values else None,
-            "average_daily_downloads_30d": round(sum(values) / len(values)) if values else None,
+            "downloads_30d": downloads_30d,
+            "average_daily_downloads_30d": average_30d,
             "change_7d_pct": change_pct,
             "momentum": _momentum_label(change_pct),
+            "momentum_available": change_pct is not None,
+            "comparison_requires_consecutive_days": True,
         }
 
     def analyze(self, collected_data: Dict) -> Dict:
         now = datetime.now(timezone.utc)
-        npm_history = self._load_history("npm").get("packages", {})
-        pypi_history = self._load_history("pypi").get("packages", {})
+        npm_history_doc = self._load_history("npm")
+        pypi_history_doc = self._load_history("pypi")
+        npm_history = npm_history_doc.get("packages", {})
+        pypi_history = pypi_history_doc.get("packages", {})
+        excluded_days = npm_history_doc.get("excluded_download_days", {})
+        if not isinstance(excluded_days, dict):
+            excluded_days = {}
 
         result = {
             "schema_version": TREND_SCHEMA_VERSION,
             "generated_at": now.isoformat(),
             "methodology": {
-                "momentum": "Trailing 7 complete npm download days versus the preceding 7; rising/falling thresholds are +/-5%.",
+                "momentum": "Trailing 7 consecutive reliable npm download days versus the preceding 7 consecutive reliable days; rising/falling thresholds are +/-5%. Registry-wide zero anomalies are excluded.",
                 "release_activity": "Calculated directly from registry release timestamps; no subjective health score is used.",
+            },
+            "npm_data_quality": {
+                "excluded_registry_days": sorted(excluded_days),
+                "excluded_registry_day_count": len(excluded_days),
             },
             "npm": {},
             "pypi": {},
