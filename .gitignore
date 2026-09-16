@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+data/cache/
+data/collected_data.json
+output/
+.DS_Store
+Thumbs.db
