@@ -10,7 +10,7 @@ EcosystemPulse is a small autonomous developer-ecosystem experiment. It collects
 - Generates package pages, listing pages, sitemap, and robots.txt.
 - Runs an 18-check smoke suite before deployment.
 
-This is an experiment, not a proven business. It currently has **zero demonstrated revenue** and **no demonstrated market demand**.
+EcosystemPulse is an early-stage public data tool. Its usefulness and usage patterns are still being evaluated.
 
 ## Run locally
 
