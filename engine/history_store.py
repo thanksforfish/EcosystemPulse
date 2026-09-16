@@ -101,13 +101,14 @@ class HistoryStore:
         store: Dict,
         packages: Dict[str, Dict],
         registry: str,
-        collector,
         collected_at: str,
         observed_date: str,
+        download_ranges: Dict[str, Dict] | None = None,
     ) -> Tuple[int, int]:
         snapshot_count = 0
         download_series_count = 0
         package_store = store.setdefault("packages", {})
+        download_ranges = download_ranges or {}
 
         for name, pkg in packages.items():
             entry = package_store.setdefault(
@@ -127,8 +128,7 @@ class HistoryStore:
             snapshot_count += 1
 
             if registry == "npm":
-                range_data = collector.get_npm_download_range(name, days=30)
-                incoming = (range_data or {}).get("daily", [])
+                incoming = (download_ranges.get(name) or {}).get("daily", [])
                 entry["daily_downloads"] = self._merge_daily(
                     entry.get("daily_downloads", []), incoming
                 )
@@ -147,19 +147,22 @@ class HistoryStore:
         npm_store = self._load(self.npm_path, "npm")
         pypi_store = self._load(self.pypi_path, "pypi")
 
+        npm_packages = collected_data.get("npm", {})
+        # One bulk npm request replaces dozens of range requests and avoids 429s.
+        npm_ranges = collector.get_npm_download_ranges(list(npm_packages), days=30)
+
         npm_snapshots, npm_series = self._update_registry(
             npm_store,
-            collected_data.get("npm", {}),
+            npm_packages,
             "npm",
-            collector,
             collected_at,
             observed_date,
+            download_ranges=npm_ranges,
         )
         pypi_snapshots, _ = self._update_registry(
             pypi_store,
             collected_data.get("pypi", {}),
             "pypi",
-            collector,
             collected_at,
             observed_date,
         )
