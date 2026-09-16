@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcosystemPulse — Search npm and PyPI</title>
+    <meta name="description" content="Search npm packages by name or description. Browse PyPI package data. Real-time developer ecosystem data.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .search-box { max-width: 600px; margin: 2rem auto; }
+        .search-input {
+            width: 100%; padding: 1rem 1.5rem; font-size: 1.1rem;
+            border: 2px solid #333; border-radius: 8px; background: #0a0a0a;
+            color: #e0e0e0; font-family: 'SF Mono', 'Fira Code', monospace; box-sizing: border-box;
+        }
+        .search-input:focus { outline: none; border-color: #00ff88; }
+        .search-input::placeholder { color: #666; }
+        .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        @media (max-width: 768px) { .results-grid { grid-template-columns: 1fr; } }
+        .ecosystem-col h2 {
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+            color: #888; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #222;
+        }
+        .result-item { padding: 0.75rem; border: 1px solid #222; border-radius: 6px; margin-bottom: 0.5rem; transition: border-color 0.2s; }
+        .result-item:hover { border-color: #444; }
+        .result-name { font-weight: bold; color: #00ff88; font-size: 0.95rem; }
+        .result-desc { color: #aaa; font-size: 0.85rem; margin-top: 0.25rem; }
+        .result-meta { color: #666; font-size: 0.8rem; margin-top: 0.25rem; }
+        .result-links { margin-top: 0.5rem; }
+        .result-links a { color: #00ff88; text-decoration: none; font-size: 0.8rem; }
+        .result-links a:hover { text-decoration: underline; }
+        .no-results { color: #666; text-align: center; padding: 2rem; }
+        .search-status { text-align: center; color: #666; font-size: 0.9rem; margin-top: 1rem; }
+        .search-hint { text-align: center; color: #555; font-size: 0.85rem; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">EcosystemPulse</a>
+            <ul class="nav-links">
+                <li><a href="npm.html">npm</a></li>
+                <li><a href="pypi.html">PyPI</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <h1>Search npm and PyPI</h1>
+            <p>Find packages across ecosystems. Compare downloads. Check versions.</p>
+        </section>
+        <div class="search-box">
+            <input type="text" class="search-input" id="search" placeholder="Search for a package... (e.g., 'http client', 'react', 'dataframe')" autocomplete="off">
+            <p class="search-hint">Searches npm packages. Links to PyPI for Python results.</p>
+        </div>
+        <div id="status" class="search-status"></div>
+        <div class="results-grid" id="results" style="display: none;">
+            <div class="ecosystem-col" id="npm-results"><h2>npm</h2></div>
+            <div class="ecosystem-col" id="pypi-results"><h2>PyPI</h2></div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 EcosystemPulse. Real-time developer ecosystem data.</p>
+        </div>
+    </footer>
+    <script>
+        var searchInput = document.getElementById('search');
+        var statusEl = document.getElementById('status');
+        var resultsEl = document.getElementById('results');
+        var npmResults = document.getElementById('npm-results');
+        var pypiResults = document.getElementById('pypi-results');
+        var searchTimeout;
+
+        searchInput.addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            var query = e.target.value.trim();
+            if (query.length < 2) {
+                resultsEl.style.display = 'none';
+                statusEl.textContent = '';
+                return;
+            }
+            searchTimeout = setTimeout(function() { search(query); }, 300);
+        });
+
+        function search(query) {
+            statusEl.textContent = 'Searching npm...';
+            resultsEl.style.display = 'grid';
+            npmResults.innerHTML = '<h2>npm</h2><div class="no-results">Searching...</div>';
+            pypiResults.innerHTML = '<h2>PyPI</h2><div class="no-results">Searching...</div>';
+
+            searchNpm(query).then(function(npmData) {
+                if (npmData.length > 0) {
+                    npmResults.innerHTML = '<h2>npm (' + npmData.length + ')</h2>';
+                    npmData.forEach(function(pkg) { npmResults.appendChild(createItem(pkg, 'npm')); });
+                } else {
+                    npmResults.innerHTML = '<h2>npm</h2><div class="no-results">No results</div>';
+                }
+                statusEl.textContent = npmData.length + ' npm results found';
+            }).catch(function() {
+                npmResults.innerHTML = '<h2>npm</h2><div class="no-results">Search failed</div>';
+            });
+
+            pypiResults.innerHTML = '<h2>PyPI</h2><div class="no-results"><a href="https://pypi.org/search/?q=' + encodeURIComponent(query) + '" target="_blank" style="color:#00ff88">Search PyPI for "' + escapeHtml(query) + '" &rarr;</a></div>';
+        }
+
+        function searchNpm(query) {
+            return fetch('https://registry.npmjs.org/-/v1/search?text=' + encodeURIComponent(query) + '&size=10')
+                .then(function(resp) { return resp.json(); })
+                .then(function(data) {
+                    return (data.objects || []).map(function(obj) {
+                        var pkg = obj.package;
+                        return { name: pkg.name, description: pkg.description || '', version: pkg.version || '', url: 'https://www.npmjs.com/package/' + pkg.name };
+                    });
+                });
+        }
+
+        function createItem(pkg, ecosystem) {
+            var div = document.createElement('div');
+            div.className = 'result-item';
+            div.innerHTML = '<div class="result-name">' + escapeHtml(pkg.name) + '</div>' +
+                '<div class="result-desc">' + escapeHtml(pkg.description) + '</div>' +
+                (pkg.version ? '<div class="result-meta">v' + escapeHtml(pkg.version) + '</div>' : '') +
+                '<div class="result-links"><a href="' + pkg.url + '" target="_blank">View on ' + (ecosystem === 'npm' ? 'npm' : 'PyPI') + ' &rarr;</a></div>';
+            return div;
+        }
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var q = params.get('q');
+            if (q && q.trim().length >= 2) {
+                searchInput.value = q.trim();
+                search(q.trim());
+            }
+        })();
+    </script>
+</body>
+</html>
