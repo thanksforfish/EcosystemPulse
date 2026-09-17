@@ -1,15 +1,16 @@
-"""Explainable trend calculations for EcosystemPulse V3.1."""
+"""Explainable trend calculations for EcosystemPulse V4.1."""
 
 from __future__ import annotations
 
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from statistics import median
-from typing import Dict, Iterable, Optional
+from typing import Dict, Optional
 
 
 TREND_SCHEMA_VERSION = 1
+MOMENTUM_MAX_AGE_DAYS = 2
 
 
 def _parse_datetime(value: object) -> Optional[datetime]:
@@ -25,8 +26,10 @@ def _parse_datetime(value: object) -> Optional[datetime]:
 
 
 def _release_datetimes(pkg: Dict) -> list[datetime]:
+    # Prefer stable release timestamps when the collector can distinguish them.
+    source = pkg.get("stable_version_dates") or pkg.get("version_dates") or {}
     dates = []
-    for value in (pkg.get("version_dates") or {}).values():
+    for value in source.values():
         parsed = _parse_datetime(value)
         if parsed:
             dates.append(parsed)
@@ -40,6 +43,7 @@ def _release_metrics(pkg: Dict, now: datetime) -> Dict:
             "days_since_release": None,
             "releases_90d": 0,
             "median_release_interval_days": None,
+            "release_scope": "stable when identifiable",
         }
 
     latest = dates[-1]
@@ -58,6 +62,7 @@ def _release_metrics(pkg: Dict, now: datetime) -> Dict:
         "days_since_release": days_since,
         "releases_90d": releases_90d,
         "median_release_interval_days": interval,
+        "release_scope": "stable when identifiable",
     }
 
 
@@ -86,10 +91,10 @@ class TrendAnalyzer:
         try:
             with path.open(encoding="utf-8") as f:
                 data = json.load(f)
-        except (OSError, json.JSONDecodeError):
-            return {"packages": {}}
-        if not isinstance(data.get("packages"), dict):
-            data["packages"] = {}
+        except (OSError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Unreadable durable trend history: {path}") from exc
+        if not isinstance(data, dict) or not isinstance(data.get("packages"), dict):
+            raise RuntimeError(f"Invalid durable trend history structure: {path}")
         return data
 
     @staticmethod
@@ -100,11 +105,11 @@ class TrendAnalyzer:
         parsed = []
         for item in points:
             try:
-                day = datetime.strptime(str(item["day"]), "%Y-%m-%d").date()
+                day_value = datetime.strptime(str(item["day"]), "%Y-%m-%d").date()
                 downloads = int(item["downloads"])
             except (KeyError, TypeError, ValueError):
                 continue
-            parsed.append((day, {"day": day.isoformat(), "downloads": downloads}))
+            parsed.append((day_value, {"day": day_value.isoformat(), "downloads": downloads}))
         parsed.sort(key=lambda pair: pair[0])
         if not parsed:
             return []
@@ -119,7 +124,7 @@ class TrendAnalyzer:
         return [item for _, item in suffix]
 
     @staticmethod
-    def _download_metrics(entry: Dict) -> Dict:
+    def _download_metrics(entry: Dict, as_of_date: Optional[date] = None) -> Dict:
         points = [
             item
             for item in entry.get("daily_downloads", [])
@@ -131,10 +136,26 @@ class TrendAnalyzer:
         contiguous = TrendAnalyzer._consecutive_suffix(points)
         contiguous_days = len(contiguous)
 
+        latest_day = None
+        if contiguous:
+            try:
+                latest_day = datetime.strptime(contiguous[-1]["day"], "%Y-%m-%d").date()
+            except (KeyError, TypeError, ValueError):
+                latest_day = None
+
+        data_fresh = True
+        freshness_age_days = None
+        if as_of_date is not None:
+            if latest_day is None:
+                data_fresh = False
+            else:
+                freshness_age_days = (as_of_date - latest_day).days
+                data_fresh = 0 <= freshness_age_days <= MOMENTUM_MAX_AGE_DAYS
+
         last_7 = None
         previous_7 = None
         change_pct = None
-        if contiguous_days >= 14:
+        if contiguous_days >= 14 and data_fresh:
             comparison = contiguous[-14:]
             previous_7 = sum(int(item["downloads"]) for item in comparison[:7])
             last_7 = sum(int(item["downloads"]) for item in comparison[7:])
@@ -143,17 +164,23 @@ class TrendAnalyzer:
 
         downloads_30d = None
         average_30d = None
-        if contiguous_days >= 30:
+        if contiguous_days >= 30 and data_fresh:
             values_30 = [int(item["downloads"]) for item in contiguous[-30:]]
             downloads_30d = sum(values_30)
             average_30d = round(downloads_30d / 30)
 
+        # Charts use only the newest uninterrupted suffix. This avoids drawing a
+        # continuous line across excluded/missing calendar dates.
+        chart_points = contiguous[-30:]
         return {
-            # Kept for page compatibility: this now means uninterrupted reliable days at the
-            # newest end of the series, not merely the number of stored observations.
             "download_history_days": contiguous_days,
             "download_observation_days": len(points),
-            "download_points": points,
+            "download_points": chart_points,
+            "download_had_gap": len(chart_points) < len(points),
+            "download_latest_day": latest_day.isoformat() if latest_day else None,
+            "download_data_fresh": data_fresh,
+            "download_freshness_age_days": freshness_age_days,
+            "download_freshness_limit_days": MOMENTUM_MAX_AGE_DAYS,
             "downloads_7d": last_7,
             "downloads_previous_7d": previous_7,
             "downloads_30d": downloads_30d,
@@ -162,6 +189,7 @@ class TrendAnalyzer:
             "momentum": _momentum_label(change_pct),
             "momentum_available": change_pct is not None,
             "comparison_requires_consecutive_days": True,
+            "comparison_requires_fresh_data": True,
         }
 
     def analyze(self, collected_data: Dict) -> Dict:
@@ -178,8 +206,16 @@ class TrendAnalyzer:
             "schema_version": TREND_SCHEMA_VERSION,
             "generated_at": now.isoformat(),
             "methodology": {
-                "momentum": "Trailing 7 consecutive reliable npm download days versus the preceding 7 consecutive reliable days; rising/falling thresholds are +/-5%. Registry-wide zero anomalies are excluded.",
-                "release_activity": "Calculated directly from registry release timestamps; no subjective health score is used.",
+                "momentum": (
+                    "Trailing 7 consecutive reliable npm download days versus the preceding 7 consecutive reliable days; "
+                    "the newest download day must be no more than 2 calendar days old. Rising/falling thresholds are +/-5%. "
+                    "Registry-wide zero anomalies are excluded."
+                ),
+                "release_activity": (
+                    "Calculated from the full registry release-timestamp set available at collection time; prereleases are excluded "
+                    "when they can be identified. No subjective health score is used."
+                ),
+                "charts": "Download charts use only the newest uninterrupted reliable calendar-day segment; missing dates are not visually compressed together.",
             },
             "npm_data_quality": {
                 "excluded_registry_days": sorted(excluded_days),
@@ -190,7 +226,7 @@ class TrendAnalyzer:
         }
 
         for name, pkg in collected_data.get("npm", {}).items():
-            metrics = self._download_metrics(npm_history.get(name, {}))
+            metrics = self._download_metrics(npm_history.get(name, {}), as_of_date=now.date())
             metrics.update(_release_metrics(pkg, now))
             metrics["current_version"] = pkg.get("latest_version") or None
             metrics["current_weekly_downloads"] = pkg.get("weekly_downloads")

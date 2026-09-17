@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '17 2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,6 +46,18 @@ jobs:
 
       - name: V4 discovery and SEO smoke test
         run: python v4_smoke_test.py
+
+      - name: V4.1 trust and future-data smoke test
+        run: python v4_1_smoke_test.py
+
+      - name: Archive durable history recovery copy
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecosystempulse-history-${{ github.run_id }}
+          path: data/history
+          retention-days: 30
+          if-no-files-found: error
 
       - name: Persist durable history
         if: github.ref == 'refs/heads/main'
