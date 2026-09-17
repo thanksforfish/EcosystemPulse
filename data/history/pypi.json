@@ -2,7 +2,7 @@
   "packages": {
     "black": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -11,12 +11,67 @@
           "modified": "2026-05-18T17:05:02",
           "total_versions": 73,
           "version": "26.5.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 14,
+          "modified": "2026-05-18T16:53:33.964830Z",
+          "total_versions": 73,
+          "version": "26.5.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "click>=8.0.0",
+              "mypy-extensions>=0.4.3",
+              "packaging>=22.0",
+              "pathspec>=1.0.0",
+              "platformdirs>=2",
+              "pytokens~=0.4.0",
+              "tomli>=1.1.0; python_version < \"3.11\"",
+              "typing-extensions>=4.0.1; python_version < \"3.11\"",
+              "colorama>=0.4.3; extra == \"colorama\"",
+              "aiohttp>=3.10; extra == \"d\"",
+              "ipython>=7.8.0; extra == \"jupyter\"",
+              "tokenize-rt>=3.2.0; extra == \"jupyter\"",
+              "uvloop>=0.15.2; sys_platform != \"win32\" and extra == \"uvloop\"",
+              "winloop>=0.5.0; sys_platform == \"win32\" and extra == \"uvloop\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Topic :: Software Development :: Libraries :: Python Modules",
+              "Topic :: Software Development :: Quality Assurance"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "076cdeae5418efe8a9d3ecc2c08029a834d83794bf6c6f49e31b757a152b6fe7",
+          "version": "26.5.1"
         }
       ]
     },
     "celery": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -25,12 +80,106 @@
           "modified": "2026-03-26T12:14:49",
           "total_versions": 224,
           "version": "5.6.3"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-03-26T12:14:49.491474Z",
+          "total_versions": 224,
+          "version": "5.6.3"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "billiard<5.0,>=4.2.1",
+              "kombu>=5.6.0",
+              "vine<6.0,>=5.1.0",
+              "click<9.0,>=8.1.2",
+              "click-didyoumean>=0.3.0",
+              "click-repl>=0.2.0",
+              "click-plugins>=1.1.1",
+              "python-dateutil>=2.8.2",
+              "exceptiongroup>=1.3.0; python_version < \"3.11\"",
+              "tzlocal",
+              "pyArango>=2.0.2; extra == \"arangodb\"",
+              "cryptography==46.0.5; extra == \"auth\"",
+              "azure-storage-blob>=12.15.0; extra == \"azureblockblob\"",
+              "azure-identity>=1.19.0; extra == \"azureblockblob\"",
+              "brotlipy>=0.7.0; platform_python_implementation == \"PyPy\" and extra == \"brotli\"",
+              "brotli>=1.0.0; platform_python_implementation == \"CPython\" and extra == \"brotli\"",
+              "cassandra-driver<4,>=3.25.0; extra == \"cassandra\"",
+              "python-consul2==0.1.5; extra == \"consul\"",
+              "pydocumentdb==2.3.5; extra == \"cosmosdbsql\"",
+              "couchbase>=3.0.0; (platform_python_implementation != \"PyPy\" and (platform_system != \"Windows\" or python_version < \"3.10\")) and extra == \"couchbase\"",
+              "pycouchdb==1.16.0; extra == \"couchdb\"",
+              "Django>=2.2.28; extra == \"django\"",
+              "boto3>=1.26.143; extra == \"dynamodb\"",
+              "elasticsearch<=9.3.0; extra == \"elasticsearch\"",
+              "elastic-transport<=9.2.1; extra == \"elasticsearch\"",
+              "eventlet>=0.32.0; python_version < \"3.10\" and extra == \"eventlet\"",
+              "gevent>=1.5.0; extra == \"gevent\"",
+              "google-cloud-storage>=2.10.0; extra == \"gcs\"",
+              "grpcio==1.76.0; extra == \"gcs\"",
+              "google-cloud-firestore==2.23.0; extra == \"gcs\"",
+              "librabbitmq>=2.0.0; python_version < \"3.11\" and extra == \"librabbitmq\"",
+              "pylibmc==1.6.3; platform_system != \"Windows\" and extra == \"memcache\"",
+              "kombu[mongodb]; extra == \"mongodb\"",
+              "kombu[msgpack]; extra == \"msgpack\"",
+              "python-memcached>=1.61; extra == \"pymemcache\"",
+              "pydantic>=2.4; python_version < \"3.14\" and extra == \"pydantic\"",
+              "pydantic>=2.12.0a1; python_version >= \"3.14\" and extra == \"pydantic\"",
+              "pyro4==4.82; python_version < \"3.11\" and extra == \"pyro\"",
+              "pytest-celery[all]>=1.3.0; extra == \"pytest\"",
+              "kombu[redis]; extra == \"redis\"",
+              "boto3>=1.26.143; extra == \"s3\"",
+              "softlayer_messaging>=1.0.3; extra == \"slmq\"",
+              "ephem==4.2; platform_python_implementation != \"PyPy\" and extra == \"solar\"",
+              "kombu[sqlalchemy]; extra == \"sqlalchemy\"",
+              "boto3>=1.26.143; extra == \"sqs\"",
+              "pycurl<7.45.4,>=7.43.0.5; (sys_platform != \"win32\" and platform_python_implementation == \"CPython\" and python_version < \"3.9\") and extra == \"sqs\"",
+              "pycurl>=7.45.4; (sys_platform != \"win32\" and platform_python_implementation == \"CPython\" and python_version >= \"3.9\") and extra == \"sqs\"",
+              "urllib3>=1.26.16; extra == \"sqs\"",
+              "kombu[sqs]>=5.5.0; extra == \"sqs\"",
+              "tblib==3.2.2; extra == \"tblib\"",
+              "kombu[yaml]; extra == \"yaml\"",
+              "kazoo>=1.3.1; extra == \"zookeeper\"",
+              "zstandard==0.23.0; extra == \"zstd\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Framework :: Celery",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.9",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Software Development :: Object Brokering",
+              "Topic :: System :: Distributed Computing"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.9"
+          },
+          "state_hash": "af75332d871c9a716e727d42bc7ee943fa45ce64a4850f5e1d00b31339c2cb1f",
+          "version": "5.6.3"
         }
       ]
     },
     "django": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -39,12 +188,60 @@
           "modified": "2026-09-02T17:20:39",
           "total_versions": 442,
           "version": "6.1.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 5,
+          "modified": "2026-09-02T17:20:39.153093Z",
+          "total_versions": 442,
+          "version": "6.1.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "asgiref>=3.9.1",
+              "sqlparse>=0.5.0",
+              "tzdata; sys_platform == \"win32\"",
+              "argon2-cffi>=23.1.0; extra == \"argon2\"",
+              "bcrypt>=4.1.1; extra == \"bcrypt\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Web Environment",
+              "Framework :: Django",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Internet :: WWW/HTTP",
+              "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+              "Topic :: Internet :: WWW/HTTP :: WSGI",
+              "Topic :: Software Development :: Libraries :: Application Frameworks",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.12"
+          },
+          "state_hash": "b8f2c2113c0e005894842b89e65aebd42cd6743fe63b3e03154818a7696d1ca7",
+          "version": "6.1.1"
         }
       ]
     },
     "fastapi": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -53,12 +250,91 @@
           "modified": "2026-07-29T17:18:04",
           "total_versions": 317,
           "version": "0.141.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-07-29T17:18:04.364385Z",
+          "total_versions": 317,
+          "version": "0.141.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "starlette>=0.46.0",
+              "pydantic>=2.9.0",
+              "typing-extensions>=4.8.0",
+              "typing-inspection>=0.4.2",
+              "annotated-doc>=0.0.2",
+              "fastapi-cli[standard]>=0.0.32; extra == \"standard\"",
+              "fastar>=0.9.0; extra == \"standard\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"standard\"",
+              "jinja2>=3.1.5; extra == \"standard\"",
+              "python-multipart>=0.0.18; extra == \"standard\"",
+              "email-validator>=2.0.0; extra == \"standard\"",
+              "uvicorn[standard]>=0.12.0; extra == \"standard\"",
+              "pydantic-settings>=2.0.0; extra == \"standard\"",
+              "pydantic-extra-types>=2.0.0; extra == \"standard\"",
+              "fastapi-cli[standard-no-fastapi-cloud-cli]>=0.0.32; extra == \"standard-no-fastapi-cloud-cli\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "jinja2>=3.1.5; extra == \"standard-no-fastapi-cloud-cli\"",
+              "python-multipart>=0.0.18; extra == \"standard-no-fastapi-cloud-cli\"",
+              "email-validator>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "uvicorn[standard]>=0.12.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "pydantic-settings>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "pydantic-extra-types>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "fastapi-cli[standard]>=0.0.32; extra == \"all\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"all\"",
+              "jinja2>=3.1.5; extra == \"all\"",
+              "python-multipart>=0.0.18; extra == \"all\"",
+              "itsdangerous>=1.1.0; extra == \"all\"",
+              "pyyaml>=5.3.1; extra == \"all\"",
+              "email-validator>=2.0.0; extra == \"all\"",
+              "uvicorn[standard]>=0.12.0; extra == \"all\"",
+              "pydantic-settings>=2.0.0; extra == \"all\"",
+              "pydantic-extra-types>=2.0.0; extra == \"all\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 4 - Beta",
+              "Environment :: Web Environment",
+              "Framework :: AsyncIO",
+              "Framework :: FastAPI",
+              "Framework :: Pydantic",
+              "Framework :: Pydantic :: 2",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Information Technology",
+              "Intended Audience :: System Administrators",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Internet",
+              "Topic :: Internet :: WWW/HTTP"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "40f02861b2aedd24e7adc3966d8b8a1cd262e417911db547c925d00ba3a2a617",
+          "version": "0.141.1"
         }
       ]
     },
     "flask": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -67,12 +343,59 @@
           "modified": "2026-02-19T05:00:56",
           "total_versions": 64,
           "version": "3.1.3"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 9,
+          "modified": "2026-02-19T05:00:56.027585Z",
+          "total_versions": 64,
+          "version": "3.1.3"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "blinker>=1.9.0",
+              "click>=8.1.3",
+              "importlib-metadata>=3.6.0; python_version < \"3.10\"",
+              "itsdangerous>=2.2.0",
+              "jinja2>=3.1.2",
+              "markupsafe>=2.1.1",
+              "werkzeug>=3.1.0",
+              "asgiref>=3.2; extra == \"async\"",
+              "python-dotenv; extra == \"dotenv\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Web Environment",
+              "Framework :: Flask",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+              "Topic :: Internet :: WWW/HTTP :: WSGI",
+              "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+              "Topic :: Software Development :: Libraries :: Application Frameworks",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.9"
+          },
+          "state_hash": "719332609a2f0e7185f2403b02e6b60752cc33eec89cbab3d8c3d63d13b74735",
+          "version": "3.1.3"
         }
       ]
     },
     "gunicorn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -81,12 +404,75 @@
           "modified": "2026-08-24T15:05:57",
           "total_versions": 100,
           "version": "26.2.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 16,
+          "modified": "2026-08-24T15:05:57.670955Z",
+          "total_versions": 100,
+          "version": "26.2.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "gevent>=24.10.1; extra == \"gevent\"",
+              "packaging; extra == \"gevent\"",
+              "tornado>=6.5.7; extra == \"tornado\"",
+              "setproctitle; extra == \"setproctitle\"",
+              "h2>=4.4.1; extra == \"http2\"",
+              "gunicorn_h1c>=0.6.9; extra == \"fast\"",
+              "gevent>=24.10.1; extra == \"testing\"",
+              "h2>=4.4.1; extra == \"testing\"",
+              "coverage; extra == \"testing\"",
+              "packaging; extra == \"testing\"",
+              "pytest>=9.0.3; extra == \"testing\"",
+              "pytest-cov; extra == \"testing\"",
+              "pytest-asyncio; extra == \"testing\"",
+              "uvloop>=0.19.0; extra == \"testing\"",
+              "httpx[http2]>=0.23.0; extra == \"testing\"",
+              "inotify>=0.2.10; sys_platform == \"linux\" and extra == \"testing\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Other Environment",
+              "Intended Audience :: Developers",
+              "Operating System :: MacOS :: MacOS X",
+              "Operating System :: POSIX",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Internet",
+              "Topic :: Internet :: WWW/HTTP",
+              "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+              "Topic :: Internet :: WWW/HTTP :: WSGI",
+              "Topic :: Internet :: WWW/HTTP :: WSGI :: Server",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "e6808abdaa9ed27e62f29cc345a818973964c609c39aace96e573c4d81faf556",
+          "version": "26.2.0"
         }
       ]
     },
     "httpx": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -95,12 +481,66 @@
           "modified": "2026-08-31T17:59:54",
           "total_versions": 77,
           "version": "0.28.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 12,
+          "modified": "2026-08-31T17:59:54.190125Z",
+          "total_versions": 77,
+          "version": "0.28.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "anyio",
+              "certifi",
+              "httpcore==1.*",
+              "idna",
+              "brotli; platform_python_implementation == \"CPython\" and extra == \"brotli\"",
+              "brotlicffi; platform_python_implementation != \"CPython\" and extra == \"brotli\"",
+              "click==8.*; extra == \"cli\"",
+              "pygments==2.*; extra == \"cli\"",
+              "rich<14,>=10; extra == \"cli\"",
+              "h2<5,>=3; extra == \"http2\"",
+              "socksio==1.*; extra == \"socks\"",
+              "zstandard>=0.18.0; extra == \"zstd\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 4 - Beta",
+              "Environment :: Web Environment",
+              "Framework :: AsyncIO",
+              "Framework :: Trio",
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: BSD License",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.8",
+              "Programming Language :: Python :: 3.9",
+              "Topic :: Internet :: WWW/HTTP"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.8"
+          },
+          "state_hash": "12f62b95b7209cf134173213f230a3fb1e17528207f7adfbb1dbab8e804d99a2",
+          "version": "0.28.1"
         }
       ]
     },
     "huey": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -109,12 +549,48 @@
           "modified": "2026-09-04T02:04:32",
           "total_versions": 87,
           "version": "3.4.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 5,
+          "modified": "2026-09-04T02:04:32.848880Z",
+          "total_versions": 87,
+          "version": "3.4.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "redis>=3.0.0; extra == \"backends\"",
+              "redis>=3.0.0; extra == \"redis\"",
+              "psycopg>=3.2; extra == \"postgres\"",
+              "cysqlite>=0.3.5; extra == \"cysqlite\"",
+              "peewee>=3.17; extra == \"stats\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Programming Language :: Python :: 3",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": null
+          },
+          "state_hash": "c107075e3f7471d548805c8b9a7ed1639e81d48b969399c4a3bbdc094fba4cda",
+          "version": "3.4.0"
         }
       ]
     },
     "langchain": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -123,12 +599,72 @@
           "modified": "2026-09-16T17:06:45",
           "total_versions": 518,
           "version": "1.4.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-09-16T17:06:45.113376Z",
+          "total_versions": 518,
+          "version": "1.4.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "langchain-core<2.0.0,>=1.6.0",
+              "langgraph<1.3.0,>=1.2.11",
+              "pydantic<3.0.0,>=2.7.4",
+              "langchain-anthropic; extra == \"anthropic\"",
+              "langchain-aws; extra == \"aws\"",
+              "langchain-azure-ai; extra == \"azure-ai\"",
+              "langchain-baseten>=0.2.0; extra == \"baseten\"",
+              "langchain-community; extra == \"community\"",
+              "langchain-deepseek; extra == \"deepseek\"",
+              "langchain-fireworks; extra == \"fireworks\"",
+              "langchain-google-genai; extra == \"google-genai\"",
+              "langchain-google-vertexai; extra == \"google-vertexai\"",
+              "langchain-groq; extra == \"groq\"",
+              "langchain-huggingface; extra == \"huggingface\"",
+              "fastmcp<5.0.0,>=4.0.1; extra == \"mcp\"",
+              "langchain-meta; extra == \"meta\"",
+              "langchain-mistralai; extra == \"mistralai\"",
+              "langchain-ollama; extra == \"ollama\"",
+              "langchain-openai; extra == \"openai\"",
+              "langchain-perplexity; extra == \"perplexity\"",
+              "langchain-together; extra == \"together\"",
+              "langchain-xai; extra == \"xai\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: MIT License",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": "<4.0.0,>=3.10.0"
+          },
+          "state_hash": "f7c225867c6b62c57fce01714b5a36d9c645bfae89e573e2365b2a8b79a052d9",
+          "version": "1.4.1"
         }
       ]
     },
     "litestar": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -137,12 +673,127 @@
           "modified": "2026-06-11T11:26:58",
           "total_versions": 65,
           "version": "2.24.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-06-11T11:26:58.509354Z",
+          "total_versions": 65,
+          "version": "2.24.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "anyio>=3",
+              "click",
+              "exceptiongroup; python_version < \"3.11\"",
+              "exceptiongroup>=1.2.2; python_version < \"3.11\"",
+              "httpx>=0.22",
+              "importlib-metadata; python_version < \"3.10\"",
+              "importlib-resources>=5.12.0; python_version < \"3.9\"",
+              "litestar-htmx>=0.4.0",
+              "msgspec>=0.18.2",
+              "multidict>=6.0.2",
+              "multipart>=1.2.0",
+              "polyfactory>=2.6.3",
+              "pyyaml",
+              "rich-click",
+              "rich>=13.0.0",
+              "sniffio>=1.3.1",
+              "typing-extensions",
+              "annotated-types; extra == \"annotated-types\"",
+              "attrs; extra == \"attrs\"",
+              "brotli; extra == \"brotli\"",
+              "jsbeautifier; extra == \"cli\"",
+              "uvicorn[standard]; extra == \"cli\"",
+              "cryptography; extra == \"cryptography\"",
+              "advanced-alchemy>=0.2.2; extra == \"full\"",
+              "annotated-types; extra == \"full\"",
+              "attrs; extra == \"full\"",
+              "brotli; extra == \"full\"",
+              "cryptography; extra == \"full\"",
+              "email-validator; extra == \"full\"",
+              "jinja2; extra == \"full\"",
+              "jinja2>=3.1.2; extra == \"full\"",
+              "jsbeautifier; extra == \"full\"",
+              "mako>=1.2.4; extra == \"full\"",
+              "minijinja>=1.0.0; extra == \"full\"",
+              "opentelemetry-instrumentation-asgi; extra == \"full\"",
+              "opentelemetry-sdk; extra == \"full\"",
+              "piccolo; extra == \"full\"",
+              "picologging; python_version < \"3.13\" and extra == \"full\"",
+              "prometheus-client; extra == \"full\"",
+              "pydantic; extra == \"full\"",
+              "pydantic-extra-types!=2.9.0; python_version < \"3.9\" and extra == \"full\"",
+              "pydantic-extra-types; python_version >= \"3.9\" and extra == \"full\"",
+              "pyjwt>=2.9.0; extra == \"full\"",
+              "redis[hiredis]<5.3,>=4.4.4; extra == \"full\"",
+              "structlog; extra == \"full\"",
+              "uvicorn[standard]; extra == \"full\"",
+              "valkey[libvalkey]>=6.0.2; extra == \"full\"",
+              "jinja2>=3.1.2; extra == \"jinja\"",
+              "cryptography; extra == \"jwt\"",
+              "pyjwt>=2.9.0; extra == \"jwt\"",
+              "mako>=1.2.4; extra == \"mako\"",
+              "minijinja>=1.0.0; extra == \"minijinja\"",
+              "opentelemetry-instrumentation-asgi; extra == \"opentelemetry\"",
+              "opentelemetry-sdk; extra == \"opentelemetry\"",
+              "piccolo; extra == \"piccolo\"",
+              "picologging; python_version < \"3.13\" and extra == \"picologging\"",
+              "prometheus-client; extra == \"prometheus\"",
+              "email-validator; extra == \"pydantic\"",
+              "pydantic; extra == \"pydantic\"",
+              "pydantic-extra-types!=2.9.0; python_version < \"3.9\" and extra == \"pydantic\"",
+              "pydantic-extra-types; python_version >= \"3.9\" and extra == \"pydantic\"",
+              "redis[hiredis]<5.3,>=4.4.4; extra == \"redis\"",
+              "advanced-alchemy>=0.2.2; extra == \"sqlalchemy\"",
+              "jinja2; extra == \"standard\"",
+              "jsbeautifier; extra == \"standard\"",
+              "uvicorn[standard]; extra == \"standard\"",
+              "structlog; extra == \"structlog\"",
+              "valkey[libvalkey]>=6.0.2; extra == \"valkey\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Web Environment",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Information Technology",
+              "Intended Audience :: System Administrators",
+              "License :: OSI Approved :: MIT License",
+              "Natural Language :: English",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.8",
+              "Programming Language :: Python :: 3.9",
+              "Topic :: Internet",
+              "Topic :: Internet :: WWW/HTTP",
+              "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+              "Topic :: Software Development"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": "<4.0,>=3.8"
+          },
+          "state_hash": "08eb40c848fd147a5351a8641d48e4859f5dc3e36dc18681f05eb76b4f656c1f",
+          "version": "2.24.0"
         }
       ]
     },
     "marshmallow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -151,12 +802,49 @@
           "modified": "2026-08-08T14:27:28",
           "total_versions": 201,
           "version": "4.3.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 2,
+          "modified": "2026-08-08T14:27:28.078717Z",
+          "total_versions": 201,
+          "version": "4.3.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "backports-datetime-fromisoformat; python_version < \"3.11\"",
+              "typing-extensions; python_version < \"3.11\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "3fe3ff129fee0f89f6bc1fc8212ceffd40f64f128d3483d9bdc19c09b1edc79c",
+          "version": "4.3.1"
         }
       ]
     },
     "mypy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -165,12 +853,63 @@
           "modified": "2026-08-15T03:01:53",
           "total_versions": 141,
           "version": "2.3.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 12,
+          "modified": "2026-08-15T03:01:23.577672Z",
+          "total_versions": 141,
+          "version": "2.3.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "typing_extensions>=4.6.0; python_version < \"3.15\"",
+              "typing_extensions>=4.14.0; python_version >= \"3.15\"",
+              "mypy_extensions>=1.0.0",
+              "pathspec>=1.0.0",
+              "tomli>=1.1.0; python_version < \"3.11\"",
+              "librt>=0.13.0; platform_python_implementation != \"PyPy\"",
+              "ast-serialize<1.0.0,>=0.6.0",
+              "psutil>=4.0; extra == \"dmypy\"",
+              "setuptools>=50; extra == \"mypyc\"",
+              "lxml; extra == \"reports\"",
+              "pip; extra == \"install-types\"",
+              "orjson; extra == \"faster-cache\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Topic :: Software Development",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "4c383b2a1e1af1348f60fe06ffdc248880c370353283008435f450c0d0c85c0f",
+          "version": "2.3.1"
         }
       ]
     },
     "numpy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -179,12 +918,57 @@
           "modified": "2026-09-06T16:24:29",
           "total_versions": 151,
           "version": "2.5.3"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 0,
+          "modified": "2026-09-06T16:24:29.244371Z",
+          "total_versions": 151,
+          "version": "2.5.3"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": []
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Science/Research",
+              "Operating System :: MacOS",
+              "Operating System :: Microsoft :: Windows",
+              "Operating System :: POSIX",
+              "Operating System :: Unix",
+              "Programming Language :: C",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Topic :: Scientific/Engineering",
+              "Topic :: Software Development",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.12"
+          },
+          "state_hash": "98ce14da62c398e328249c2fd377b6dcee69f19e43378a3b3a0692ca9b6c4d15",
+          "version": "2.5.3"
         }
       ]
     },
     "openai": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -193,12 +977,67 @@
           "modified": "2026-09-15T23:13:33",
           "total_versions": 426,
           "version": "3.14.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 14,
+          "modified": "2026-09-15T23:13:33.164661Z",
+          "total_versions": 426,
+          "version": "3.14.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "anyio<5,>=4.10.0",
+              "httpx2<3,>=2.7.0",
+              "jiter<1,>=0.16.0",
+              "pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13",
+              "sniffio",
+              "typing-extensions<5,>=4.14",
+              "aiohttp>=3.14.3; extra == \"aiohttp\"",
+              "botocore<2,>=1.40.0; extra == \"bedrock\"",
+              "urllib3<3,>=2.7.0; extra == \"bedrock\"",
+              "numpy>=1; extra == \"datalib\"",
+              "pandas>=1.2.3; extra == \"datalib\"",
+              "websockets<16,>=13; extra == \"realtime\"",
+              "numpy>=2.0.2; extra == \"voice-helpers\"",
+              "sounddevice>=0.5.1; extra == \"voice-helpers\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: Apache Software License",
+              "Operating System :: MacOS",
+              "Operating System :: Microsoft :: Windows",
+              "Operating System :: OS Independent",
+              "Operating System :: POSIX",
+              "Operating System :: POSIX :: Linux",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Software Development :: Libraries :: Python Modules",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "2a55f9eba08970f703498d992197f71b92db365ac671c57aa9f98b03e0921064",
+          "version": "3.14.1"
         }
       ]
     },
     "opencv-python": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -207,12 +1046,61 @@
           "modified": "2026-07-29T03:52:01",
           "total_versions": 63,
           "version": "5.0.0.93"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 2,
+          "modified": "2026-07-28T18:32:19.031818Z",
+          "total_versions": 63,
+          "version": "5.0.0.93"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "numpy<2.0; python_version < \"3.9\"",
+              "numpy>=2; python_version >= \"3.9\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Education",
+              "Intended Audience :: Information Technology",
+              "Intended Audience :: Science/Research",
+              "License :: OSI Approved :: Apache Software License",
+              "Operating System :: MacOS",
+              "Operating System :: Microsoft :: Windows",
+              "Operating System :: POSIX",
+              "Operating System :: Unix",
+              "Programming Language :: C++",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.6"
+          },
+          "state_hash": "bc06db69974e41eb0034dc88dd4ee30cca909123d6c87a0c26f1b6c19e76ef0d",
+          "version": "5.0.0.93"
         }
       ]
     },
     "pandas": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -221,12 +1109,137 @@
           "modified": "2026-07-22T22:17:48",
           "total_versions": 117,
           "version": "3.0.5"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-07-22T22:17:48.274862Z",
+          "total_versions": 117,
+          "version": "3.0.5"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "numpy>=1.26.0; python_version < \"3.14\"",
+              "numpy>=2.3.3; python_version >= \"3.14\"",
+              "python-dateutil>=2.8.2",
+              "tzdata; sys_platform == \"win32\"",
+              "tzdata; sys_platform == \"emscripten\"",
+              "hypothesis>=6.116.0; extra == \"test\"",
+              "pytest<9.1,>=8.3.4; extra == \"test\"",
+              "pytest-xdist>=3.6.1; extra == \"test\"",
+              "pyarrow>=13.0.0; extra == \"pyarrow\"",
+              "bottleneck>=1.4.2; extra == \"performance\"",
+              "numba>=0.60.0; extra == \"performance\"",
+              "numexpr>=2.10.2; extra == \"performance\"",
+              "scipy>=1.14.1; extra == \"computation\"",
+              "xarray>=2024.10.0; extra == \"computation\"",
+              "fsspec>=2024.10.0; extra == \"fss\"",
+              "s3fs>=2024.10.0; extra == \"aws\"",
+              "gcsfs>=2024.10.0; extra == \"gcp\"",
+              "odfpy>=1.4.1; extra == \"excel\"",
+              "openpyxl>=3.1.5; extra == \"excel\"",
+              "python-calamine>=0.3.0; extra == \"excel\"",
+              "pyxlsb>=1.0.10; extra == \"excel\"",
+              "xlrd>=2.0.1; extra == \"excel\"",
+              "xlsxwriter>=3.2.0; extra == \"excel\"",
+              "pyarrow>=13.0.0; extra == \"parquet\"",
+              "pyarrow>=13.0.0; extra == \"feather\"",
+              "pyiceberg>=0.8.1; extra == \"iceberg\"",
+              "tables>=3.10.1; extra == \"hdf5\"",
+              "pyreadstat>=1.2.8; extra == \"spss\"",
+              "SQLAlchemy>=2.0.36; extra == \"postgresql\"",
+              "psycopg2>=2.9.10; extra == \"postgresql\"",
+              "adbc-driver-postgresql>=1.2.0; extra == \"postgresql\"",
+              "SQLAlchemy>=2.0.36; extra == \"mysql\"",
+              "pymysql>=1.1.1; extra == \"mysql\"",
+              "SQLAlchemy>=2.0.36; extra == \"sql-other\"",
+              "adbc-driver-postgresql>=1.2.0; extra == \"sql-other\"",
+              "adbc-driver-sqlite>=1.2.0; extra == \"sql-other\"",
+              "beautifulsoup4>=4.12.3; extra == \"html\"",
+              "html5lib>=1.1; extra == \"html\"",
+              "lxml>=5.3.0; extra == \"html\"",
+              "lxml>=5.3.0; extra == \"xml\"",
+              "matplotlib>=3.9.3; extra == \"plot\"",
+              "jinja2>=3.1.5; extra == \"output-formatting\"",
+              "tabulate>=0.9.0; extra == \"output-formatting\"",
+              "PyQt5>=5.15.9; extra == \"clipboard\"",
+              "qtpy>=2.4.2; extra == \"clipboard\"",
+              "zstandard>=0.23.0; extra == \"compression\"",
+              "pytz>=2020.1; extra == \"timezone\"",
+              "adbc-driver-postgresql>=1.2.0; extra == \"all\"",
+              "adbc-driver-sqlite>=1.2.0; extra == \"all\"",
+              "beautifulsoup4>=4.12.3; extra == \"all\"",
+              "bottleneck>=1.4.2; extra == \"all\"",
+              "fastparquet>=2024.11.0; extra == \"all\"",
+              "fsspec>=2024.10.0; extra == \"all\"",
+              "gcsfs>=2024.10.0; extra == \"all\"",
+              "html5lib>=1.1; extra == \"all\"",
+              "hypothesis>=6.116.0; extra == \"all\"",
+              "jinja2>=3.1.5; extra == \"all\"",
+              "lxml>=5.3.0; extra == \"all\"",
+              "matplotlib>=3.9.3; extra == \"all\"",
+              "numba>=0.60.0; extra == \"all\"",
+              "numexpr>=2.10.2; extra == \"all\"",
+              "odfpy>=1.4.1; extra == \"all\"",
+              "openpyxl>=3.1.5; extra == \"all\"",
+              "psycopg2>=2.9.10; extra == \"all\"",
+              "pyarrow>=13.0.0; extra == \"all\"",
+              "pyiceberg>=0.8.1; extra == \"all\"",
+              "pymysql>=1.1.1; extra == \"all\"",
+              "PyQt5>=5.15.9; extra == \"all\"",
+              "pyreadstat>=1.2.8; extra == \"all\"",
+              "pytest>=8.3.4; extra == \"all\"",
+              "pytest-xdist>=3.6.1; extra == \"all\"",
+              "python-calamine>=0.3.0; extra == \"all\"",
+              "pytz>=2020.1; extra == \"all\"",
+              "pyxlsb>=1.0.10; extra == \"all\"",
+              "qtpy>=2.4.2; extra == \"all\"",
+              "scipy>=1.14.1; extra == \"all\"",
+              "s3fs>=2024.10.0; extra == \"all\"",
+              "SQLAlchemy>=2.0.36; extra == \"all\"",
+              "tables>=3.10.1; extra == \"all\"",
+              "tabulate>=0.9.0; extra == \"all\"",
+              "xarray>=2024.10.0; extra == \"all\"",
+              "xlrd>=2.0.1; extra == \"all\"",
+              "xlsxwriter>=3.2.0; extra == \"all\"",
+              "zstandard>=0.23.0; extra == \"all\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Science/Research",
+              "License :: OSI Approved :: BSD License",
+              "Operating System :: OS Independent",
+              "Programming Language :: Cython",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.11"
+          },
+          "state_hash": "a13a56e8d3daf1e541aa3b5b1ed065d87dc0b3a6234d5d238af29a56e4887c26",
+          "version": "3.0.5"
         }
       ]
     },
     "peewee": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -235,12 +1248,58 @@
           "modified": "2026-09-08T01:20:09",
           "total_versions": 221,
           "version": "4.5.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 10,
+          "modified": "2026-09-08T01:20:09.027065Z",
+          "total_versions": 221,
+          "version": "4.5.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "pymysql; extra == \"mysql\"",
+              "psycopg2-binary; extra == \"postgres\"",
+              "psycopg[binary]; extra == \"psycopg3\"",
+              "cysqlite>=0.3.5; extra == \"cysqlite\"",
+              "aiosqlite; extra == \"aiosqlite\"",
+              "greenlet; extra == \"aiosqlite\"",
+              "aiomysql; extra == \"aiomysql\"",
+              "greenlet; extra == \"aiomysql\"",
+              "asyncpg; extra == \"asyncpg\"",
+              "greenlet; extra == \"asyncpg\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Database",
+              "Topic :: Database :: Front-Ends",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.8"
+          },
+          "state_hash": "cf28566ac21fa9d5e540005ec6d00e5fd07ce3a88692d9792d961cf7a5da0b60",
+          "version": "4.5.1"
         }
       ]
     },
     "pillow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -249,12 +1308,79 @@
           "modified": "2026-07-01T11:53:27",
           "total_versions": 107,
           "version": "12.3.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-07-01T11:53:27.808291Z",
+          "total_versions": 107,
+          "version": "12.3.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "furo; extra == \"docs\"",
+              "olefile; extra == \"docs\"",
+              "sphinx>=8.2; extra == \"docs\"",
+              "sphinx-autobuild; extra == \"docs\"",
+              "sphinx-copybutton; extra == \"docs\"",
+              "sphinx-inline-tabs; extra == \"docs\"",
+              "sphinxext-opengraph; extra == \"docs\"",
+              "olefile; extra == \"fpx\"",
+              "olefile; extra == \"mic\"",
+              "arro3-compute; extra == \"test-arrow\"",
+              "arro3-core; extra == \"test-arrow\"",
+              "nanoarrow; extra == \"test-arrow\"",
+              "pyarrow; extra == \"test-arrow\"",
+              "coverage>=7.4.2; extra == \"tests\"",
+              "defusedxml; extra == \"tests\"",
+              "markdown2; extra == \"tests\"",
+              "olefile; extra == \"tests\"",
+              "packaging; extra == \"tests\"",
+              "pytest; extra == \"tests\"",
+              "pytest-cov; extra == \"tests\"",
+              "pytest-timeout; extra == \"tests\"",
+              "pytest-xdist; extra == \"tests\"",
+              "setuptools; extra == \"tests\"",
+              "trove-classifiers>=2024.10.12; extra == \"tests\"",
+              "defusedxml; extra == \"xmp\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 6 - Mature",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Multimedia :: Graphics",
+              "Topic :: Multimedia :: Graphics :: Capture :: Digital Camera",
+              "Topic :: Multimedia :: Graphics :: Capture :: Screen Capture",
+              "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+              "Topic :: Multimedia :: Graphics :: Viewers",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "5124bb7c2ca5708705f3bf97d6db9ff0a5383125cfdad495dc6d447bc775038a",
+          "version": "12.3.0"
         }
       ]
     },
     "polars": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -263,12 +1389,85 @@
           "modified": "2026-09-09T07:40:12",
           "total_versions": 432,
           "version": "1.44.2"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-09-09T07:40:12.053452Z",
+          "total_versions": 432,
+          "version": "1.44.2"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "polars-runtime-32==1.44.2",
+              "polars-runtime-64==1.44.2; extra == \"rt64\"",
+              "polars-runtime-compat==1.44.2; extra == \"rtcompat\"",
+              "polars_cloud>=0.9.0; extra == \"polars-cloud\"",
+              "numpy>=1.16.0; extra == \"numpy\"",
+              "pandas; extra == \"pandas\"",
+              "polars[pyarrow]; extra == \"pandas\"",
+              "pyarrow>=7.0.0; extra == \"pyarrow\"",
+              "pydantic; extra == \"pydantic\"",
+              "fastexcel>=0.9; extra == \"calamine\"",
+              "openpyxl>=3.0.0; extra == \"openpyxl\"",
+              "xlsx2csv>=0.8.0; extra == \"xlsx2csv\"",
+              "xlsxwriter; extra == \"xlsxwriter\"",
+              "polars[calamine,openpyxl,xlsx2csv,xlsxwriter]; extra == \"excel\"",
+              "adbc-driver-manager[dbapi]; extra == \"adbc\"",
+              "adbc-driver-sqlite[dbapi]; extra == \"adbc\"",
+              "connectorx>=0.3.2; extra == \"connectorx\"",
+              "sqlalchemy; extra == \"sqlalchemy\"",
+              "polars[pandas]; extra == \"sqlalchemy\"",
+              "polars[adbc,connectorx,sqlalchemy]; extra == \"database\"",
+              "fsspec; extra == \"fsspec\"",
+              "deltalake!=1.5.*,>=1.0.0; extra == \"deltalake\"",
+              "pyiceberg>=0.9.0; extra == \"iceberg\"",
+              "gevent; extra == \"async\"",
+              "cloudpickle; extra == \"cloudpickle\"",
+              "matplotlib; extra == \"graph\"",
+              "altair>=5.4.0; extra == \"plot\"",
+              "great-tables>=0.8.0; extra == \"style\"",
+              "tzdata; platform_system == \"Windows\" and extra == \"timezone\"",
+              "cudf-polars-cu12; extra == \"gpu\"",
+              "polars[async,cloudpickle,database,deltalake,excel,fsspec,graph,iceberg,numpy,pandas,plot,pyarrow,pydantic,style,timezone]; extra == \"all\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Science/Research",
+              "License :: OSI Approved :: MIT License",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Rust",
+              "Topic :: Scientific/Engineering",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "f8d54e70207413b96a3d1a3158128d5835e76e5999f62e87303ae7cd1a5a3475",
+          "version": "1.44.2"
         }
       ]
     },
     "pydantic": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -277,12 +1476,64 @@
           "modified": "2026-09-09T21:55:04",
           "total_versions": 206,
           "version": "2.13.5"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 6,
+          "modified": "2026-09-09T21:55:04.669864Z",
+          "total_versions": 206,
+          "version": "2.13.5"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "annotated-types>=0.6.0",
+              "pydantic-core==2.46.5",
+              "typing-extensions>=4.14.1",
+              "typing-inspection>=0.4.2",
+              "email-validator>=2.0.0; extra == \"email\"",
+              "tzdata; (python_version >= \"3.9\" and platform_system == \"Windows\") and extra == \"timezone\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Framework :: Hypothesis",
+              "Framework :: Pydantic",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Information Technology",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.9",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Internet",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.9"
+          },
+          "state_hash": "91672b782207d7372c63a5e00ed864170d2e331d9e1a75b280c1dba52cbae17a",
+          "version": "2.13.5"
         }
       ]
     },
     "pyright": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -291,12 +1542,55 @@
           "modified": "2026-09-10T12:26:51",
           "total_versions": 209,
           "version": "1.1.414"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 6,
+          "modified": "2026-09-10T12:26:51.427844Z",
+          "total_versions": 209,
+          "version": "1.1.414"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "nodeenv>=1.6.0",
+              "typing-extensions>=4.1",
+              "twine>=3.4.1; extra == \"dev\"",
+              "nodejs-wheel-binaries; extra == \"nodejs\"",
+              "twine>=3.4.1; extra == \"all\"",
+              "nodejs-wheel-binaries; extra == \"all\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.7",
+              "Programming Language :: Python :: 3.8",
+              "Programming Language :: Python :: 3.9",
+              "Topic :: Software Development :: Libraries :: Python Modules",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.7"
+          },
+          "state_hash": "a5399d446db341c8a99804837a87dcf78ed0dc9d91fb3c08921e76ccdd762ae3",
+          "version": "1.1.414"
         }
       ]
     },
     "pytest": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -305,12 +1599,69 @@
           "modified": "2026-06-19T10:58:31",
           "total_versions": 192,
           "version": "9.1.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 14,
+          "modified": "2026-06-19T10:58:31.347074Z",
+          "total_versions": 192,
+          "version": "9.1.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "colorama>=0.4; sys_platform == \"win32\"",
+              "exceptiongroup>=1; python_version < \"3.11\"",
+              "iniconfig>=1.0.1",
+              "packaging>=22",
+              "pluggy<2,>=1.5",
+              "pygments>=2.7.2",
+              "tomli>=1; python_version < \"3.11\"",
+              "argcomplete; extra == \"dev\"",
+              "attrs>=19.2; extra == \"dev\"",
+              "hypothesis>=3.56; extra == \"dev\"",
+              "mock; extra == \"dev\"",
+              "requests; extra == \"dev\"",
+              "setuptools; extra == \"dev\"",
+              "xmlschema; extra == \"dev\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 6 - Mature",
+              "Intended Audience :: Developers",
+              "Operating System :: MacOS",
+              "Operating System :: Microsoft :: Windows",
+              "Operating System :: POSIX",
+              "Operating System :: Unix",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Topic :: Software Development :: Libraries",
+              "Topic :: Software Development :: Testing",
+              "Topic :: Utilities"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "852afc4183733d6bb92e8aa1297af6d48761b75f71c15e76df0da4941280ca7b",
+          "version": "9.1.1"
         }
       ]
     },
     "redis": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -319,12 +1670,65 @@
           "modified": "2026-07-30T08:50:58",
           "total_versions": 169,
           "version": "8.1.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 11,
+          "modified": "2026-07-30T08:50:58.497552Z",
+          "total_versions": 169,
+          "version": "8.1.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "async-timeout>=4.0.3; python_full_version < \"3.11.3\"",
+              "pybreaker>=1.4.0; extra == \"circuit-breaker\"",
+              "hiredis>=3.2.0; extra == \"hiredis\"",
+              "pyjwt>=2.13.0; extra == \"jwt\"",
+              "cryptography>=36.0.1; extra == \"ocsp\"",
+              "pyopenssl>=20.0.1; extra == \"ocsp\"",
+              "requests>=2.31.0; extra == \"ocsp\"",
+              "opentelemetry-api>=1.39.1; extra == \"otel\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.39.1; extra == \"otel\"",
+              "opentelemetry-sdk>=1.39.1; extra == \"otel\"",
+              "xxhash~=3.6.0; extra == \"xxhash\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: MIT License",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "e930492b10e144b8c5423bca61c0a1aa02c6a7b23348d4d05a5c17fef4c63905",
+          "version": "8.1.0"
         }
       ]
     },
     "requests": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -333,12 +1737,65 @@
           "modified": "2026-05-14T19:25:26",
           "total_versions": 163,
           "version": "2.34.2"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 6,
+          "modified": "2026-05-14T19:25:26.443000Z",
+          "total_versions": 163,
+          "version": "2.34.2"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "charset_normalizer<4,>=2",
+              "idna<4,>=2.5",
+              "urllib3<3,>=1.26",
+              "certifi>=2023.5.7",
+              "PySocks!=1.5.7,>=1.5.6; extra == \"socks\"",
+              "chardet<8,>=3.0.2; extra == \"use-chardet-on-py3\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Web Environment",
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: Apache Software License",
+              "Natural Language :: English",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Programming Language :: Python :: Free Threading :: 2 - Beta",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Internet :: WWW/HTTP",
+              "Topic :: Software Development :: Libraries"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "55faac2ef4503f39c1be14b1b544bfd8c7fad78a5968a499378f6e2cc7e4e348",
+          "version": "2.34.2"
         }
       ]
     },
     "ruff": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -347,12 +1804,55 @@
           "modified": "2026-09-16T15:53:57",
           "total_versions": 424,
           "version": "0.16.8"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 0,
+          "modified": "2026-09-16T15:53:57.605047Z",
+          "total_versions": 424,
+          "version": "0.16.8"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": []
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.7",
+              "Programming Language :: Python :: 3.8",
+              "Programming Language :: Python :: 3.9",
+              "Programming Language :: Rust",
+              "Topic :: Software Development :: Libraries :: Python Modules",
+              "Topic :: Software Development :: Quality Assurance"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.7"
+          },
+          "state_hash": "906c8f60fbcdedf1ae2b42da9b2631677123d84352e46e1f9ce336e5595b58cb",
+          "version": "0.16.8"
         }
       ]
     },
     "scikit-learn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -361,12 +1861,61 @@
           "modified": "2026-09-10T18:32:29",
           "total_versions": 76,
           "version": "1.9.1"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 5,
+          "modified": "2026-09-10T18:32:29.891551Z",
+          "total_versions": 76,
+          "version": "1.9.1"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "numpy>=1.24.1",
+              "scipy>=1.10.0",
+              "joblib>=1.4.0",
+              "narwhals>=2.0.1",
+              "threadpoolctl>=3.5.0"
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Science/Research",
+              "Operating System :: MacOS",
+              "Operating System :: Microsoft :: Windows",
+              "Operating System :: POSIX",
+              "Operating System :: Unix",
+              "Programming Language :: C",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Topic :: Scientific/Engineering",
+              "Topic :: Software Development"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.11"
+          },
+          "state_hash": "d58f3169d0a0ecf6debd6eb11d7ab3bdbb95e7817eba7447780b8288ee325060",
+          "version": "1.9.1"
         }
       ]
     },
     "sqlalchemy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -375,12 +1924,88 @@
           "modified": "2026-09-15T22:11:14",
           "total_versions": 330,
           "version": "2.0.54"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-09-15T21:06:57.337617Z",
+          "total_versions": 330,
+          "version": "2.0.54"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "importlib-metadata; python_version < \"3.8\"",
+              "greenlet>=1; platform_machine == \"aarch64\" or (platform_machine == \"ppc64le\" or (platform_machine == \"x86_64\" or (platform_machine == \"amd64\" or (platform_machine == \"AMD64\" or (platform_machine == \"win32\" or platform_machine == \"WIN32\")))))",
+              "typing-extensions>=4.6.0",
+              "greenlet>=1; extra == \"asyncio\"",
+              "mypy>=0.910; extra == \"mypy\"",
+              "pyodbc; extra == \"mssql\"",
+              "pymssql; extra == \"mssql-pymssql\"",
+              "pyodbc; extra == \"mssql-pyodbc\"",
+              "mysqlclient>=1.4.0; extra == \"mysql\"",
+              "mysql-connector-python; extra == \"mysql-connector\"",
+              "mariadb!=1.1.10,!=1.1.2,!=1.1.5,>=1.0.1; extra == \"mariadb-connector\"",
+              "cx_oracle>=8; extra == \"oracle\"",
+              "oracledb>=1.0.1; extra == \"oracle-oracledb\"",
+              "psycopg2>=2.7; extra == \"postgresql\"",
+              "pg8000>=1.29.1; extra == \"postgresql-pg8000\"",
+              "greenlet>=1; extra == \"postgresql-asyncpg\"",
+              "asyncpg; extra == \"postgresql-asyncpg\"",
+              "psycopg2-binary; extra == \"postgresql-psycopg2binary\"",
+              "psycopg2cffi; extra == \"postgresql-psycopg2cffi\"",
+              "psycopg>=3.0.7; extra == \"postgresql-psycopg\"",
+              "psycopg[binary]>=3.0.7; extra == \"postgresql-psycopgbinary\"",
+              "pymysql; extra == \"pymysql\"",
+              "greenlet>=1; extra == \"aiomysql\"",
+              "aiomysql>=0.2.0; extra == \"aiomysql\"",
+              "greenlet>=1; extra == \"aioodbc\"",
+              "aioodbc; extra == \"aioodbc\"",
+              "greenlet>=1; extra == \"asyncmy\"",
+              "asyncmy>=0.2.12; extra == \"asyncmy\"",
+              "greenlet>=1; extra == \"aiosqlite\"",
+              "aiosqlite; extra == \"aiosqlite\"",
+              "typing_extensions!=3.10.0.1; extra == \"aiosqlite\"",
+              "sqlcipher3_binary; extra == \"sqlcipher\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Programming Language :: Python :: 3.7",
+              "Programming Language :: Python :: 3.8",
+              "Programming Language :: Python :: 3.9",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Database :: Front-Ends"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.7"
+          },
+          "state_hash": "533852e2bbbe35eaa9fb9ddecc0c052470e0373c18bcc472d05ed803d71f97d3",
+          "version": "2.0.54"
         }
       ]
     },
     "tensorflow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -389,12 +2014,92 @@
           "modified": "2026-03-06T17:22:21",
           "total_versions": 138,
           "version": "2.21.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-03-06T17:22:21.378900Z",
+          "total_versions": 138,
+          "version": "2.21.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "absl-py>=1.0.0",
+              "astunparse>=1.6.0",
+              "flatbuffers>=25.9.23",
+              "gast!=0.5.0,!=0.5.1,!=0.5.2,>=0.2.1",
+              "google_pasta>=0.1.1",
+              "libclang>=13.0.0",
+              "opt_einsum>=2.3.2",
+              "packaging",
+              "protobuf<8.0.0,>=6.31.1",
+              "requests<3,>=2.21.0",
+              "setuptools",
+              "six>=1.12.0",
+              "termcolor>=1.1.0",
+              "typing_extensions>=3.6.6",
+              "wrapt>=1.11.0",
+              "grpcio<2.0,>=1.24.3",
+              "keras>=3.12.0",
+              "numpy>=1.26.0",
+              "h5py<3.15.0,>=3.11.0",
+              "ml_dtypes<1.0.0,>=0.5.1",
+              "nvidia-cublas-cu12<13.0,>=12.5.3.2; extra == \"and-cuda\"",
+              "nvidia-cuda-cupti-cu12<13.0,>=12.5.82; extra == \"and-cuda\"",
+              "nvidia-cuda-nvcc-cu12<13.0,>=12.5.82; extra == \"and-cuda\"",
+              "nvidia-cuda-nvrtc-cu12<13.0,>=12.5.82; extra == \"and-cuda\"",
+              "nvidia-cuda-runtime-cu12<13.0,>=12.5.82; extra == \"and-cuda\"",
+              "nvidia-cudnn-cu12<10.0,>=9.3.0.75; extra == \"and-cuda\"",
+              "nvidia-cufft-cu12<12.0,>=11.2.3.61; extra == \"and-cuda\"",
+              "nvidia-curand-cu12<11.0,>=10.3.6.82; extra == \"and-cuda\"",
+              "nvidia-cusolver-cu12<12.0,>=11.6.3.83; extra == \"and-cuda\"",
+              "nvidia-cusparse-cu12<13.0,>=12.5.1.3; extra == \"and-cuda\"",
+              "nvidia-nccl-cu12<3.0,>=2.27.7; extra == \"and-cuda\"",
+              "nvidia-nvjitlink-cu12<13.0,>=12.5.82; extra == \"and-cuda\"",
+              "tensorflow-io-gcs-filesystem>=0.23.1; (sys_platform != \"win32\" and python_version < \"3.13\") and extra == \"gcs-filesystem\"",
+              "tensorflow-io-gcs-filesystem>=0.23.1; (sys_platform == \"win32\" and python_version < \"3.12\") and extra == \"gcs-filesystem\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: GPU :: NVIDIA CUDA :: 12",
+              "Environment :: GPU :: NVIDIA CUDA :: 12 :: 12.2",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Education",
+              "Intended Audience :: Science/Research",
+              "License :: OSI Approved :: Apache Software License",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Topic :: Scientific/Engineering",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence",
+              "Topic :: Scientific/Engineering :: Mathematics",
+              "Topic :: Software Development",
+              "Topic :: Software Development :: Libraries",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "25661860c88e6182bb1708cb5e8a595d564ff4869332b7acc13b4a8c742a865e",
+          "version": "2.21.0"
         }
       ]
     },
     "torch": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -403,12 +2108,73 @@
           "modified": "2026-09-02T13:42:48",
           "total_versions": 50,
           "version": "2.14.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 17,
+          "modified": "2026-09-02T13:42:48.266558Z",
+          "total_versions": 50,
+          "version": "2.14.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "filelock",
+              "typing-extensions>=4.10.0",
+              "setuptools>=77.0.3",
+              "sympy>=1.13.3",
+              "networkx>=2.5.1",
+              "jinja2",
+              "fsspec>=0.8.5",
+              "cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"",
+              "cuda-bindings<14,>=13.0.3; platform_system == \"Linux\" and python_version < \"3.15\"",
+              "nvidia-cudnn-cu13==9.24.0.43; platform_system == \"Linux\"",
+              "nvidia-cusparselt-cu13==0.8.1; platform_system == \"Linux\"",
+              "nvidia-nccl-cu13==2.30.7; platform_system == \"Linux\"",
+              "nvidia-nvshmem-cu13==3.4.5; platform_system == \"Linux\"",
+              "triton~=3.8.0; platform_system == \"Linux\" and python_version < \"3.15\"",
+              "optree>=0.13.0; extra == \"optree\"",
+              "opt-einsum>=3.3; extra == \"opt-einsum\"",
+              "pyyaml; extra == \"pyyaml\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Education",
+              "Intended Audience :: Science/Research",
+              "Programming Language :: C++",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence",
+              "Topic :: Scientific/Engineering :: Mathematics",
+              "Topic :: Software Development",
+              "Topic :: Software Development :: Libraries",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "44e6726f4df1e27380615d4a060810e85a0cf79bb0a6892818dcdaba07d6d07a",
+          "version": "2.14.0"
         }
       ]
     },
     "transformers": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -417,12 +2183,305 @@
           "modified": "2026-09-09T15:39:53",
           "total_versions": 242,
           "version": "5.17.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 20,
+          "modified": "2026-09-09T15:39:53.746054Z",
+          "total_versions": 242,
+          "version": "5.17.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "huggingface-hub<2.0,>=1.5.0",
+              "numpy>=1.17",
+              "packaging>=20.0",
+              "pyyaml>=5.1",
+              "regex>=2025.10.22",
+              "tokenizers<0.24.0,>=0.23.1",
+              "typer",
+              "safetensors>=0.8.0",
+              "tqdm>=4.60",
+              "torch>=2.5; extra == \"torch\"",
+              "accelerate>=1.1.0; extra == \"torch\"",
+              "torchvision; extra == \"vision\"",
+              "Pillow<=15.0,>=10.0.1; extra == \"vision\"",
+              "torchaudio; extra == \"audio\"",
+              "librosa; extra == \"audio\"",
+              "pyctcdecode>=0.4.0; extra == \"audio\"",
+              "phonemizer; extra == \"audio\"",
+              "av; extra == \"video\"",
+              "timm>=1.0.23; extra == \"timm\"",
+              "datasets>=2.15.0; extra == \"quality\"",
+              "ruff==0.14.10; extra == \"quality\"",
+              "GitPython<3.1.19; extra == \"quality\"",
+              "urllib3<2.0.0; extra == \"quality\"",
+              "libcst; extra == \"quality\"",
+              "rich; extra == \"quality\"",
+              "ty==0.0.20; extra == \"quality\"",
+              "tomli; extra == \"quality\"",
+              "transformers-mlinter==0.1.5; extra == \"quality\"",
+              "hf-doc-builder; extra == \"docs\"",
+              "kernels<0.17,>=0.16.0; extra == \"kernels\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"sentencepiece\"",
+              "protobuf; extra == \"sentencepiece\"",
+              "tiktoken; extra == \"tiktoken\"",
+              "blobfile; extra == \"tiktoken\"",
+              "mistral-common[image]>=1.11.7; extra == \"mistral-common\"",
+              "jinja2>=3.1.0; extra == \"chat-template\"",
+              "scikit-learn; extra == \"sklearn\"",
+              "accelerate>=1.1.0; extra == \"accelerate\"",
+              "faiss-cpu; extra == \"retrieval\"",
+              "datasets>=2.15.0; extra == \"retrieval\"",
+              "sagemaker>=2.31.0; extra == \"sagemaker\"",
+              "deepspeed>=0.9.3; extra == \"deepspeed\"",
+              "accelerate>=1.1.0; extra == \"deepspeed\"",
+              "optuna; extra == \"optuna\"",
+              "kernels<0.17,>=0.16.0; extra == \"integrations\"",
+              "optuna; extra == \"integrations\"",
+              "codecarbon>=2.8.1; extra == \"integrations\"",
+              "ray[tune]>=2.7.0; extra == \"integrations\"",
+              "ray[tune]>=2.7.0; extra == \"ray\"",
+              "codecarbon>=2.8.1; extra == \"codecarbon\"",
+              "openai>=1.98.0; extra == \"serving\"",
+              "pydantic>=2; extra == \"serving\"",
+              "uvicorn; extra == \"serving\"",
+              "fastapi; extra == \"serving\"",
+              "starlette; extra == \"serving\"",
+              "rich; extra == \"serving\"",
+              "torch>=2.5; extra == \"serving\"",
+              "accelerate>=1.1.0; extra == \"serving\"",
+              "num2words; extra == \"num2words\"",
+              "optimum-benchmark>=0.3.0; extra == \"benchmark\"",
+              "fugashi>=1.0; extra == \"ja\"",
+              "ipadic<2.0,>=1.0.0; extra == \"ja\"",
+              "unidic_lite>=1.0.7; extra == \"ja\"",
+              "unidic>=1.0.2; extra == \"ja\"",
+              "rhoknp<1.3.1,>=1.1.0; extra == \"ja\"",
+              "sudachipy>=0.6.6; extra == \"ja\"",
+              "sudachidict_core>=20220729; extra == \"ja\"",
+              "pytest<9.0.0,>=7.2.0; extra == \"testing\"",
+              "pytest-asyncio>=1.2.0; extra == \"testing\"",
+              "pytest-random-order; extra == \"testing\"",
+              "pytest-rich; extra == \"testing\"",
+              "pytest-xdist; extra == \"testing\"",
+              "pytest-order; extra == \"testing\"",
+              "pytest-rerunfailures<16.0; extra == \"testing\"",
+              "pytest-timeout; extra == \"testing\"",
+              "pytest-env; extra == \"testing\"",
+              "timeout-decorator; extra == \"testing\"",
+              "parameterized>=0.9; extra == \"testing\"",
+              "psutil; extra == \"testing\"",
+              "dill<0.3.5; extra == \"testing\"",
+              "diffusers==0.35.2; extra == \"testing\"",
+              "evaluate>=0.4.6; extra == \"testing\"",
+              "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"testing\"",
+              "nltk<=3.8.1; extra == \"testing\"",
+              "sacremoses; extra == \"testing\"",
+              "rjieba; extra == \"testing\"",
+              "beautifulsoup4; extra == \"testing\"",
+              "tensorboard; extra == \"testing\"",
+              "sacrebleu<2.0.0,>=1.4.12; extra == \"testing\"",
+              "filelock; extra == \"testing\"",
+              "hf-doc-builder; extra == \"testing\"",
+              "datasets>=2.15.0; extra == \"testing\"",
+              "ruff==0.14.10; extra == \"testing\"",
+              "GitPython<3.1.19; extra == \"testing\"",
+              "urllib3<2.0.0; extra == \"testing\"",
+              "libcst; extra == \"testing\"",
+              "rich; extra == \"testing\"",
+              "ty==0.0.20; extra == \"testing\"",
+              "tomli; extra == \"testing\"",
+              "transformers-mlinter==0.1.5; extra == \"testing\"",
+              "faiss-cpu; extra == \"testing\"",
+              "datasets>=2.15.0; extra == \"testing\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"testing\"",
+              "protobuf; extra == \"testing\"",
+              "openai>=1.98.0; extra == \"testing\"",
+              "pydantic>=2; extra == \"testing\"",
+              "uvicorn; extra == \"testing\"",
+              "fastapi; extra == \"testing\"",
+              "starlette; extra == \"testing\"",
+              "rich; extra == \"testing\"",
+              "torch>=2.5; extra == \"testing\"",
+              "accelerate>=1.1.0; extra == \"testing\"",
+              "mistral-common[image]>=1.11.7; extra == \"testing\"",
+              "deepspeed>=0.9.3; extra == \"deepspeed-testing\"",
+              "accelerate>=1.1.0; extra == \"deepspeed-testing\"",
+              "pytest<9.0.0,>=7.2.0; extra == \"deepspeed-testing\"",
+              "pytest-asyncio>=1.2.0; extra == \"deepspeed-testing\"",
+              "pytest-random-order; extra == \"deepspeed-testing\"",
+              "pytest-rich; extra == \"deepspeed-testing\"",
+              "pytest-xdist; extra == \"deepspeed-testing\"",
+              "pytest-order; extra == \"deepspeed-testing\"",
+              "pytest-rerunfailures<16.0; extra == \"deepspeed-testing\"",
+              "pytest-timeout; extra == \"deepspeed-testing\"",
+              "pytest-env; extra == \"deepspeed-testing\"",
+              "timeout-decorator; extra == \"deepspeed-testing\"",
+              "parameterized>=0.9; extra == \"deepspeed-testing\"",
+              "psutil; extra == \"deepspeed-testing\"",
+              "dill<0.3.5; extra == \"deepspeed-testing\"",
+              "diffusers==0.35.2; extra == \"deepspeed-testing\"",
+              "evaluate>=0.4.6; extra == \"deepspeed-testing\"",
+              "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"deepspeed-testing\"",
+              "nltk<=3.8.1; extra == \"deepspeed-testing\"",
+              "sacremoses; extra == \"deepspeed-testing\"",
+              "rjieba; extra == \"deepspeed-testing\"",
+              "beautifulsoup4; extra == \"deepspeed-testing\"",
+              "tensorboard; extra == \"deepspeed-testing\"",
+              "sacrebleu<2.0.0,>=1.4.12; extra == \"deepspeed-testing\"",
+              "filelock; extra == \"deepspeed-testing\"",
+              "hf-doc-builder; extra == \"deepspeed-testing\"",
+              "datasets>=2.15.0; extra == \"deepspeed-testing\"",
+              "ruff==0.14.10; extra == \"deepspeed-testing\"",
+              "GitPython<3.1.19; extra == \"deepspeed-testing\"",
+              "urllib3<2.0.0; extra == \"deepspeed-testing\"",
+              "libcst; extra == \"deepspeed-testing\"",
+              "rich; extra == \"deepspeed-testing\"",
+              "ty==0.0.20; extra == \"deepspeed-testing\"",
+              "tomli; extra == \"deepspeed-testing\"",
+              "transformers-mlinter==0.1.5; extra == \"deepspeed-testing\"",
+              "faiss-cpu; extra == \"deepspeed-testing\"",
+              "datasets>=2.15.0; extra == \"deepspeed-testing\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"deepspeed-testing\"",
+              "protobuf; extra == \"deepspeed-testing\"",
+              "openai>=1.98.0; extra == \"deepspeed-testing\"",
+              "pydantic>=2; extra == \"deepspeed-testing\"",
+              "uvicorn; extra == \"deepspeed-testing\"",
+              "fastapi; extra == \"deepspeed-testing\"",
+              "starlette; extra == \"deepspeed-testing\"",
+              "rich; extra == \"deepspeed-testing\"",
+              "torch>=2.5; extra == \"deepspeed-testing\"",
+              "accelerate>=1.1.0; extra == \"deepspeed-testing\"",
+              "mistral-common[image]>=1.11.7; extra == \"deepspeed-testing\"",
+              "optuna; extra == \"deepspeed-testing\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"deepspeed-testing\"",
+              "protobuf; extra == \"deepspeed-testing\"",
+              "torch>=2.5; extra == \"all\"",
+              "accelerate>=1.1.0; extra == \"all\"",
+              "torchvision; extra == \"all\"",
+              "Pillow<=15.0,>=10.0.1; extra == \"all\"",
+              "torchaudio; extra == \"all\"",
+              "librosa; extra == \"all\"",
+              "pyctcdecode>=0.4.0; extra == \"all\"",
+              "phonemizer; extra == \"all\"",
+              "av; extra == \"all\"",
+              "kernels<0.17,>=0.16.0; extra == \"all\"",
+              "timm>=1.0.23; extra == \"all\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"all\"",
+              "protobuf; extra == \"all\"",
+              "tiktoken; extra == \"all\"",
+              "blobfile; extra == \"all\"",
+              "jinja2>=3.1.0; extra == \"all\"",
+              "num2words; extra == \"all\"",
+              "mistral-common[image]>=1.11.7; extra == \"all\"",
+              "torch>=2.5; extra == \"dev\"",
+              "accelerate>=1.1.0; extra == \"dev\"",
+              "torchvision; extra == \"dev\"",
+              "Pillow<=15.0,>=10.0.1; extra == \"dev\"",
+              "torchaudio; extra == \"dev\"",
+              "librosa; extra == \"dev\"",
+              "pyctcdecode>=0.4.0; extra == \"dev\"",
+              "phonemizer; extra == \"dev\"",
+              "av; extra == \"dev\"",
+              "kernels<0.17,>=0.16.0; extra == \"dev\"",
+              "timm>=1.0.23; extra == \"dev\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"dev\"",
+              "protobuf; extra == \"dev\"",
+              "tiktoken; extra == \"dev\"",
+              "blobfile; extra == \"dev\"",
+              "jinja2>=3.1.0; extra == \"dev\"",
+              "num2words; extra == \"dev\"",
+              "mistral-common[image]>=1.11.7; extra == \"dev\"",
+              "pytest<9.0.0,>=7.2.0; extra == \"dev\"",
+              "pytest-asyncio>=1.2.0; extra == \"dev\"",
+              "pytest-random-order; extra == \"dev\"",
+              "pytest-rich; extra == \"dev\"",
+              "pytest-xdist; extra == \"dev\"",
+              "pytest-order; extra == \"dev\"",
+              "pytest-rerunfailures<16.0; extra == \"dev\"",
+              "pytest-timeout; extra == \"dev\"",
+              "pytest-env; extra == \"dev\"",
+              "timeout-decorator; extra == \"dev\"",
+              "parameterized>=0.9; extra == \"dev\"",
+              "psutil; extra == \"dev\"",
+              "dill<0.3.5; extra == \"dev\"",
+              "diffusers==0.35.2; extra == \"dev\"",
+              "evaluate>=0.4.6; extra == \"dev\"",
+              "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"dev\"",
+              "nltk<=3.8.1; extra == \"dev\"",
+              "sacremoses; extra == \"dev\"",
+              "rjieba; extra == \"dev\"",
+              "beautifulsoup4; extra == \"dev\"",
+              "tensorboard; extra == \"dev\"",
+              "sacrebleu<2.0.0,>=1.4.12; extra == \"dev\"",
+              "filelock; extra == \"dev\"",
+              "hf-doc-builder; extra == \"dev\"",
+              "datasets>=2.15.0; extra == \"dev\"",
+              "ruff==0.14.10; extra == \"dev\"",
+              "GitPython<3.1.19; extra == \"dev\"",
+              "urllib3<2.0.0; extra == \"dev\"",
+              "libcst; extra == \"dev\"",
+              "rich; extra == \"dev\"",
+              "ty==0.0.20; extra == \"dev\"",
+              "tomli; extra == \"dev\"",
+              "transformers-mlinter==0.1.5; extra == \"dev\"",
+              "faiss-cpu; extra == \"dev\"",
+              "datasets>=2.15.0; extra == \"dev\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"dev\"",
+              "protobuf; extra == \"dev\"",
+              "openai>=1.98.0; extra == \"dev\"",
+              "pydantic>=2; extra == \"dev\"",
+              "uvicorn; extra == \"dev\"",
+              "fastapi; extra == \"dev\"",
+              "starlette; extra == \"dev\"",
+              "rich; extra == \"dev\"",
+              "torch>=2.5; extra == \"dev\"",
+              "accelerate>=1.1.0; extra == \"dev\"",
+              "mistral-common[image]>=1.11.7; extra == \"dev\"",
+              "fugashi>=1.0; extra == \"dev\"",
+              "ipadic<2.0,>=1.0.0; extra == \"dev\"",
+              "unidic_lite>=1.0.7; extra == \"dev\"",
+              "unidic>=1.0.2; extra == \"dev\"",
+              "rhoknp<1.3.1,>=1.1.0; extra == \"dev\"",
+              "sudachipy>=0.6.6; extra == \"dev\"",
+              "sudachidict_core>=20220729; extra == \"dev\"",
+              "scikit-learn; extra == \"dev\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Education",
+              "Intended Audience :: Science/Research",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10.0"
+          },
+          "state_hash": "8cd5fa989f6508c8d2de7b5a9f0ff5ffa742768ca46456cbf50aeaa5613b8f50",
+          "version": "5.17.0"
         }
       ]
     },
     "uvicorn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-16T21:52:49.281490+00:00",
+      "last_seen": "2026-09-17T00:34:25.137547+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -431,11 +2490,60 @@
           "modified": "2026-09-14T07:44:22",
           "total_versions": 203,
           "version": "0.53.0"
+        },
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_count": 9,
+          "modified": "2026-09-14T07:44:22.179111Z",
+          "total_versions": 203,
+          "version": "0.53.0"
+        }
+      ],
+      "state_history": [
+        {
+          "collected_at": "2026-09-17T00:34:25.137547+00:00",
+          "date": "2026-09-17",
+          "dependency_declarations": {
+            "requires_dist": [
+              "click>=7.0",
+              "h11>=0.8",
+              "typing-extensions>=4.0; python_version < \"3.11\"",
+              "httptools>=0.8.0; extra == \"standard\"",
+              "python-dotenv>=0.13; extra == \"standard\"",
+              "pyyaml>=5.1; extra == \"standard\"",
+              "uvloop>=0.15.1; (sys_platform != \"win32\" and (sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\")) and extra == \"standard\"",
+              "watchfiles>=0.20; extra == \"standard\"",
+              "websockets>=13.0; extra == \"standard\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 4 - Beta",
+              "Environment :: Web Environment",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Internet :: WWW/HTTP"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "3d0436dffd8fd2e62a80ad2d8c1ec5c429a472d3e003b20b3c24ba7e8a34e0e5",
+          "version": "0.53.0"
         }
       ]
     }
   },
   "registry": "pypi",
   "schema_version": 1,
-  "updated_at": "2026-09-16T21:52:49.281490+00:00"
+  "updated_at": "2026-09-17T00:34:25.137547+00:00"
 }
