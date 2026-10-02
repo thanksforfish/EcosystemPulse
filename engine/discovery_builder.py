@@ -279,7 +279,7 @@ class DiscoveryBuilder:
         <header class="article-header"><p class="eyebrow">npm download trends</p><h1>npm Package Movers</h1>
         <p>See which tracked npm packages are gaining or losing download momentum using explainable 7-day comparisons. Missing registry days are excluded instead of silently counted as zero.</p></header>
         {mover_content}
-        <section class="methodology-box"><h2>How the ranking works</h2><p>Momentum compares the latest seven consecutive reliable npm download days with the previous seven. EcosystemPulse detects coordinated zero-download anomalies across tracked packages, removes those dates, and waits for complete calendar windows before publishing a percentage.</p></section>
+        <section class="methodology-box"><h2>How the ranking works</h2><p>Momentum requires 14 consecutive reliable calendar days: the latest seven consecutive reliable npm download days are compared with the previous seven. EcosystemPulse detects coordinated zero-download anomalies across tracked packages, removes those dates, and waits for complete calendar windows before publishing a percentage.</p></section>
         <p class="discovery-links"><a href="comparisons.html">Compare related packages →</a> <a href="npm.html">Browse all tracked npm packages →</a></p>
     </article>
 </main>
