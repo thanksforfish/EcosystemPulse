@@ -2,7 +2,7 @@
   "packages": {
     "black": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -107,6 +107,14 @@
           "modified": "2026-05-18T16:53:33.964830Z",
           "total_versions": 73,
           "version": "26.5.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 14,
+          "modified": "2026-05-18T16:53:33.964830Z",
+          "total_versions": 73,
+          "version": "26.5.1"
         }
       ],
       "state_history": [
@@ -159,7 +167,7 @@
     },
     "celery": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -264,6 +272,14 @@
           "modified": "2026-09-22T08:33:56.156720Z",
           "total_versions": 225,
           "version": "5.6.3"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-09-22T08:33:56.156720Z",
+          "total_versions": 225,
+          "version": "5.6.3"
         }
       ],
       "state_history": [
@@ -355,7 +371,7 @@
     },
     "django": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -460,6 +476,14 @@
           "modified": "2026-09-02T17:20:39.153093Z",
           "total_versions": 442,
           "version": "6.1.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 5,
+          "modified": "2026-09-02T17:20:39.153093Z",
+          "total_versions": 442,
+          "version": "6.1.1"
         }
       ],
       "state_history": [
@@ -505,7 +529,7 @@
     },
     "fastapi": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -610,6 +634,14 @@
           "modified": "2026-09-29T22:36:19.603280Z",
           "total_versions": 319,
           "version": "0.142.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-09-30T09:51:09.800102Z",
+          "total_versions": 320,
+          "version": "0.142.2"
         }
       ],
       "state_history": [
@@ -759,12 +791,90 @@
           },
           "state_hash": "c02c9a96d76b3830029957f2939a116075be90c1ffe6b495440da489db27a209",
           "version": "0.142.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": [
+              "starlette>=0.46.0",
+              "pydantic>=2.9.0",
+              "typing-extensions>=4.8.0",
+              "typing-inspection>=0.4.2",
+              "annotated-doc>=0.0.2",
+              "opentelemetry-api>=1.44.0",
+              "opentelemetry-sdk>=1.44.0; extra == \"opentelemetry\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"opentelemetry\"",
+              "opentelemetry-sdk>=1.44.0; extra == \"standard\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"standard\"",
+              "fastapi-cli[standard]>=0.0.32; extra == \"standard\"",
+              "fastar>=0.9.0; extra == \"standard\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"standard\"",
+              "jinja2>=3.1.5; extra == \"standard\"",
+              "python-multipart>=0.0.18; extra == \"standard\"",
+              "email-validator>=2.0.0; extra == \"standard\"",
+              "uvicorn[standard]>=0.12.0; extra == \"standard\"",
+              "pydantic-settings>=2.0.0; extra == \"standard\"",
+              "pydantic-extra-types>=2.0.0; extra == \"standard\"",
+              "opentelemetry-sdk>=1.44.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "fastapi-cli[standard-no-fastapi-cloud-cli]>=0.0.32; extra == \"standard-no-fastapi-cloud-cli\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "jinja2>=3.1.5; extra == \"standard-no-fastapi-cloud-cli\"",
+              "python-multipart>=0.0.18; extra == \"standard-no-fastapi-cloud-cli\"",
+              "email-validator>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "uvicorn[standard]>=0.12.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "pydantic-settings>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "pydantic-extra-types>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "opentelemetry-sdk>=1.44.0; extra == \"all\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"all\"",
+              "fastapi-cli[standard]>=0.0.32; extra == \"all\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"all\"",
+              "jinja2>=3.1.5; extra == \"all\"",
+              "python-multipart>=0.0.18; extra == \"all\"",
+              "itsdangerous>=1.1.0; extra == \"all\"",
+              "pyyaml>=5.3.1; extra == \"all\"",
+              "email-validator>=2.0.0; extra == \"all\"",
+              "uvicorn[standard]>=0.12.0; extra == \"all\"",
+              "pydantic-settings>=2.0.0; extra == \"all\"",
+              "pydantic-extra-types>=2.0.0; extra == \"all\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 4 - Beta",
+              "Environment :: Web Environment",
+              "Framework :: AsyncIO",
+              "Framework :: FastAPI",
+              "Framework :: Pydantic",
+              "Framework :: Pydantic :: 2",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Information Technology",
+              "Intended Audience :: System Administrators",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Internet",
+              "Topic :: Internet :: WWW/HTTP"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "4cc79a10668376b9dac31991841ea67e361ad42b8281f19ef9aaf06e74d0dedf",
+          "version": "0.142.2"
         }
       ]
     },
     "flask": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -869,6 +979,14 @@
           "modified": "2026-02-19T05:00:56.027585Z",
           "total_versions": 64,
           "version": "3.1.3"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 9,
+          "modified": "2026-02-19T05:00:56.027585Z",
+          "total_versions": 64,
+          "version": "3.1.3"
         }
       ],
       "state_history": [
@@ -913,7 +1031,7 @@
     },
     "gunicorn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1018,6 +1136,14 @@
           "modified": "2026-08-24T15:05:57.670955Z",
           "total_versions": 100,
           "version": "26.2.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 16,
+          "modified": "2026-08-24T15:05:57.670955Z",
+          "total_versions": 100,
+          "version": "26.2.0"
         }
       ],
       "state_history": [
@@ -1078,7 +1204,7 @@
     },
     "httpx": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1183,6 +1309,14 @@
           "modified": "2026-08-31T17:59:54.190125Z",
           "total_versions": 77,
           "version": "0.28.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 12,
+          "modified": "2026-08-31T17:59:54.190125Z",
+          "total_versions": 77,
+          "version": "0.28.1"
         }
       ],
       "state_history": [
@@ -1234,7 +1368,7 @@
     },
     "huey": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1339,6 +1473,14 @@
           "modified": "2026-09-04T02:04:32.848880Z",
           "total_versions": 87,
           "version": "3.4.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 5,
+          "modified": "2026-09-04T02:04:32.848880Z",
+          "total_versions": 87,
+          "version": "3.4.0"
         }
       ],
       "state_history": [
@@ -1372,7 +1514,7 @@
     },
     "langchain": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1473,6 +1615,14 @@
         {
           "collected_at": "2026-09-30T08:32:40.726908+00:00",
           "date": "2026-09-30",
+          "dependency_count": 20,
+          "modified": "2026-09-28T20:17:22.978149Z",
+          "total_versions": 520,
+          "version": "1.4.3"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
           "dependency_count": 20,
           "modified": "2026-09-28T20:17:22.978149Z",
           "total_versions": 520,
@@ -1634,7 +1784,7 @@
     },
     "litestar": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1735,6 +1885,14 @@
         {
           "collected_at": "2026-09-30T08:32:40.726908+00:00",
           "date": "2026-09-30",
+          "dependency_count": 20,
+          "modified": "2026-06-11T11:26:58.509354Z",
+          "total_versions": 65,
+          "version": "2.24.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
           "dependency_count": 20,
           "modified": "2026-06-11T11:26:58.509354Z",
           "total_versions": 65,
@@ -1851,7 +2009,7 @@
     },
     "marshmallow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1956,6 +2114,14 @@
           "modified": "2026-08-08T14:27:28.078717Z",
           "total_versions": 201,
           "version": "4.3.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 2,
+          "modified": "2026-08-08T14:27:28.078717Z",
+          "total_versions": 201,
+          "version": "4.3.1"
         }
       ],
       "state_history": [
@@ -1990,7 +2156,7 @@
     },
     "mypy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2095,6 +2261,14 @@
           "modified": "2026-08-15T03:01:23.577672Z",
           "total_versions": 141,
           "version": "2.3.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 12,
+          "modified": "2026-10-01T20:38:41.545255Z",
+          "total_versions": 142,
+          "version": "2.4.0"
         }
       ],
       "state_history": [
@@ -2138,12 +2312,53 @@
           },
           "state_hash": "4c383b2a1e1af1348f60fe06ffdc248880c370353283008435f450c0d0c85c0f",
           "version": "2.3.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": [
+              "typing_extensions>=4.6.0; python_version < \"3.15\"",
+              "typing_extensions>=4.14.0; python_version >= \"3.15\"",
+              "mypy_extensions>=1.0.0",
+              "pathspec>=1.0.0",
+              "tomli>=1.1.0; python_version < \"3.11\"",
+              "librt>=0.16.0; platform_python_implementation != \"PyPy\"",
+              "ast-serialize<1.0.0,>=0.11.2",
+              "psutil>=4.0; extra == \"dmypy\"",
+              "setuptools>=50; extra == \"mypyc\"",
+              "lxml; extra == \"reports\"",
+              "pip; extra == \"install-types\"",
+              "orjson; extra == \"faster-cache\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Topic :: Software Development",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "49eed59ae5e927071d3fbd1d2e501cf5f606a1b154419cc85ef46dc9ff8985fe",
+          "version": "2.4.0"
         }
       ]
     },
     "numpy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2248,6 +2463,14 @@
           "modified": "2026-09-06T16:24:29.244371Z",
           "total_versions": 151,
           "version": "2.5.3"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 0,
+          "modified": "2026-09-06T16:24:29.244371Z",
+          "total_versions": 151,
+          "version": "2.5.3"
         }
       ],
       "state_history": [
@@ -2290,7 +2513,7 @@
     },
     "openai": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2395,6 +2618,14 @@
           "modified": "2026-09-30T00:25:53.524766Z",
           "total_versions": 439,
           "version": "3.22.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 14,
+          "modified": "2026-10-01T23:03:50.230281Z",
+          "total_versions": 440,
+          "version": "3.23.0"
         }
       ],
       "state_history": [
@@ -2712,12 +2943,57 @@
           },
           "state_hash": "617097857287c6cd49b6fda480af97c199bcfe04a13827f2d715b142cdf8aed0",
           "version": "3.22.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": [
+              "anyio<5,>=4.10.0",
+              "httpx2<3,>=2.12.0",
+              "jiter<1,>=0.16.0",
+              "pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13",
+              "sniffio",
+              "typing-extensions<5,>=4.14",
+              "aiohttp>=3.14.3; extra == \"aiohttp\"",
+              "botocore<2,>=1.40.0; extra == \"bedrock\"",
+              "urllib3<3,>=2.7.0; extra == \"bedrock\"",
+              "numpy>=1; extra == \"datalib\"",
+              "pandas>=1.2.3; extra == \"datalib\"",
+              "websockets<16,>=13; extra == \"realtime\"",
+              "numpy>=2.0.2; extra == \"voice-helpers\"",
+              "sounddevice>=0.5.1; extra == \"voice-helpers\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: Apache Software License",
+              "Operating System :: MacOS",
+              "Operating System :: Microsoft :: Windows",
+              "Operating System :: OS Independent",
+              "Operating System :: POSIX",
+              "Operating System :: POSIX :: Linux",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Software Development :: Libraries :: Python Modules",
+              "Typing :: Typed"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "256fec17e21980021d2b0827c2acbfd41f4035f8b5911a5c06142bce816c3d57",
+          "version": "3.23.0"
         }
       ]
     },
     "opencv-python": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2822,6 +3098,14 @@
           "modified": "2026-07-28T18:32:19.031818Z",
           "total_versions": 63,
           "version": "5.0.0.93"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 2,
+          "modified": "2026-07-28T18:32:19.031818Z",
+          "total_versions": 63,
+          "version": "5.0.0.93"
         }
       ],
       "state_history": [
@@ -2868,7 +3152,7 @@
     },
     "pandas": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2972,6 +3256,14 @@
           "dependency_count": 20,
           "modified": "2026-09-17T23:20:20.960376Z",
           "total_versions": 118,
+          "version": "3.0.6"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-09-30T13:55:10.637378Z",
+          "total_versions": 119,
           "version": "3.0.6"
         }
       ],
@@ -3211,7 +3503,7 @@
     },
     "peewee": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3316,6 +3608,14 @@
           "modified": "2026-09-27T19:20:11.977494Z",
           "total_versions": 222,
           "version": "4.5.2"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 10,
+          "modified": "2026-09-27T19:20:11.977494Z",
+          "total_versions": 222,
+          "version": "4.5.2"
         }
       ],
       "state_history": [
@@ -3395,7 +3695,7 @@
     },
     "pillow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3500,6 +3800,14 @@
           "modified": "2026-07-01T11:53:27.808291Z",
           "total_versions": 107,
           "version": "12.3.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-07-01T11:53:27.808291Z",
+          "total_versions": 107,
+          "version": "12.3.0"
         }
       ],
       "state_history": [
@@ -3564,7 +3872,7 @@
     },
     "polars": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3669,6 +3977,14 @@
           "modified": "2026-09-20T17:34:59.350405Z",
           "total_versions": 432,
           "version": "1.44.2"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-09-20T17:34:59.350405Z",
+          "total_versions": 432,
+          "version": "1.44.2"
         }
       ],
       "state_history": [
@@ -3739,7 +4055,7 @@
     },
     "pydantic": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3844,6 +4160,14 @@
           "modified": "2026-09-09T21:55:04.669864Z",
           "total_versions": 206,
           "version": "2.13.5"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 6,
+          "modified": "2026-09-09T21:55:04.669864Z",
+          "total_versions": 206,
+          "version": "2.13.5"
         }
       ],
       "state_history": [
@@ -3893,7 +4217,7 @@
     },
     "pyright": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3998,6 +4322,14 @@
           "modified": "2026-09-10T12:26:51.427844Z",
           "total_versions": 209,
           "version": "1.1.414"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 6,
+          "modified": "2026-09-10T12:26:51.427844Z",
+          "total_versions": 209,
+          "version": "1.1.414"
         }
       ],
       "state_history": [
@@ -4038,7 +4370,7 @@
     },
     "pytest": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4143,6 +4475,14 @@
           "modified": "2026-06-19T10:58:31.347074Z",
           "total_versions": 192,
           "version": "9.1.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 14,
+          "modified": "2026-06-19T10:58:31.347074Z",
+          "total_versions": 192,
+          "version": "9.1.1"
         }
       ],
       "state_history": [
@@ -4197,7 +4537,7 @@
     },
     "redis": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4302,6 +4642,14 @@
           "modified": "2026-07-30T08:50:58.497552Z",
           "total_versions": 169,
           "version": "8.1.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 11,
+          "modified": "2026-07-30T08:50:58.497552Z",
+          "total_versions": 169,
+          "version": "8.1.0"
         }
       ],
       "state_history": [
@@ -4352,7 +4700,7 @@
     },
     "requests": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4457,6 +4805,14 @@
           "modified": "2026-05-14T19:25:26.443000Z",
           "total_versions": 163,
           "version": "2.34.2"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 6,
+          "modified": "2026-05-14T19:25:26.443000Z",
+          "total_versions": 163,
+          "version": "2.34.2"
         }
       ],
       "state_history": [
@@ -4507,7 +4863,7 @@
     },
     "ruff": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4612,6 +4968,14 @@
           "modified": "2026-09-24T20:37:13.045587Z",
           "total_versions": 425,
           "version": "0.16.9"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 0,
+          "modified": "2026-10-01T18:02:36.072842Z",
+          "total_versions": 426,
+          "version": "0.16.10"
         }
       ],
       "state_history": [
@@ -4680,12 +5044,45 @@
           },
           "state_hash": "f597241a71c6aba211137bd0c934c74636e58d944f772aae208dac3ebfc9f287",
           "version": "0.16.9"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": []
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Environment :: Console",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.7",
+              "Programming Language :: Python :: 3.8",
+              "Programming Language :: Python :: 3.9",
+              "Programming Language :: Rust",
+              "Topic :: Software Development :: Libraries :: Python Modules",
+              "Topic :: Software Development :: Quality Assurance"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.7"
+          },
+          "state_hash": "769adca70bba4f5e74dd560f24a0f259ceaac318fa401b1ef3d256b13ab66577",
+          "version": "0.16.10"
         }
       ]
     },
     "scikit-learn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4790,6 +5187,14 @@
           "modified": "2026-09-10T18:32:29.891551Z",
           "total_versions": 76,
           "version": "1.9.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 5,
+          "modified": "2026-09-10T18:32:29.891551Z",
+          "total_versions": 76,
+          "version": "1.9.1"
         }
       ],
       "state_history": [
@@ -4836,7 +5241,7 @@
     },
     "sqlalchemy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4941,6 +5346,14 @@
           "modified": "2026-09-25T14:59:00.117232Z",
           "total_versions": 332,
           "version": "2.1.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-10-02T04:15:55.840377Z",
+          "total_versions": 333,
+          "version": "2.1.2"
         }
       ],
       "state_history": [
@@ -5146,12 +5559,75 @@
           },
           "state_hash": "460020569ea67637b12f7d377fe1e17790a11c8d83117dcf9659e3389b27a5c3",
           "version": "2.1.1"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": [
+              "typing-extensions>=4.6.0",
+              "greenlet>=1; extra == \"asyncio\"",
+              "mypy>=2.4; extra == \"mypy\"",
+              "types-greenlet>=2; extra == \"mypy\"",
+              "pyodbc; extra == \"mssql\"",
+              "pymssql; extra == \"mssql-pymssql\"",
+              "pyodbc; extra == \"mssql-pyodbc\"",
+              "mssql-python>=1.9.0; extra == \"mssql-python\"",
+              "mysqlclient>=1.4.0; extra == \"mysql\"",
+              "mysql-connector-python; extra == \"mysql-connector\"",
+              "mariadb!=1.1.10,!=1.1.2,!=1.1.5,>=1.0.1; extra == \"mariadb-connector\"",
+              "oracledb>=2.0.1; extra == \"oracle\"",
+              "cx_oracle>=8; extra == \"oracle-cxoracle\"",
+              "oracledb>=2.0.1; extra == \"oracle-oracledb\"",
+              "psycopg!=3.1.15,>=3.0.7; extra == \"postgresql\"",
+              "pg8000>=1.29.3; extra == \"postgresql-pg8000\"",
+              "sqlalchemy[asyncio]; extra == \"postgresql-asyncpg\"",
+              "asyncpg; extra == \"postgresql-asyncpg\"",
+              "psycopg2-binary; extra == \"postgresql-psycopg2binary\"",
+              "psycopg2cffi; extra == \"postgresql-psycopg2cffi\"",
+              "psycopg!=3.1.15,>=3.0.7; extra == \"postgresql-psycopg\"",
+              "psycopg[binary]!=3.1.15,>=3.0.7; extra == \"postgresql-psycopgbinary\"",
+              "pymysql; extra == \"pymysql\"",
+              "cymysql; extra == \"cymysql\"",
+              "sqlalchemy[asyncio]; extra == \"aiomysql\"",
+              "aiomysql; extra == \"aiomysql\"",
+              "sqlalchemy[asyncio]; extra == \"aioodbc\"",
+              "aioodbc; extra == \"aioodbc\"",
+              "sqlalchemy[asyncio]; extra == \"asyncmy\"",
+              "asyncmy>=0.2.12; extra == \"asyncmy\"",
+              "sqlalchemy[asyncio]; extra == \"aiosqlite\"",
+              "aiosqlite; extra == \"aiosqlite\"",
+              "sqlcipher3_binary; extra == \"sqlcipher\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Programming Language :: Python :: 3.15",
+              "Programming Language :: Python :: Implementation :: CPython",
+              "Programming Language :: Python :: Implementation :: PyPy",
+              "Topic :: Database :: Front-Ends"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.11"
+          },
+          "state_hash": "3cbbf7fc88ac2da4bb01076452e7be502dd3f80a4cfcdd5201cae24313321d4a",
+          "version": "2.1.2"
         }
       ]
     },
     "tensorflow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5256,6 +5732,14 @@
           "modified": "2026-09-22T18:33:49.957304Z",
           "total_versions": 139,
           "version": "2.21.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-09-22T18:33:49.957304Z",
+          "total_versions": 139,
+          "version": "2.21.0"
         }
       ],
       "state_history": [
@@ -5333,7 +5817,7 @@
     },
     "torch": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5438,6 +5922,14 @@
           "modified": "2026-09-02T13:42:48.266558Z",
           "total_versions": 50,
           "version": "2.14.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 17,
+          "modified": "2026-09-30T17:43:48.426734Z",
+          "total_versions": 51,
+          "version": "2.14.1"
         }
       ],
       "state_history": [
@@ -5491,12 +5983,63 @@
           },
           "state_hash": "44e6726f4df1e27380615d4a060810e85a0cf79bb0a6892818dcdaba07d6d07a",
           "version": "2.14.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": [
+              "filelock",
+              "typing-extensions>=4.10.0",
+              "setuptools>=77.0.3",
+              "sympy>=1.13.3",
+              "networkx>=2.5.1",
+              "jinja2",
+              "fsspec>=0.8.5",
+              "cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"",
+              "cuda-bindings<14,>=13.0.3; platform_system == \"Linux\" and python_version < \"3.15\"",
+              "nvidia-cudnn-cu13==9.24.0.43; platform_system == \"Linux\"",
+              "nvidia-cusparselt-cu13==0.8.1; platform_system == \"Linux\"",
+              "nvidia-nccl-cu13==2.30.7; platform_system == \"Linux\"",
+              "nvidia-nvshmem-cu13==3.4.5; platform_system == \"Linux\"",
+              "triton~=3.8.0; platform_system == \"Linux\" and python_version < \"3.15\"",
+              "optree>=0.13.0; extra == \"optree\"",
+              "opt-einsum>=3.3; extra == \"opt-einsum\"",
+              "pyyaml; extra == \"pyyaml\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Education",
+              "Intended Audience :: Science/Research",
+              "Programming Language :: C++",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence",
+              "Topic :: Scientific/Engineering :: Mathematics",
+              "Topic :: Software Development",
+              "Topic :: Software Development :: Libraries",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "a206a0f02590a7b176fb0202be1ea355628b8050234871f3bfdf7ff52520d1dd",
+          "version": "2.14.1"
         }
       ]
     },
     "transformers": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5601,6 +6144,14 @@
           "modified": "2026-09-09T15:39:53.746054Z",
           "total_versions": 242,
           "version": "5.17.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 20,
+          "modified": "2026-09-30T16:45:57.510870Z",
+          "total_versions": 243,
+          "version": "5.18.0"
         }
       ],
       "state_history": [
@@ -5886,12 +6437,295 @@
           },
           "state_hash": "8cd5fa989f6508c8d2de7b5a9f0ff5ffa742768ca46456cbf50aeaa5613b8f50",
           "version": "5.17.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_declarations": {
+            "requires_dist": [
+              "huggingface-hub<3.0,>=1.31.0",
+              "numpy>=1.17",
+              "packaging>=20.0",
+              "pyyaml>=5.1",
+              "regex>=2025.10.22",
+              "tokenizers<0.24.0,>=0.23.1",
+              "typer",
+              "safetensors>=0.8.0",
+              "tqdm>=4.60",
+              "torch>=2.5; extra == \"torch\"",
+              "accelerate>=1.1.0; extra == \"torch\"",
+              "torchvision; extra == \"vision\"",
+              "Pillow<=15.0,>=10.0.1; extra == \"vision\"",
+              "torchaudio; extra == \"audio\"",
+              "librosa; extra == \"audio\"",
+              "pyctcdecode>=0.4.0; extra == \"audio\"",
+              "phonemizer; extra == \"audio\"",
+              "av; extra == \"video\"",
+              "timm>=1.0.23; extra == \"timm\"",
+              "datasets>=2.15.0; extra == \"quality\"",
+              "ruff==0.14.10; extra == \"quality\"",
+              "GitPython<3.1.19; extra == \"quality\"",
+              "urllib3<2.0.0; extra == \"quality\"",
+              "libcst; extra == \"quality\"",
+              "rich; extra == \"quality\"",
+              "ty==0.0.20; extra == \"quality\"",
+              "tomli; extra == \"quality\"",
+              "transformers-mlinter==0.1.5; extra == \"quality\"",
+              "hf-doc-builder; extra == \"docs\"",
+              "kernels<0.18,>=0.17.0; extra == \"kernels\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"sentencepiece\"",
+              "protobuf; extra == \"sentencepiece\"",
+              "tiktoken; extra == \"tiktoken\"",
+              "blobfile; extra == \"tiktoken\"",
+              "mistral-common[image]>=1.11.7; extra == \"mistral-common\"",
+              "jinja2>=3.1.0; extra == \"chat-template\"",
+              "scikit-learn; extra == \"sklearn\"",
+              "accelerate>=1.1.0; extra == \"accelerate\"",
+              "faiss-cpu; extra == \"retrieval\"",
+              "datasets>=2.15.0; extra == \"retrieval\"",
+              "sagemaker>=2.31.0; extra == \"sagemaker\"",
+              "deepspeed>=0.9.3; extra == \"deepspeed\"",
+              "accelerate>=1.1.0; extra == \"deepspeed\"",
+              "optuna; extra == \"optuna\"",
+              "kernels<0.18,>=0.17.0; extra == \"integrations\"",
+              "optuna; extra == \"integrations\"",
+              "codecarbon>=2.8.1; extra == \"integrations\"",
+              "ray[tune]>=2.7.0; extra == \"integrations\"",
+              "ray[tune]>=2.7.0; extra == \"ray\"",
+              "codecarbon>=2.8.1; extra == \"codecarbon\"",
+              "openai>=1.98.0; extra == \"serving\"",
+              "pydantic>=2; extra == \"serving\"",
+              "uvicorn; extra == \"serving\"",
+              "fastapi; extra == \"serving\"",
+              "starlette; extra == \"serving\"",
+              "rich; extra == \"serving\"",
+              "torch>=2.5; extra == \"serving\"",
+              "accelerate>=1.1.0; extra == \"serving\"",
+              "num2words; extra == \"num2words\"",
+              "optimum-benchmark>=0.3.0; extra == \"benchmark\"",
+              "fugashi>=1.0; extra == \"ja\"",
+              "ipadic<2.0,>=1.0.0; extra == \"ja\"",
+              "unidic_lite>=1.0.7; extra == \"ja\"",
+              "unidic>=1.0.2; extra == \"ja\"",
+              "rhoknp<1.3.1,>=1.1.0; extra == \"ja\"",
+              "sudachipy>=0.6.6; extra == \"ja\"",
+              "sudachidict_core>=20220729; extra == \"ja\"",
+              "pytest<9.0.0,>=7.2.0; extra == \"testing\"",
+              "pytest-asyncio>=1.2.0; extra == \"testing\"",
+              "pytest-random-order; extra == \"testing\"",
+              "pytest-rich; extra == \"testing\"",
+              "pytest-xdist; extra == \"testing\"",
+              "pytest-order; extra == \"testing\"",
+              "pytest-rerunfailures<16.0; extra == \"testing\"",
+              "pytest-timeout; extra == \"testing\"",
+              "pytest-env; extra == \"testing\"",
+              "timeout-decorator; extra == \"testing\"",
+              "parameterized>=0.9; extra == \"testing\"",
+              "psutil; extra == \"testing\"",
+              "dill<0.3.5; extra == \"testing\"",
+              "diffusers==0.35.2; extra == \"testing\"",
+              "evaluate>=0.4.6; extra == \"testing\"",
+              "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"testing\"",
+              "nltk<=3.8.1; extra == \"testing\"",
+              "sacremoses; extra == \"testing\"",
+              "rjieba; extra == \"testing\"",
+              "beautifulsoup4; extra == \"testing\"",
+              "tensorboard; extra == \"testing\"",
+              "sacrebleu<2.0.0,>=1.4.12; extra == \"testing\"",
+              "filelock; extra == \"testing\"",
+              "hf-doc-builder; extra == \"testing\"",
+              "datasets>=2.15.0; extra == \"testing\"",
+              "ruff==0.14.10; extra == \"testing\"",
+              "GitPython<3.1.19; extra == \"testing\"",
+              "urllib3<2.0.0; extra == \"testing\"",
+              "libcst; extra == \"testing\"",
+              "rich; extra == \"testing\"",
+              "ty==0.0.20; extra == \"testing\"",
+              "tomli; extra == \"testing\"",
+              "transformers-mlinter==0.1.5; extra == \"testing\"",
+              "faiss-cpu; extra == \"testing\"",
+              "datasets>=2.15.0; extra == \"testing\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"testing\"",
+              "protobuf; extra == \"testing\"",
+              "openai>=1.98.0; extra == \"testing\"",
+              "pydantic>=2; extra == \"testing\"",
+              "uvicorn; extra == \"testing\"",
+              "fastapi; extra == \"testing\"",
+              "starlette; extra == \"testing\"",
+              "rich; extra == \"testing\"",
+              "torch>=2.5; extra == \"testing\"",
+              "accelerate>=1.1.0; extra == \"testing\"",
+              "mistral-common[image]>=1.11.7; extra == \"testing\"",
+              "deepspeed>=0.9.3; extra == \"deepspeed-testing\"",
+              "accelerate>=1.1.0; extra == \"deepspeed-testing\"",
+              "pytest<9.0.0,>=7.2.0; extra == \"deepspeed-testing\"",
+              "pytest-asyncio>=1.2.0; extra == \"deepspeed-testing\"",
+              "pytest-random-order; extra == \"deepspeed-testing\"",
+              "pytest-rich; extra == \"deepspeed-testing\"",
+              "pytest-xdist; extra == \"deepspeed-testing\"",
+              "pytest-order; extra == \"deepspeed-testing\"",
+              "pytest-rerunfailures<16.0; extra == \"deepspeed-testing\"",
+              "pytest-timeout; extra == \"deepspeed-testing\"",
+              "pytest-env; extra == \"deepspeed-testing\"",
+              "timeout-decorator; extra == \"deepspeed-testing\"",
+              "parameterized>=0.9; extra == \"deepspeed-testing\"",
+              "psutil; extra == \"deepspeed-testing\"",
+              "dill<0.3.5; extra == \"deepspeed-testing\"",
+              "diffusers==0.35.2; extra == \"deepspeed-testing\"",
+              "evaluate>=0.4.6; extra == \"deepspeed-testing\"",
+              "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"deepspeed-testing\"",
+              "nltk<=3.8.1; extra == \"deepspeed-testing\"",
+              "sacremoses; extra == \"deepspeed-testing\"",
+              "rjieba; extra == \"deepspeed-testing\"",
+              "beautifulsoup4; extra == \"deepspeed-testing\"",
+              "tensorboard; extra == \"deepspeed-testing\"",
+              "sacrebleu<2.0.0,>=1.4.12; extra == \"deepspeed-testing\"",
+              "filelock; extra == \"deepspeed-testing\"",
+              "hf-doc-builder; extra == \"deepspeed-testing\"",
+              "datasets>=2.15.0; extra == \"deepspeed-testing\"",
+              "ruff==0.14.10; extra == \"deepspeed-testing\"",
+              "GitPython<3.1.19; extra == \"deepspeed-testing\"",
+              "urllib3<2.0.0; extra == \"deepspeed-testing\"",
+              "libcst; extra == \"deepspeed-testing\"",
+              "rich; extra == \"deepspeed-testing\"",
+              "ty==0.0.20; extra == \"deepspeed-testing\"",
+              "tomli; extra == \"deepspeed-testing\"",
+              "transformers-mlinter==0.1.5; extra == \"deepspeed-testing\"",
+              "faiss-cpu; extra == \"deepspeed-testing\"",
+              "datasets>=2.15.0; extra == \"deepspeed-testing\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"deepspeed-testing\"",
+              "protobuf; extra == \"deepspeed-testing\"",
+              "openai>=1.98.0; extra == \"deepspeed-testing\"",
+              "pydantic>=2; extra == \"deepspeed-testing\"",
+              "uvicorn; extra == \"deepspeed-testing\"",
+              "fastapi; extra == \"deepspeed-testing\"",
+              "starlette; extra == \"deepspeed-testing\"",
+              "rich; extra == \"deepspeed-testing\"",
+              "torch>=2.5; extra == \"deepspeed-testing\"",
+              "accelerate>=1.1.0; extra == \"deepspeed-testing\"",
+              "mistral-common[image]>=1.11.7; extra == \"deepspeed-testing\"",
+              "optuna; extra == \"deepspeed-testing\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"deepspeed-testing\"",
+              "protobuf; extra == \"deepspeed-testing\"",
+              "torch>=2.5; extra == \"all\"",
+              "accelerate>=1.1.0; extra == \"all\"",
+              "torchvision; extra == \"all\"",
+              "Pillow<=15.0,>=10.0.1; extra == \"all\"",
+              "torchaudio; extra == \"all\"",
+              "librosa; extra == \"all\"",
+              "pyctcdecode>=0.4.0; extra == \"all\"",
+              "phonemizer; extra == \"all\"",
+              "av; extra == \"all\"",
+              "kernels<0.18,>=0.17.0; extra == \"all\"",
+              "timm>=1.0.23; extra == \"all\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"all\"",
+              "protobuf; extra == \"all\"",
+              "tiktoken; extra == \"all\"",
+              "blobfile; extra == \"all\"",
+              "jinja2>=3.1.0; extra == \"all\"",
+              "num2words; extra == \"all\"",
+              "mistral-common[image]>=1.11.7; extra == \"all\"",
+              "torch>=2.5; extra == \"dev\"",
+              "accelerate>=1.1.0; extra == \"dev\"",
+              "torchvision; extra == \"dev\"",
+              "Pillow<=15.0,>=10.0.1; extra == \"dev\"",
+              "torchaudio; extra == \"dev\"",
+              "librosa; extra == \"dev\"",
+              "pyctcdecode>=0.4.0; extra == \"dev\"",
+              "phonemizer; extra == \"dev\"",
+              "av; extra == \"dev\"",
+              "kernels<0.18,>=0.17.0; extra == \"dev\"",
+              "timm>=1.0.23; extra == \"dev\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"dev\"",
+              "protobuf; extra == \"dev\"",
+              "tiktoken; extra == \"dev\"",
+              "blobfile; extra == \"dev\"",
+              "jinja2>=3.1.0; extra == \"dev\"",
+              "num2words; extra == \"dev\"",
+              "mistral-common[image]>=1.11.7; extra == \"dev\"",
+              "pytest<9.0.0,>=7.2.0; extra == \"dev\"",
+              "pytest-asyncio>=1.2.0; extra == \"dev\"",
+              "pytest-random-order; extra == \"dev\"",
+              "pytest-rich; extra == \"dev\"",
+              "pytest-xdist; extra == \"dev\"",
+              "pytest-order; extra == \"dev\"",
+              "pytest-rerunfailures<16.0; extra == \"dev\"",
+              "pytest-timeout; extra == \"dev\"",
+              "pytest-env; extra == \"dev\"",
+              "timeout-decorator; extra == \"dev\"",
+              "parameterized>=0.9; extra == \"dev\"",
+              "psutil; extra == \"dev\"",
+              "dill<0.3.5; extra == \"dev\"",
+              "diffusers==0.35.2; extra == \"dev\"",
+              "evaluate>=0.4.6; extra == \"dev\"",
+              "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"dev\"",
+              "nltk<=3.8.1; extra == \"dev\"",
+              "sacremoses; extra == \"dev\"",
+              "rjieba; extra == \"dev\"",
+              "beautifulsoup4; extra == \"dev\"",
+              "tensorboard; extra == \"dev\"",
+              "sacrebleu<2.0.0,>=1.4.12; extra == \"dev\"",
+              "filelock; extra == \"dev\"",
+              "hf-doc-builder; extra == \"dev\"",
+              "datasets>=2.15.0; extra == \"dev\"",
+              "ruff==0.14.10; extra == \"dev\"",
+              "GitPython<3.1.19; extra == \"dev\"",
+              "urllib3<2.0.0; extra == \"dev\"",
+              "libcst; extra == \"dev\"",
+              "rich; extra == \"dev\"",
+              "ty==0.0.20; extra == \"dev\"",
+              "tomli; extra == \"dev\"",
+              "transformers-mlinter==0.1.5; extra == \"dev\"",
+              "faiss-cpu; extra == \"dev\"",
+              "datasets>=2.15.0; extra == \"dev\"",
+              "sentencepiece!=0.1.92,>=0.1.91; extra == \"dev\"",
+              "protobuf; extra == \"dev\"",
+              "openai>=1.98.0; extra == \"dev\"",
+              "pydantic>=2; extra == \"dev\"",
+              "uvicorn; extra == \"dev\"",
+              "fastapi; extra == \"dev\"",
+              "starlette; extra == \"dev\"",
+              "rich; extra == \"dev\"",
+              "torch>=2.5; extra == \"dev\"",
+              "accelerate>=1.1.0; extra == \"dev\"",
+              "mistral-common[image]>=1.11.7; extra == \"dev\"",
+              "fugashi>=1.0; extra == \"dev\"",
+              "ipadic<2.0,>=1.0.0; extra == \"dev\"",
+              "unidic_lite>=1.0.7; extra == \"dev\"",
+              "unidic>=1.0.2; extra == \"dev\"",
+              "rhoknp<1.3.1,>=1.1.0; extra == \"dev\"",
+              "sudachipy>=0.6.6; extra == \"dev\"",
+              "sudachidict_core>=20220729; extra == \"dev\"",
+              "scikit-learn; extra == \"dev\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Education",
+              "Intended Audience :: Science/Research",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10.0"
+          },
+          "state_hash": "1a35e9201b3e70fdf31b26f8cdfd9da51b58b779cea879e359f91e52d0b67930",
+          "version": "5.18.0"
         }
       ]
     },
     "uvicorn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-09-30T08:32:40.726908+00:00",
+      "last_seen": "2026-10-02T14:05:12.965042+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5996,6 +6830,14 @@
           "modified": "2026-09-25T06:52:35.829563Z",
           "total_versions": 204,
           "version": "0.54.0"
+        },
+        {
+          "collected_at": "2026-10-02T14:05:12.965042+00:00",
+          "date": "2026-10-02",
+          "dependency_count": 9,
+          "modified": "2026-09-25T06:52:35.829563Z",
+          "total_versions": 204,
+          "version": "0.54.0"
         }
       ],
       "state_history": [
@@ -6082,5 +6924,5 @@
   },
   "registry": "pypi",
   "schema_version": 1,
-  "updated_at": "2026-09-30T08:32:40.726908+00:00"
+  "updated_at": "2026-10-02T14:05:12.965042+00:00"
 }
