@@ -155,6 +155,7 @@ class DiscoveryBuilder:
             f'<li><a href="{prefix}pypi.html">PyPI</a></li>'
             f'<li><a href="{prefix}movers.html">Movers</a></li>'
             f'<li><a href="{prefix}comparisons.html">Compare</a></li>'
+            f'<li><a href="{prefix}search.html">Search</a></li>'
             '</ul>'
         )
 
@@ -249,12 +250,12 @@ class DiscoveryBuilder:
             <section class="discovery-section">
                 <h2>Fastest-rising tracked npm packages</h2>
                 <p class="section-copy">Latest 7 consecutive reliable download days compared with the preceding 7.</p>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Package</th><th>7d change</th><th>Downloads, 7d</th><th>Trailing week</th><th>Version</th></tr></thead><tbody>{self._mover_table(rising)}</tbody></table></div>
+                <div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d change</th><th scope="col">Downloads, 7d</th><th scope="col">Trailing week</th><th scope="col">Version</th></tr></thead><tbody>{self._mover_table(rising)}</tbody></table></div>
             </section>
             <section class="discovery-section">
                 <h2>Fastest-falling tracked npm packages</h2>
                 <p class="section-copy">Declines use the same consecutive-day requirement. They are measurements, not judgments about package quality.</p>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Package</th><th>7d change</th><th>Downloads, 7d</th><th>Trailing week</th><th>Version</th></tr></thead><tbody>{self._mover_table(falling)}</tbody></table></div>
+                <div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d change</th><th scope="col">Downloads, 7d</th><th scope="col">Trailing week</th><th scope="col">Version</th></tr></thead><tbody>{self._mover_table(falling)}</tbody></table></div>
             </section>"""
         else:
             mover_content = f"""
@@ -266,15 +267,15 @@ class DiscoveryBuilder:
             <section class="discovery-section">
                 <h2>Current tracked npm activity</h2>
                 <p class="section-copy">These are current registry observations, not momentum rankings.</p>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Package</th><th>Trailing-week downloads</th><th>Days since release</th><th>Version</th></tr></thead><tbody>{self._current_activity_table()}</tbody></table></div>
+                <div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">Trailing-week downloads</th><th scope="col">Days since release</th><th scope="col">Version</th></tr></thead><tbody>{self._current_activity_table()}</tbody></table></div>
             </section>"""
 
         return f"""<!DOCTYPE html>
 <html lang="en">
 {self._head(title, description, "movers.html")}
-<body>
+<body><a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a>{self._nav()}</nav></header>
-<main class="container">
+<main id="main-content" class="container" tabindex="-1">
     <article class="discovery-page">
         <header class="article-header"><p class="eyebrow">npm download trends</p><h1>npm Package Movers</h1>
         <p>See which tracked npm packages are gaining or losing download momentum using explainable 7-day comparisons. Missing registry days are excluded instead of silently counted as zero.</p></header>
@@ -306,7 +307,7 @@ class DiscoveryBuilder:
     def _comparison_table(self, names: Sequence[str]) -> str:
         metrics = [self._comparison_metrics(name) for name in names]
         header = "".join(
-            f'<th><a href="../pages/{escape(item["name"], quote=True)}.html">{escape(item["name"])}</a></th>'
+            f'<th scope="col"><a href="../pages/{escape(item["name"], quote=True)}.html">{escape(item["name"])}</a></th>'
             for item in metrics
         )
         rows = [
@@ -318,10 +319,10 @@ class DiscoveryBuilder:
             ("Direct dependencies", [str(item["dependencies"]) for item in metrics]),
         ]
         body = "".join(
-            f'<tr><th>{escape(label)}</th>{"".join(f"<td>{value}</td>" for value in values)}</tr>'
+            f'<tr><th scope="row">{escape(label)}</th>{"".join(f"<td>{value}</td>" for value in values)}</tr>'
             for label, values in rows
         )
-        return f'<div class="table-wrapper"><table class="comparison-table"><thead><tr><th>Metric</th>{header}</tr></thead><tbody>{body}</tbody></table></div>'
+        return f'<div class="table-wrapper"><table class="comparison-table"><thead><tr><th scope="col">Metric</th>{header}</tr></thead><tbody>{body}</tbody></table></div>'
 
     def _comparison_charts(self, names: Sequence[str]) -> str:
         cards = []
@@ -368,9 +369,9 @@ class DiscoveryBuilder:
         return f"""<!DOCTYPE html>
 <html lang="en">
 {self._head(title, description, f"comparisons/{slug}.html", "../")}
-<body>
+<body><a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header"><nav class="main-nav"><a href="../index.html" class="logo">EcosystemPulse</a>{self._nav('../')}</nav></header>
-<main class="container">
+<main id="main-content" class="container" tabindex="-1">
 <article class="comparison-page">
     <header class="article-header"><p class="eyebrow">npm package comparison</p><h1>{escape(label)}</h1><p>{escape(description)}</p></header>
     <section class="discovery-section"><h2>Side-by-side package data</h2>{self._comparison_table(available)}{availability_note}</section>
@@ -404,9 +405,9 @@ class DiscoveryBuilder:
         return f"""<!DOCTYPE html>
 <html lang="en">
 {self._head(title, description, "comparisons.html")}
-<body>
+<body><a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a>{self._nav()}</nav></header>
-<main class="container">
+<main id="main-content" class="container" tabindex="-1">
 <article class="discovery-page"><header class="article-header"><p class="eyebrow">side-by-side evidence</p><h1>Developer Package Comparisons</h1><p>Compare related npm packages using the same measured signals on each side: trailing-week downloads, release activity, current versions, dependencies, and download momentum when the data window is complete.</p></header>
 <div class="comparison-card-grid">{"".join(cards)}</div>
 <section class="methodology-box"><h2>Why these comparisons exist</h2><p>People routinely search for package-versus-package choices. EcosystemPulse does not manufacture a winner. These pages make the underlying public measurements easier to compare while leaving the engineering decision to you.</p></section>
