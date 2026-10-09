@@ -130,10 +130,11 @@ class PageGenerator:
         change = trend.get("change_7d_pct")
         momentum = escape(str(trend.get("momentum", "insufficient data")))
 
-        if history_days < 14:
+        if not trend.get("momentum_available", change is not None):
+            latest_day = escape(str(trend.get("download_latest_day") or "not available"))
             download_block = f"""
-                <p class="method-note">Historical npm download coverage is still accumulating ({history_days} complete day(s) available). A 7-day comparison appears after 14 complete days are available.</p>
-                {sparkline}
+                <p class="method-note">Momentum is unavailable. It requires 14 consecutive reliable calendar days and fresh data. Currently {history_days} consecutive reliable day(s) are available; the latest is {latest_day}. Missing or unreliable dates are not counted as zero.</p>
+                {sparkline or '<p class="method-note">A download chart appears when at least two consecutive reliable days are available.</p>'}
             """
         else:
             download_block = f"""
@@ -144,7 +145,7 @@ class PageGenerator:
                     <div class="trend-card"><strong>{momentum}</strong><span>momentum label</span></div>
                 </div>
                 {sparkline}
-                <p class="method-note">Momentum compares the latest 7 complete npm download days with the preceding 7. “Rising” and “falling” require at least a 5% change.</p>
+                <p class="method-note">Momentum compares the latest 7 consecutive reliable npm download days with the preceding 7 and requires fresh data. “Rising” and “falling” require at least a 5% change.</p>
             """
 
         return f"""
@@ -191,7 +192,7 @@ class PageGenerator:
             versions_html = f"""
             <section class="info-section">
                 <h2>Version History (Last {len(recent)})</h2>
-                <table class="data-table"><thead><tr><th>Version</th><th>Released</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
+                <table class="data-table"><thead><tr><th scope="col">Version</th><th scope="col">Released</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
             </section>"""
 
         deps_html = ""
@@ -203,7 +204,7 @@ class PageGenerator:
         if clean_dependencies:
             deps_html = f"""
             <section class="info-section"><h2>Dependencies ({len(dependencies)})</h2>
-            <div class="tag-list">{''.join(f'<span class="tag">{d}</span>' for d in clean_dependencies)}</div></section>"""
+            <ul class="tag-list">{''.join(f'<li class="tag">{d}</li>' for d in clean_dependencies)}</ul></section>"""
 
         keywords = pkg.get("keywords", []) or []
         if isinstance(keywords, str):
@@ -213,14 +214,14 @@ class PageGenerator:
         if clean_keywords:
             keywords_html = f"""
             <section class="info-section"><h2>Keywords</h2>
-            <div class="tag-list">{''.join(f'<span class="tag">{k}</span>' for k in clean_keywords)}</div></section>"""
+            <ul class="tag-list">{''.join(f'<li class="tag">{k}</li>' for k in clean_keywords)}</ul></section>"""
 
         homepage_row = ""
         homepage_link = ""
         if homepage:
             safe_home = escape(homepage, quote=True)
             home_label = escape(homepage[:60])
-            homepage_row = f'<tr><td>Homepage</td><td><a href="{safe_home}" target="_blank" rel="noopener noreferrer">{home_label}</a></td></tr>'
+            homepage_row = f'<tr><th scope="row">Homepage</th><td><a href="{safe_home}" target="_blank" rel="noopener noreferrer">{home_label}</a></td></tr>'
             homepage_link = f'<li><a href="{safe_home}" target="_blank" rel="noopener noreferrer">Homepage</a></li>'
 
         trend_html = self._trend_panel(pkg, registry)
@@ -240,9 +241,9 @@ class PageGenerator:
     <link rel="canonical" href="{SITE_CONFIG['url']}/pages/{escape(name_raw, quote=True)}.html">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body><a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header"><nav class="main-nav"><a href="../index.html" class="logo">EcosystemPulse</a><ul class="nav-links"><li><a href="../npm.html">npm</a></li><li><a href="../pypi.html">PyPI</a></li></ul></nav></header>
-    <main class="container">
+    <main id="main-content" class="container" tabindex="-1">
         <article class="package-detail">
             <header class="package-header">
                 <h1>{name}</h1><p class="description">{description}</p>
@@ -251,10 +252,10 @@ class PageGenerator:
             {downloads_html}
             {trend_html}
             <section class="info-section"><h2>Quick Info</h2><table class="info-table">
-                <tr><td>Registry</td><td>{registry}</td></tr><tr><td>Latest Version</td><td>{version}</td></tr><tr><td>Total Versions</td><td>{len(versions)}</td></tr>
-                {f'<tr><td>Created</td><td>{escape(created[:10])}</td></tr>' if created else ''}
-                {f'<tr><td>Last Modified</td><td>{escape(modified[:10])}</td></tr>' if modified else ''}
-                {f'<tr><td>License</td><td>{license_info}</td></tr>' if license_info else ''}
+                <tr><th scope="row">Registry</th><td>{registry}</td></tr><tr><th scope="row">Latest Version</th><td>{version}</td></tr><tr><th scope="row">Total Versions</th><td>{len(versions)}</td></tr>
+                {f'<tr><th scope="row">Created</th><td>{escape(created[:10])}</td></tr>' if created else ''}
+                {f'<tr><th scope="row">Last Modified</th><td>{escape(modified[:10])}</td></tr>' if modified else ''}
+                {f'<tr><th scope="row">License</th><td>{license_info}</td></tr>' if license_info else ''}
                 {homepage_row}
             </table></section>
             {versions_html}{deps_html}{keywords_html}
@@ -272,27 +273,37 @@ class PageGenerator:
             key=lambda item: item[1].get("weekly_downloads", 0) or 0,
             reverse=True,
         )
+        if registry == "pypi":
+            sorted_packages = sorted(packages.items(), key=lambda item: item[0].lower())
         for name, pkg in sorted_packages:
             downloads = pkg.get("weekly_downloads")
             downloads_str = f"{int(downloads):,}" if downloads is not None else "N/A"
             trend = self.trends.get(registry, {}).get(name, {})
             change = trend.get("change_7d_pct") if registry == "npm" else None
             change_cell = self._change_html(change) if registry == "npm" else "N/A"
+            activity_cells = f"<td>{downloads_str}</td><td>{change_cell}</td>" if registry == "npm" else ""
+            description = str(pkg.get("description", "") or "")
+            summary = description[:80] + ("…" if len(description) > 80 else "")
             rows.append(
                 f"<tr><td><a href=\"pages/{escape(name, quote=True)}.html\">{escape(name)}</a></td>"
                 f"<td>{escape(str(pkg.get('latest_version', 'N/A')))}</td>"
-                f"<td>{downloads_str}</td><td>{change_cell}</td>"
-                f"<td>{escape(str(pkg.get('description', '') or '')[:80])}</td></tr>"
+                f"{activity_cells}"
+                f"<td>{escape(summary)}</td></tr>"
             )
 
-        change_header = "<th>7d Change</th>" if registry == "npm" else "<th>Trend</th>"
+        activity_headers = '<th scope="col">Weekly Downloads</th><th scope="col">7d Change</th>' if registry == "npm" else ""
+        listing_note = (
+            "Sorted by weekly downloads. Open a package for its download history and release activity."
+            if registry == "npm" else
+            "Listed A–Z. Open a package for its versions and release activity. PyPI download counts and download momentum are not collected."
+        )
         return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{escape(title)} — EcosystemPulse</title><meta name="description" content="{escape(title, quote=True)} with registry data and measured activity trends">
 <link rel="canonical" href="{SITE_CONFIG['url']}/{registry}.html"><link rel="stylesheet" href="css/style.css"></head>
-<body><header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a><ul class="nav-links"><li><a href="npm.html">npm</a></li><li><a href="pypi.html">PyPI</a></li></ul></nav></header>
-<main class="container"><article class="listing"><header class="article-header"><h1>{escape(title)}</h1><p>Measured data from the {registry} registry. Updated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}.</p></header>
-<div class="table-wrapper"><table class="data-table"><thead><tr><th>Package</th><th>Version</th><th>Weekly Downloads</th>{change_header}<th>Description</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></article></main>
+<body><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a><ul class="nav-links"><li><a href="npm.html">npm</a></li><li><a href="pypi.html">PyPI</a></li></ul></nav></header>
+<main id="main-content" class="container" tabindex="-1"><article class="listing"><header class="article-header"><h1>{escape(title)}</h1><p>Measured data from the {registry} registry. Updated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}.</p><p>{listing_note}</p></header>
+<div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">Version</th>{activity_headers}<th scope="col">Description</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></article></main>
 <footer class="site-footer"><div class="footer-content"><p>&copy; {datetime.now().year} EcosystemPulse. Measured developer ecosystem data.</p></div></footer></body></html>"""
 
     def _momentum_rows(self, npm_packages: Dict) -> str:
@@ -324,7 +335,7 @@ class PageGenerator:
         )
         momentum_rows = self._momentum_rows(npm_packages)
         momentum_section = (
-            f"""<section class="top-packages"><h2>Fastest-rising tracked npm packages</h2><p class="section-copy">Latest 7 complete download days compared with the previous 7.</p><div class="table-wrapper"><table class="data-table"><thead><tr><th>Package</th><th>7d Change</th><th>Downloads, 7d</th></tr></thead><tbody>{momentum_rows}</tbody></table></div></section>"""
+            f"""<section class="top-packages"><h2>Fastest-rising tracked npm packages</h2><p class="section-copy">Latest 7 complete download days compared with the previous 7.</p><div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d Change</th><th scope="col">Downloads, 7d</th></tr></thead><tbody>{momentum_rows}</tbody></table></div></section>"""
             if momentum_rows
             else """<section class="top-packages"><h2>Download momentum is warming up</h2><p class="section-copy">EcosystemPulse is collecting enough complete npm download days to calculate reliable 7-day comparisons.</p></section>"""
         )
@@ -332,12 +343,12 @@ class PageGenerator:
         return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EcosystemPulse — Developer Package Trends</title><meta name="description" content="Measured npm download momentum, package release activity, versions, and dependency data across npm and PyPI.">
-<link rel="canonical" href="{SITE_CONFIG['url']}/"><link rel="stylesheet" href="css/style.css"><style>.search-hero{{max-width:500px;margin:0 auto 2rem}}.search-hero input{{width:100%;padding:.75rem 1rem;font-size:1rem;border:2px solid #333;border-radius:6px;background:#0a0a0a;color:#e0e0e0;font-family:'SF Mono','Fira Code',monospace}}.search-hero input:focus{{outline:none;border-color:#00ff88}}</style></head>
-<body><header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a><ul class="nav-links"><li><a href="npm.html">npm</a></li><li><a href="pypi.html">PyPI</a></li></ul></nav></header>
-<main class="container"><section class="hero"><h1>Developer Ecosystem Data</h1><p>Measured package activity, downloads, releases, versions, and dependencies.</p><div class="search-hero"><form action="search.html" method="get"><input type="text" name="q" placeholder="Search for a package..." autocomplete="off"></form></div></section>
-<section class="stats-grid"><div class="stat-card"><h3>{npm_count}</h3><p>npm Packages</p></div><div class="stat-card"><h3>{pypi_count}</h3><p>PyPI Packages</p></div><div class="stat-card"><h3>{npm_count + pypi_count}</h3><p>Total Tracked</p></div></section>
+<link rel="canonical" href="{SITE_CONFIG['url']}/"><link rel="stylesheet" href="css/style.css"></head>
+<body><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a><ul class="nav-links"><li><a href="npm.html">npm</a></li><li><a href="pypi.html">PyPI</a></li></ul></nav></header>
+<main id="main-content" class="container" tabindex="-1"><section class="hero"><h1>Developer Ecosystem Data</h1><p>Track npm downloads and explore release history across npm and PyPI.</p><div class="search-hero"><form action="search.html" method="get" role="search"><label for="home-search">Find a package</label><div class="search-controls"><input id="home-search" type="search" name="q" placeholder="e.g. react or requests" minlength="2" required autocomplete="off" aria-describedby="home-search-hint"><button type="submit">Search</button></div><p id="home-search-hint" class="search-hint">Search npm live or open the history of a tracked package.</p></form></div></section>
+<dl class="stats-grid"><div class="stat-card"><dt>npm Packages</dt><dd>{npm_count}</dd></div><div class="stat-card"><dt>PyPI Packages</dt><dd>{pypi_count}</dd></div><div class="stat-card"><dt>Total Tracked</dt><dd>{npm_count + pypi_count}</dd></div></dl>
 {momentum_section}
-<section class="top-packages"><h2>Top tracked npm packages by downloads</h2><div class="table-wrapper"><table class="data-table"><thead><tr><th>Package</th><th>Version</th><th>Trailing-week Downloads</th></tr></thead><tbody>{top_rows}</tbody></table></div><p><a href="npm.html">View all npm packages →</a></p></section>
+<section class="top-packages"><h2>Top tracked npm packages by downloads</h2><div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">Version</th><th scope="col">Trailing-week Downloads</th></tr></thead><tbody>{top_rows}</tbody></table></div><p><a href="npm.html">View all npm packages →</a></p></section>
 <section class="about-preview"><h2>What is EcosystemPulse?</h2><p>EcosystemPulse preserves public registry observations over time so changes can be measured instead of guessed.</p><ul><li>30-day npm download history and 7-day momentum</li><li>Release recency and recent release cadence</li><li>Current versions, dependencies, and registry metadata</li><li>No subjective “health score” hiding the underlying evidence</li></ul></section></main>
 <footer class="site-footer"><div class="footer-content"><p>&copy; {datetime.now().year} EcosystemPulse. Measured developer ecosystem data.</p></div></footer></body></html>"""
 

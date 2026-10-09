@@ -14,6 +14,7 @@ DATA = BASE / "data"
 sys.path.insert(0, str(BASE / "engine"))
 
 from history_store import HistoryStore
+from page_generator import PageGenerator
 from trend_analyzer import TrendAnalyzer
 
 errors = []
@@ -208,19 +209,81 @@ record(
     "7-day momentum recomputes from 14 consecutive reliable days",
 )
 
+def valid_download_panel(text, metrics):
+    """Require charts only for real series and require honest empty states."""
+    panel = re.search(r'<section class="trend-section">(.*?)</section>', text, re.DOTALL)
+    if panel is None:
+        return False
+    content = panel.group(1)
+    if "Download momentum" not in content or "npm daily downloads" not in content:
+        return False
+    points = metrics.get("download_points", [])
+    has_chart = 'class="sparkline"' in content and "<polyline" in content
+    if len(points) >= 2:
+        if not has_chart:
+            return False
+    elif has_chart or "at least two consecutive reliable days" not in content:
+        return False
+    if metrics.get("momentum_available"):
+        if "7d vs previous 7d" not in content:
+            return False
+        if PageGenerator._change_html(metrics.get("change_7d_pct")) not in content:
+            return False
+    elif (
+        "Momentum is unavailable" not in content
+        or "14 consecutive reliable calendar days" not in content
+        or "fresh data" not in content
+        or "7d vs previous 7d" in content
+        or 'class="trend-up"' in content
+        or 'class="trend-down"' in content
+    ):
+        return False
+    return True
+
+
 npm_trend_pages = 0
 pypi_release_pages = 0
 for name in d.get("npm", {}):
     page = pages_dir / f"{name}.html"
-    if page.exists():
-        text = page.read_text(encoding="utf-8", errors="ignore")
-        if "Download momentum" in text and "class=\"sparkline\"" in text and "npm daily downloads" in text:
-            npm_trend_pages += 1
+    if page.exists() and valid_download_panel(page.read_text(encoding="utf-8"), npm_trends.get(name, {})):
+        npm_trend_pages += 1
 for name in d.get("pypi", {}):
     page = pages_dir / f"{name}.html"
     if page.exists() and "Release activity" in page.read_text(encoding="utf-8", errors="ignore"):
         pypi_release_pages += 1
-record(npm_trend_pages >= 20, "CHECK 26", f"{npm_trend_pages} npm package pages render quality-aware trend panels")
+
+# Keep chart rendering mandatory even on a run with no chartable live series.
+# Exercise empty, short, fresh, gapped, and stale data independently of npm.
+renderer_checks = []
+with tempfile.TemporaryDirectory() as tmp:
+    renderer = PageGenerator(Path(tmp), Path(tmp) / "output")
+    for label, points, as_of in [
+        ("empty", [], start_day),
+        ("one day", contiguous_points[:1], start_day + timedelta(days=1)),
+        ("two days", contiguous_points[:2], start_day + timedelta(days=2)),
+        ("fresh momentum", contiguous_points, start_day + timedelta(days=14)),
+        ("gapped", contiguous_points[:5] + contiguous_points[6:], start_day + timedelta(days=14)),
+        ("stale", contiguous_points, start_day + timedelta(days=30)),
+    ]:
+        metrics = TrendAnalyzer._download_metrics({"daily_downloads": points}, as_of_date=as_of)
+        renderer.trends = {"npm": {"demo": metrics}}
+        panel = renderer._trend_panel({"name": "demo"}, "npm")
+        renderer_checks.append(valid_download_panel(panel, metrics))
+    # Prove the check rejects removal of a required chart or fabricated momentum.
+    fresh = TrendAnalyzer._download_metrics({"daily_downloads": contiguous_points}, as_of_date=start_day + timedelta(days=14))
+    renderer.trends = {"npm": {"demo": fresh}}
+    fresh_panel = renderer._trend_panel({"name": "demo"}, "npm")
+    renderer_checks.append(not valid_download_panel(re.sub(r'<svg.*?</svg>', '', fresh_panel, flags=re.DOTALL), fresh))
+    short = TrendAnalyzer._download_metrics({"daily_downloads": contiguous_points[:1]}, as_of_date=start_day + timedelta(days=1))
+    renderer.trends = {"npm": {"demo": short}}
+    short_panel = renderer._trend_panel({"name": "demo"}, "npm")
+    renderer_checks.append(not valid_download_panel(short_panel.replace('Momentum is unavailable', '<span class="trend-up">+20.0%</span>'), short))
+
+record(
+    npm_trend_pages == npm_count and npm_trend_pages >= 30 and all(renderer_checks),
+    "CHECK 26",
+    f"{npm_trend_pages}/{npm_count} npm panels match their evidence; {sum(renderer_checks)}/{len(renderer_checks)} chart/withholding regression checks",
+)
 record(pypi_release_pages >= 25, "CHECK 27", f"{pypi_release_pages} PyPI package pages render release activity")
 
 record("Fastest-rising tracked npm packages" in index_html or "Download momentum is warming up" in index_html,
