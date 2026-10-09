@@ -130,10 +130,11 @@ class PageGenerator:
         change = trend.get("change_7d_pct")
         momentum = escape(str(trend.get("momentum", "insufficient data")))
 
-        if history_days < 14:
+        if not trend.get("momentum_available", change is not None):
+            latest_day = escape(str(trend.get("download_latest_day") or "not available"))
             download_block = f"""
-                <p class="method-note">Historical npm download coverage is still accumulating ({history_days} complete day(s) available). A 7-day comparison appears after 14 complete days are available.</p>
-                {sparkline}
+                <p class="method-note">Momentum is unavailable. It requires 14 consecutive reliable calendar days and fresh data. Currently {history_days} consecutive reliable day(s) are available; the latest is {latest_day}. Missing or unreliable dates are not counted as zero.</p>
+                {sparkline or '<p class="method-note">A download chart appears when at least two consecutive reliable days are available.</p>'}
             """
         else:
             download_block = f"""
@@ -144,7 +145,7 @@ class PageGenerator:
                     <div class="trend-card"><strong>{momentum}</strong><span>momentum label</span></div>
                 </div>
                 {sparkline}
-                <p class="method-note">Momentum compares the latest 7 complete npm download days with the preceding 7. “Rising” and “falling” require at least a 5% change.</p>
+                <p class="method-note">Momentum compares the latest 7 consecutive reliable npm download days with the preceding 7 and requires fresh data. “Rising” and “falling” require at least a 5% change.</p>
             """
 
         return f"""
