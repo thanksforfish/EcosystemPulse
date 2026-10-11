@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import hashlib
 import math
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -39,6 +41,23 @@ def install_analytics(output_dir: Path) -> int:
         html = html.replace("</head>", f"    {CLOUDFLARE_ANALYTICS}\n</head>", 1)
         page.write_text(html, encoding="utf-8")
         updated += 1
+    return updated
+
+
+def version_stylesheet(output_dir: Path) -> int:
+    """Keep cached CSS in sync with the markup while retaining stable asset paths."""
+    revision = hashlib.sha256((output_dir / "css" / "style.css").read_bytes()).hexdigest()[:12]
+    updated = 0
+    for page in output_dir.rglob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        versioned = re.sub(
+            r'((?:\.\./)*css/style\.css)(?:\?v=[0-9a-f]+)?(?=["\'])',
+            lambda match: f"{match.group(1)}?v={revision}",
+            html,
+        )
+        if versioned != html:
+            page.write_text(versioned, encoding="utf-8")
+            updated += 1
     return updated
 
 
@@ -103,6 +122,7 @@ def main() -> None:
 
     print("\n[7/7] Installing Cloudflare Web Analytics...")
     analytics_pages = install_analytics(OUTPUT_DIR)
+    stylesheet_pages = version_stylesheet(OUTPUT_DIR)
 
     npm_with_momentum = sum(
         1
@@ -130,6 +150,7 @@ def main() -> None:
     print(f"Package pages SEO-enhanced: {discovery_result['package_pages_enhanced']}")
     print(f"Sitemap discovery URLs added: {discovery_result['sitemap_urls_added']}")
     print(f"Analytics pages updated: {analytics_pages}")
+    print(f"Stylesheet references versioned: {stylesheet_pages}")
     print(f"Durable history: {DATA_DIR / 'history'}")
     print(f"Recovery copies: {history_result['history_backups']}")
     print(f"Output: {OUTPUT_DIR}")
