@@ -16,15 +16,15 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "ecosystempulse-${{ github.ref }}"
-  cancel-in-progress: false
-
 env:
   SITE_URL: https://ecosystempulse.dev
 
 jobs:
   build:
+    # Serialize history writers without holding collection behind a Pages wait.
+    concurrency:
+      group: "ecosystempulse-build-${{ github.ref }}"
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -87,6 +87,10 @@ jobs:
 
   deploy:
     if: github.ref == 'refs/heads/main'
+    # A newer validated build supersedes an older deployment.
+    concurrency:
+      group: "ecosystempulse-deploy-${{ github.ref }}"
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
