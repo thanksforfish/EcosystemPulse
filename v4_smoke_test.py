@@ -118,9 +118,78 @@ record(mover_integrity, "V4 CHECK 10", "movers page preserves V3.1 reliability g
 related_ok = "Related comparisons" in react_text and "react-vs-vue-vs-svelte.html" in react_text
 record(related_ok, "V4 CHECK 11", "package pages internally link to relevant comparisons")
 
+# Verify ranking semantics using deterministic fixtures, independently of today's
+# registry data. Negative, steady, and stale values must never appear as rises.
+import sys
+sys.path.insert(0, str(BASE / "engine"))
+from discovery_builder import DiscoveryBuilder
+from page_generator import PageGenerator
+
+fixture_npm = {
+    name: {"weekly_downloads": 1000, "latest_version": "1.0"}
+    for name in ("riser", "faller", "steady", "stale")
+}
+fixture_trends = {"npm": {
+    "riser": {"momentum_available": True, "change_7d_pct": 12.0, "downloads_7d": 900},
+    "faller": {"momentum_available": True, "change_7d_pct": -8.0, "downloads_7d": 800},
+    "steady": {"momentum_available": True, "change_7d_pct": 2.0, "downloads_7d": 700},
+    "stale": {"momentum_available": False, "change_7d_pct": 50.0, "downloads_7d": 600},
+}}
+fixture_builder = DiscoveryBuilder.__new__(DiscoveryBuilder)
+fixture_builder.data = {"npm": fixture_npm}
+fixture_builder.trends = fixture_trends
+rising, falling, evidence_count = fixture_builder._mover_entries()
+fixture_movers = fixture_builder._generate_movers_page()
+falling_section = re.search(r"<h2>Fastest-falling tracked npm packages</h2>(.*?)</section>", fixture_movers, re.DOTALL)
+falling_html = falling_section.group(1) if falling_section else ""
+record(
+    evidence_count == 3
+    and [name for _, name, _ in rising] == ["riser"]
+    and [name for _, name, _ in falling] == ["faller"]
+    and "pages/faller.html" in falling_html
+    and "pages/riser.html" not in falling_html
+    and "pages/steady.html" not in falling_html
+    and "pages/stale.html" not in falling_html
+    and "<th scope=\"col\">Trailing week</th>" not in fixture_movers,
+    "V4 CHECK 12", "Movers includes only genuine +/-5% changes, with no duplicate column",
+)
+
+fixture_pagegen = PageGenerator.__new__(PageGenerator)
+fixture_pagegen.trends = fixture_trends
+fixture_home = fixture_pagegen._generate_index_page(fixture_npm, {})
+record(
+    "pages/riser.html" in fixture_pagegen._momentum_rows(fixture_npm)
+    and "pages/faller.html" not in fixture_pagegen._momentum_rows(fixture_npm)
+    and "pages/stale.html" not in fixture_pagegen._momentum_rows(fixture_npm)
+    and "Fastest-rising tracked npm packages" in fixture_home,
+    "V4 CHECK 13", "Homepage momentum requires fresh reliable evidence and >=5% rise",
+)
+
+fixture_builder.trends = {"npm": {
+    "faller": fixture_trends["npm"]["faller"],
+    "steady": fixture_trends["npm"]["steady"],
+}}
+no_rises = fixture_builder._generate_movers_page()
+fixture_pagegen.trends = fixture_builder.trends
+no_rises_home = fixture_pagegen._generate_index_page(fixture_npm, {})
+fixture_builder.trends = {"npm": {
+    "stale": fixture_trends["npm"]["stale"],
+}}
+no_evidence = fixture_builder._generate_movers_page()
+fixture_pagegen.trends = fixture_builder.trends
+no_evidence_home = fixture_pagegen._generate_index_page(fixture_npm, {})
+record(
+    "No tracked npm package currently exceeds the +5% rising threshold" in no_rises
+    and "pages/faller.html" in no_rises
+    and "No qualifying npm download rises" in no_rises_home
+    and "warming up" in no_evidence.lower()
+    and "warming up" in no_evidence_home.lower(),
+    "V4 CHECK 14", "No qualifying rises do not masquerade as missing data",
+)
+
 print("\n=== V4 RESULT ===")
 if errors:
     for error in errors:
         print("  " + error)
     raise SystemExit(1)
-print("ALL 11 V4 CHECKS PASSED")
+print("ALL 14 V4 CHECKS PASSED")
