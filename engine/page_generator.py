@@ -311,7 +311,8 @@ class PageGenerator:
         for name in npm_packages:
             trend = self.trends.get("npm", {}).get(name, {})
             change = trend.get("change_7d_pct")
-            if isinstance(change, (int, float)):
+            # The homepage must not label unavailable/steady momentum as a rise.
+            if trend.get("momentum_available") and isinstance(change, (int, float)) and change >= 5:
                 movers.append((change, name, trend))
         movers.sort(reverse=True)
         rows = []
@@ -334,10 +335,18 @@ class PageGenerator:
             for name, pkg in top_npm
         )
         momentum_rows = self._momentum_rows(npm_packages)
+        has_reliable_momentum = any(
+            self.trends.get("npm", {}).get(name, {}).get("momentum_available")
+            for name in npm_packages
+        )
         momentum_section = (
-            f"""<section class="top-packages"><h2>Fastest-rising tracked npm packages</h2><p class="section-copy">Latest 7 complete download days compared with the previous 7.</p><div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d Change</th><th scope="col">Downloads, 7d</th></tr></thead><tbody>{momentum_rows}</tbody></table></div></section>"""
+            f"""<section class="top-packages"><h2>Fastest-rising tracked npm packages</h2><p class="section-copy">Latest 7 consecutive reliable npm download days compared with the previous 7. Only increases of at least 5% qualify.</p><div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d Change</th><th scope="col">Downloads, 7d</th></tr></thead><tbody>{momentum_rows}</tbody></table></div></section>"""
             if momentum_rows
-            else """<section class="top-packages"><h2>Download momentum is warming up</h2><p class="section-copy">EcosystemPulse is collecting enough complete npm download days to calculate reliable 7-day comparisons.</p></section>"""
+            else (
+                """<section class="top-packages"><h2>No qualifying npm download rises</h2><p class="section-copy">Reliable momentum is available, but no tracked package currently has a measured increase of at least 5%.</p></section>"""
+                if has_reliable_momentum
+                else """<section class="top-packages"><h2>Download momentum is warming up</h2><p class="section-copy">EcosystemPulse requires 14 consecutive reliable npm download days and fresh data before publishing 7-day momentum.</p></section>"""
+            )
         )
 
         return f"""<!DOCTYPE html>
@@ -345,7 +354,7 @@ class PageGenerator:
 <title>EcosystemPulse — Developer Package Trends</title><meta name="description" content="Measured npm download momentum, package release activity, versions, and dependency data across npm and PyPI.">
 <link rel="canonical" href="{SITE_CONFIG['url']}/"><link rel="stylesheet" href="css/style.css"></head>
 <body><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><nav class="main-nav"><a href="index.html" class="logo">EcosystemPulse</a><ul class="nav-links"><li><a href="npm.html">npm</a></li><li><a href="pypi.html">PyPI</a></li></ul></nav></header>
-<main id="main-content" class="container" tabindex="-1"><section class="hero"><h1>Developer Ecosystem Data</h1><p>Track npm downloads and explore release history across npm and PyPI.</p><div class="search-hero"><form action="search.html" method="get" role="search"><label for="home-search">Find a package</label><div class="search-controls"><input id="home-search" type="search" name="q" placeholder="e.g. react or requests" minlength="2" required autocomplete="off" aria-describedby="home-search-hint"><button type="submit">Search</button></div><p id="home-search-hint" class="search-hint">Search npm live or open the history of a tracked package.</p></form></div></section>
+<main id="main-content" class="container" tabindex="-1"><section class="hero"><h1>Developer package trends over time</h1><p>Explore measured npm download changes and release history across npm and PyPI, with historical observations preserved as they happen.</p><div class="search-hero"><form action="search.html" method="get" role="search"><label for="home-search">Find a package</label><div class="search-controls"><input id="home-search" type="search" name="q" placeholder="e.g. react or requests" minlength="2" required autocomplete="off" aria-describedby="home-search-hint"><button type="submit">Search</button></div><p id="home-search-hint" class="search-hint">Search npm live or open the history of a tracked package.</p></form></div></section>
 <dl class="stats-grid"><div class="stat-card"><dt>npm Packages</dt><dd>{npm_count}</dd></div><div class="stat-card"><dt>PyPI Packages</dt><dd>{pypi_count}</dd></div><div class="stat-card"><dt>Total Tracked</dt><dd>{npm_count + pypi_count}</dd></div></dl>
 {momentum_section}
 <section class="top-packages"><h2>Top tracked npm packages by downloads</h2><div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">Version</th><th scope="col">Trailing-week Downloads</th></tr></thead><tbody>{top_rows}</tbody></table></div><p><a href="npm.html">View all npm packages →</a></p></section>
