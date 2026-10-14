@@ -190,7 +190,8 @@ class DiscoveryBuilder:
         }
         return self._json_ld(payload)
 
-    def _mover_entries(self) -> Tuple[List[Tuple[float, str, Dict]], List[Tuple[float, str, Dict]]]:
+    def _mover_entries(self) -> Tuple[List[Tuple[float, str, Dict]], List[Tuple[float, str, Dict]], int]:
+        """Keep the evidence gate separate from the +/-5% mover threshold."""
         entries = []
         npm = self.data.get("npm", {})
         for name in npm:
@@ -198,9 +199,9 @@ class DiscoveryBuilder:
             change = trend.get("change_7d_pct")
             if trend.get("momentum_available") and isinstance(change, (int, float)):
                 entries.append((float(change), name, trend))
-        rising = sorted(entries, key=lambda item: item[0], reverse=True)
-        falling = sorted(entries, key=lambda item: item[0])
-        return rising, falling
+        rising = sorted((entry for entry in entries if entry[0] >= 5), key=lambda item: item[0], reverse=True)
+        falling = sorted((entry for entry in entries if entry[0] <= -5), key=lambda item: item[0])
+        return rising, falling, len(entries)
 
     def _mover_table(self, entries: Sequence[Tuple[float, str, Dict]], limit: int = 10) -> str:
         rows = []
@@ -211,7 +212,6 @@ class DiscoveryBuilder:
                 f'<td><a href="pages/{escape(name, quote=True)}.html">{escape(name)}</a></td>'
                 f'<td>{self._change_html(change)}</td>'
                 f'<td>{self._fmt_number(trend.get("downloads_7d"))}</td>'
-                f'<td>{self._fmt_number(pkg.get("weekly_downloads"))}</td>'
                 f'<td>{escape(str(pkg.get("latest_version", "N/A")))}</td>'
                 '</tr>'
             )
@@ -238,31 +238,45 @@ class DiscoveryBuilder:
         return "".join(rows)
 
     def _generate_movers_page(self) -> str:
-        rising, falling = self._mover_entries()
+        rising, falling, evidence_count = self._mover_entries()
         title = "npm Package Download Trends & Movers | EcosystemPulse"
         description = (
             "Track measured npm package download trends, 7-day momentum, weekly downloads, and release activity. "
             "EcosystemPulse withholds mover rankings when registry data is incomplete."
         )
         schema = self._breadcrumb_schema((("EcosystemPulse", ""), ("npm Package Movers", "movers.html")))
-        if rising:
+        if evidence_count:
+            rising_table = (
+                '<div class="table-wrapper"><table class="data-table"><thead><tr>'
+                '<th scope="col">Package</th><th scope="col">7d change</th>'
+                '<th scope="col">Downloads, 7d</th><th scope="col">Version</th>'
+                f'</tr></thead><tbody>{self._mover_table(rising)}</tbody></table></div>'
+                if rising else '<p class="data-note">No tracked npm package currently exceeds the +5% rising threshold.</p>'
+            )
+            falling_table = (
+                '<div class="table-wrapper"><table class="data-table"><thead><tr>'
+                '<th scope="col">Package</th><th scope="col">7d change</th>'
+                '<th scope="col">Downloads, 7d</th><th scope="col">Version</th>'
+                f'</tr></thead><tbody>{self._mover_table(falling)}</tbody></table></div>'
+                if falling else '<p class="data-note">No tracked npm package currently crosses the -5% falling threshold.</p>'
+            )
             mover_content = f"""
             <section class="discovery-section">
                 <h2>Fastest-rising tracked npm packages</h2>
                 <p class="section-copy">Latest 7 consecutive reliable download days compared with the preceding 7.</p>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d change</th><th scope="col">Downloads, 7d</th><th scope="col">Trailing week</th><th scope="col">Version</th></tr></thead><tbody>{self._mover_table(rising)}</tbody></table></div>
+                {rising_table}
             </section>
             <section class="discovery-section">
                 <h2>Fastest-falling tracked npm packages</h2>
-                <p class="section-copy">Declines use the same consecutive-day requirement. They are measurements, not judgments about package quality.</p>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th scope="col">Package</th><th scope="col">7d change</th><th scope="col">Downloads, 7d</th><th scope="col">Trailing week</th><th scope="col">Version</th></tr></thead><tbody>{self._mover_table(falling)}</tbody></table></div>
+                <p class="section-copy">Only measured declines of at least 5% qualify. These are not judgments about package quality.</p>
+                {falling_table}
             </section>"""
         else:
             mover_content = f"""
             <section class="status-panel">
                 <h2>Reliable mover rankings are warming up</h2>
                 <p>EcosystemPulse will not rank packages from broken or gapped npm download windows. The site needs 14 consecutive reliable calendar days before comparing one 7-day period with the previous 7.</p>
-                <p>This page will turn into a live risers-and-fallers table automatically when the evidence is complete.</p>
+                <p>Rising and falling rankings appear automatically when reliable evidence is complete and a change crosses the 5% threshold.</p>
             </section>
             <section class="discovery-section">
                 <h2>Current tracked npm activity</h2>
