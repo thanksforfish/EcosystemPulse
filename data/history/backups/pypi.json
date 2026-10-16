@@ -2,7 +2,7 @@
   "packages": {
     "black": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -179,6 +179,14 @@
           "modified": "2026-10-10T04:13:38.808236Z",
           "total_versions": 75,
           "version": "26.10.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 14,
+          "modified": "2026-10-10T04:13:38.808236Z",
+          "total_versions": 75,
+          "version": "26.10.1"
         }
       ],
       "state_history": [
@@ -321,7 +329,7 @@
     },
     "celery": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -498,6 +506,14 @@
           "modified": "2026-10-06T16:50:21.459452Z",
           "total_versions": 226,
           "version": "5.6.3"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-10-06T16:50:21.459452Z",
+          "total_versions": 226,
+          "version": "5.6.3"
         }
       ],
       "state_history": [
@@ -589,7 +605,7 @@
     },
     "django": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -766,6 +782,14 @@
           "modified": "2026-10-06T13:01:04.413659Z",
           "total_versions": 445,
           "version": "6.1.2"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 5,
+          "modified": "2026-10-06T13:01:04.413659Z",
+          "total_versions": 445,
+          "version": "6.1.2"
         }
       ],
       "state_history": [
@@ -849,7 +873,7 @@
     },
     "fastapi": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1026,6 +1050,14 @@
           "modified": "2026-10-08T12:29:44.853354Z",
           "total_versions": 323,
           "version": "0.143.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-10-14T12:53:07.690929Z",
+          "total_versions": 324,
+          "version": "0.143.1"
         }
       ],
       "state_history": [
@@ -1331,12 +1363,90 @@
           },
           "state_hash": "328ba10da9b3d47898dc59486c6e1050545aa938c2242e6f6851157b2a3d1b4a",
           "version": "0.143.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_declarations": {
+            "requires_dist": [
+              "starlette>=0.46.0",
+              "pydantic>=2.9.0",
+              "typing-extensions>=4.8.0",
+              "typing-inspection>=0.4.2",
+              "annotated-doc>=0.0.2",
+              "opentelemetry-api>=1.44.0",
+              "opentelemetry-sdk>=1.44.0; extra == \"opentelemetry\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"opentelemetry\"",
+              "opentelemetry-sdk>=1.44.0; extra == \"standard\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"standard\"",
+              "fastapi-cli[standard]>=0.0.32; extra == \"standard\"",
+              "fastar>=0.9.0; extra == \"standard\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"standard\"",
+              "jinja2>=3.1.5; extra == \"standard\"",
+              "python-multipart>=0.0.18; extra == \"standard\"",
+              "email-validator>=2.0.0; extra == \"standard\"",
+              "uvicorn[standard]>=0.12.0; extra == \"standard\"",
+              "pydantic-settings>=2.0.0; extra == \"standard\"",
+              "pydantic-extra-types>=2.0.0; extra == \"standard\"",
+              "opentelemetry-sdk>=1.44.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "fastapi-cli[standard-no-fastapi-cloud-cli]>=0.0.32; extra == \"standard-no-fastapi-cloud-cli\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "jinja2>=3.1.5; extra == \"standard-no-fastapi-cloud-cli\"",
+              "python-multipart>=0.0.18; extra == \"standard-no-fastapi-cloud-cli\"",
+              "email-validator>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "uvicorn[standard]>=0.12.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "pydantic-settings>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "pydantic-extra-types>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+              "opentelemetry-sdk>=1.44.0; extra == \"all\"",
+              "opentelemetry-exporter-otlp-proto-http>=1.44.0; extra == \"all\"",
+              "fastapi-cli[standard]>=0.0.32; extra == \"all\"",
+              "httpx<1.0.0,>=0.23.0; extra == \"all\"",
+              "jinja2>=3.1.5; extra == \"all\"",
+              "python-multipart>=0.0.18; extra == \"all\"",
+              "itsdangerous>=1.1.0; extra == \"all\"",
+              "pyyaml>=5.3.1; extra == \"all\"",
+              "email-validator>=2.0.0; extra == \"all\"",
+              "uvicorn[standard]>=0.12.0; extra == \"all\"",
+              "pydantic-settings>=2.0.0; extra == \"all\"",
+              "pydantic-extra-types>=2.0.0; extra == \"all\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 4 - Beta",
+              "Environment :: Web Environment",
+              "Framework :: AsyncIO",
+              "Framework :: FastAPI",
+              "Framework :: Pydantic",
+              "Framework :: Pydantic :: 2",
+              "Intended Audience :: Developers",
+              "Intended Audience :: Information Technology",
+              "Intended Audience :: System Administrators",
+              "Operating System :: OS Independent",
+              "Programming Language :: Python",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3 :: Only",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Internet",
+              "Topic :: Internet :: WWW/HTTP"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": ">=3.10"
+          },
+          "state_hash": "15929b40ab1b1d9141e94eec272c8a19ad3ce507c2ef69fb197988f7202b2d86",
+          "version": "0.143.1"
         }
       ]
     },
     "flask": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1513,6 +1623,14 @@
           "modified": "2026-02-19T05:00:56.027585Z",
           "total_versions": 64,
           "version": "3.1.3"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 9,
+          "modified": "2026-02-19T05:00:56.027585Z",
+          "total_versions": 64,
+          "version": "3.1.3"
         }
       ],
       "state_history": [
@@ -1557,7 +1675,7 @@
     },
     "gunicorn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1734,6 +1852,14 @@
           "modified": "2026-08-24T15:05:57.670955Z",
           "total_versions": 100,
           "version": "26.2.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 16,
+          "modified": "2026-08-24T15:05:57.670955Z",
+          "total_versions": 100,
+          "version": "26.2.0"
         }
       ],
       "state_history": [
@@ -1794,7 +1920,7 @@
     },
     "httpx": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -1971,6 +2097,14 @@
           "modified": "2026-08-31T17:59:54.190125Z",
           "total_versions": 77,
           "version": "0.28.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 12,
+          "modified": "2026-08-31T17:59:54.190125Z",
+          "total_versions": 77,
+          "version": "0.28.1"
         }
       ],
       "state_history": [
@@ -2022,7 +2156,7 @@
     },
     "huey": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2199,6 +2333,14 @@
           "modified": "2026-09-04T02:04:32.848880Z",
           "total_versions": 87,
           "version": "3.4.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 5,
+          "modified": "2026-09-04T02:04:32.848880Z",
+          "total_versions": 87,
+          "version": "3.4.0"
         }
       ],
       "state_history": [
@@ -2232,7 +2374,7 @@
     },
     "langchain": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2409,6 +2551,14 @@
           "modified": "2026-10-12T19:28:22.883688Z",
           "total_versions": 522,
           "version": "1.4.5"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-10-14T17:27:47.652529Z",
+          "total_versions": 523,
+          "version": "1.4.6"
         }
       ],
       "state_history": [
@@ -2661,12 +2811,62 @@
           },
           "state_hash": "331f866c60fc4690d2c5f493a285efe76f5f0850ef1488b028ead1b8e1a2ea77",
           "version": "1.4.5"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_declarations": {
+            "requires_dist": [
+              "langchain-core<2.0.0,>=1.6.10",
+              "langgraph<1.3.0,>=1.2.12",
+              "pydantic<3.0.0,>=2.7.4",
+              "langchain-anthropic; extra == \"anthropic\"",
+              "langchain-aws; extra == \"aws\"",
+              "langchain-azure-ai; extra == \"azure-ai\"",
+              "langchain-baseten>=0.2.0; extra == \"baseten\"",
+              "langchain-community; extra == \"community\"",
+              "langchain-deepseek; extra == \"deepseek\"",
+              "langchain-fireworks; extra == \"fireworks\"",
+              "langchain-google-genai; extra == \"google-genai\"",
+              "langchain-google-vertexai; extra == \"google-vertexai\"",
+              "langchain-groq; extra == \"groq\"",
+              "langchain-huggingface; extra == \"huggingface\"",
+              "fastmcp<5.0.0,>=4.0.11; extra == \"mcp\"",
+              "langchain-meta; extra == \"meta\"",
+              "langchain-mistralai; extra == \"mistralai\"",
+              "langchain-ollama; extra == \"ollama\"",
+              "langchain-openai; extra == \"openai\"",
+              "langchain-perplexity; extra == \"perplexity\"",
+              "langchain-together; extra == \"together\"",
+              "langchain-xai; extra == \"xai\""
+            ]
+          },
+          "mutable_metadata": {
+            "classifiers": [
+              "Development Status :: 5 - Production/Stable",
+              "Intended Audience :: Developers",
+              "License :: OSI Approved :: MIT License",
+              "Programming Language :: Python :: 3",
+              "Programming Language :: Python :: 3.10",
+              "Programming Language :: Python :: 3.11",
+              "Programming Language :: Python :: 3.12",
+              "Programming Language :: Python :: 3.13",
+              "Programming Language :: Python :: 3.14",
+              "Topic :: Scientific/Engineering :: Artificial Intelligence",
+              "Topic :: Software Development :: Libraries :: Python Modules"
+            ],
+            "latest_yanked": false,
+            "latest_yanked_reasons": [],
+            "requires_python": "<4.0.0,>=3.10.0"
+          },
+          "state_hash": "18d931383fdc4c8040714cf523678fd308488d69474ce567d4aab7e14965d9ad",
+          "version": "1.4.6"
         }
       ]
     },
     "litestar": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2843,6 +3043,14 @@
           "modified": "2026-06-11T11:26:58.509354Z",
           "total_versions": 65,
           "version": "2.24.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-06-11T11:26:58.509354Z",
+          "total_versions": 65,
+          "version": "2.24.0"
         }
       ],
       "state_history": [
@@ -2955,7 +3163,7 @@
     },
     "marshmallow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3132,6 +3340,14 @@
           "modified": "2026-08-08T14:27:28.078717Z",
           "total_versions": 201,
           "version": "4.3.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 2,
+          "modified": "2026-08-08T14:27:28.078717Z",
+          "total_versions": 201,
+          "version": "4.3.1"
         }
       ],
       "state_history": [
@@ -3166,7 +3382,7 @@
     },
     "mypy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3343,6 +3559,14 @@
           "modified": "2026-10-01T20:38:41.545255Z",
           "total_versions": 142,
           "version": "2.4.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 12,
+          "modified": "2026-10-01T20:38:41.545255Z",
+          "total_versions": 142,
+          "version": "2.4.0"
         }
       ],
       "state_history": [
@@ -3432,7 +3656,7 @@
     },
     "numpy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3609,6 +3833,14 @@
           "modified": "2026-10-10T20:02:40.843976Z",
           "total_versions": 152,
           "version": "2.5.4"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 0,
+          "modified": "2026-10-10T20:02:40.843976Z",
+          "total_versions": 152,
+          "version": "2.5.4"
         }
       ],
       "state_history": [
@@ -3686,7 +3918,7 @@
     },
     "openai": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3859,6 +4091,14 @@
         {
           "collected_at": "2026-10-14T07:36:51.925087+00:00",
           "date": "2026-10-14",
+          "dependency_count": 14,
+          "modified": "2026-10-14T05:39:31.197546Z",
+          "total_versions": 449,
+          "version": "3.31.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
           "dependency_count": 14,
           "modified": "2026-10-14T05:39:31.197546Z",
           "total_versions": 449,
@@ -4410,7 +4650,7 @@
     },
     "opencv-python": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4587,6 +4827,14 @@
           "modified": "2026-07-28T18:32:19.031818Z",
           "total_versions": 63,
           "version": "5.0.0.93"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 2,
+          "modified": "2026-07-28T18:32:19.031818Z",
+          "total_versions": 63,
+          "version": "5.0.0.93"
         }
       ],
       "state_history": [
@@ -4633,7 +4881,7 @@
     },
     "pandas": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -4806,6 +5054,14 @@
         {
           "collected_at": "2026-10-14T07:36:51.925087+00:00",
           "date": "2026-10-14",
+          "dependency_count": 20,
+          "modified": "2026-09-30T13:55:10.637378Z",
+          "total_versions": 119,
+          "version": "3.0.6"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
           "dependency_count": 20,
           "modified": "2026-09-30T13:55:10.637378Z",
           "total_versions": 119,
@@ -5048,7 +5304,7 @@
     },
     "peewee": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5225,6 +5481,14 @@
           "modified": "2026-10-07T11:49:34.153299Z",
           "total_versions": 223,
           "version": "4.5.3"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 10,
+          "modified": "2026-10-07T11:49:34.153299Z",
+          "total_versions": 223,
+          "version": "4.5.3"
         }
       ],
       "state_history": [
@@ -5340,7 +5604,7 @@
     },
     "pillow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5517,6 +5781,14 @@
           "modified": "2026-07-01T11:53:27.808291Z",
           "total_versions": 107,
           "version": "12.3.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-07-01T11:53:27.808291Z",
+          "total_versions": 107,
+          "version": "12.3.0"
         }
       ],
       "state_history": [
@@ -5581,7 +5853,7 @@
     },
     "polars": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5758,6 +6030,14 @@
           "modified": "2026-10-06T11:44:04.327938Z",
           "total_versions": 433,
           "version": "2.0.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-10-06T11:44:04.327938Z",
+          "total_versions": 433,
+          "version": "2.0.0"
         }
       ],
       "state_history": [
@@ -5891,7 +6171,7 @@
     },
     "pydantic": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -6068,6 +6348,14 @@
           "modified": "2026-10-11T18:37:53.437059Z",
           "total_versions": 208,
           "version": "2.14.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 6,
+          "modified": "2026-10-11T18:37:53.437059Z",
+          "total_versions": 208,
+          "version": "2.14.1"
         }
       ],
       "state_history": [
@@ -6201,7 +6489,7 @@
     },
     "pyright": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -6378,6 +6666,14 @@
           "modified": "2026-09-10T12:26:51.427844Z",
           "total_versions": 209,
           "version": "1.1.414"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 6,
+          "modified": "2026-09-10T12:26:51.427844Z",
+          "total_versions": 209,
+          "version": "1.1.414"
         }
       ],
       "state_history": [
@@ -6418,7 +6714,7 @@
     },
     "pytest": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -6595,6 +6891,14 @@
           "modified": "2026-06-19T10:58:31.347074Z",
           "total_versions": 192,
           "version": "9.1.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 14,
+          "modified": "2026-06-19T10:58:31.347074Z",
+          "total_versions": 192,
+          "version": "9.1.1"
         }
       ],
       "state_history": [
@@ -6649,7 +6953,7 @@
     },
     "redis": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -6826,6 +7130,14 @@
           "modified": "2026-07-30T08:50:58.497552Z",
           "total_versions": 169,
           "version": "8.1.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 11,
+          "modified": "2026-07-30T08:50:58.497552Z",
+          "total_versions": 169,
+          "version": "8.1.0"
         }
       ],
       "state_history": [
@@ -6876,7 +7188,7 @@
     },
     "requests": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -7053,6 +7365,14 @@
           "modified": "2026-05-14T19:25:26.443000Z",
           "total_versions": 163,
           "version": "2.34.2"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 6,
+          "modified": "2026-05-14T19:25:26.443000Z",
+          "total_versions": 163,
+          "version": "2.34.2"
         }
       ],
       "state_history": [
@@ -7103,7 +7423,7 @@
     },
     "ruff": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -7280,6 +7600,14 @@
           "modified": "2026-10-09T19:46:38.695158Z",
           "total_versions": 427,
           "version": "0.17.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 0,
+          "modified": "2026-10-09T19:46:38.695158Z",
+          "total_versions": 427,
+          "version": "0.17.0"
         }
       ],
       "state_history": [
@@ -7420,7 +7748,7 @@
     },
     "scikit-learn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -7597,6 +7925,14 @@
           "modified": "2026-09-10T18:32:29.891551Z",
           "total_versions": 76,
           "version": "1.9.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 5,
+          "modified": "2026-09-10T18:32:29.891551Z",
+          "total_versions": 76,
+          "version": "1.9.1"
         }
       ],
       "state_history": [
@@ -7643,7 +7979,7 @@
     },
     "sqlalchemy": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -7816,6 +8152,14 @@
         {
           "collected_at": "2026-10-14T07:36:51.925087+00:00",
           "date": "2026-10-14",
+          "dependency_count": 20,
+          "modified": "2026-10-07T17:33:59.116703Z",
+          "total_versions": 335,
+          "version": "2.1.4"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
           "dependency_count": 20,
           "modified": "2026-10-07T17:33:59.116703Z",
           "total_versions": 335,
@@ -8219,7 +8563,7 @@
     },
     "tensorflow": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -8396,6 +8740,14 @@
           "modified": "2026-09-22T18:33:49.957304Z",
           "total_versions": 139,
           "version": "2.21.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 20,
+          "modified": "2026-09-22T18:33:49.957304Z",
+          "total_versions": 139,
+          "version": "2.21.0"
         }
       ],
       "state_history": [
@@ -8473,7 +8825,7 @@
     },
     "torch": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -8650,6 +9002,14 @@
           "modified": "2026-09-30T17:43:48.426734Z",
           "total_versions": 51,
           "version": "2.14.1"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 17,
+          "modified": "2026-09-30T17:43:48.426734Z",
+          "total_versions": 51,
+          "version": "2.14.1"
         }
       ],
       "state_history": [
@@ -8759,7 +9119,7 @@
     },
     "transformers": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -8932,6 +9292,14 @@
         {
           "collected_at": "2026-10-14T07:36:51.925087+00:00",
           "date": "2026-10-14",
+          "dependency_count": 20,
+          "modified": "2026-10-06T16:38:56.794667Z",
+          "total_versions": 244,
+          "version": "5.19.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
           "dependency_count": 20,
           "modified": "2026-10-06T16:38:56.794667Z",
           "total_versions": 244,
@@ -9795,7 +10163,7 @@
     },
     "uvicorn": {
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-14T07:36:51.925087+00:00",
+      "last_seen": "2026-10-15T07:25:10.719932+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -9972,6 +10340,14 @@
           "modified": "2026-09-25T06:52:35.829563Z",
           "total_versions": 204,
           "version": "0.54.0"
+        },
+        {
+          "collected_at": "2026-10-15T07:25:10.719932+00:00",
+          "date": "2026-10-15",
+          "dependency_count": 9,
+          "modified": "2026-09-25T06:52:35.829563Z",
+          "total_versions": 204,
+          "version": "0.54.0"
         }
       ],
       "state_history": [
@@ -10058,5 +10434,5 @@
   },
   "registry": "pypi",
   "schema_version": 1,
-  "updated_at": "2026-10-14T07:36:51.925087+00:00"
+  "updated_at": "2026-10-15T07:25:10.719932+00:00"
 }
