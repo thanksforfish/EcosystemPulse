@@ -17,6 +17,7 @@ from discovery_builder import DiscoveryBuilder
 from history_store import HistoryStore
 from page_generator import PageGenerator
 from trend_analyzer import TrendAnalyzer
+from weekly_brief import WeeklyBrief
 
 
 CLOUDFLARE_ANALYTICS = (
@@ -120,7 +121,10 @@ def main() -> None:
     print("\n[6/7] Building movers, comparisons, internal discovery, and SEO structure...")
     discovery_result = DiscoveryBuilder(DATA_DIR, OUTPUT_DIR).build()
 
-    print("\n[7/7] Installing Cloudflare Web Analytics...")
+    print("\n[7/8] Generating the completed-week change brief and frozen archives...")
+    brief_result = WeeklyBrief(DATA_DIR, OUTPUT_DIR).build()
+
+    print("\n[8/8] Installing Cloudflare Web Analytics...")
     analytics_pages = install_analytics(OUTPUT_DIR)
     stylesheet_pages = version_stylesheet(OUTPUT_DIR)
 
@@ -145,6 +149,9 @@ def main() -> None:
     print(f"npm packages with fresh reliable 7-day momentum: {npm_with_momentum}")
     print(f"Individual package pages: {result['npm_pages'] + result['pypi_pages']}")
     print(f"Comparison pages: {discovery_result['comparison_pages']}")
+    print(f"Weekly brief through: {brief_result['week_end']}")
+    print(f"Weekly change categories: {brief_result['events']}")
+    print(f"Frozen weekly editions: {brief_result['archives']}")
     print(f"Movers page: {'yes' if discovery_result['movers'] else 'no'}")
     print(f"Comparison hub: {'yes' if discovery_result['comparison_hub'] else 'no'}")
     print(f"Package pages SEO-enhanced: {discovery_result['package_pages_enhanced']}")
