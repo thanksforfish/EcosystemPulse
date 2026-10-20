@@ -173,3 +173,33 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     .nav-links { justify-content: flex-start; gap: .5rem 1rem; }
     .nav-links a { display: inline-block; padding: .25rem 0; }
 }
+
+
+/* Weekly evidence brief: readable, responsive, and consistent with the terminal theme. */
+.brief-home {
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--accent-dim);
+    background: var(--bg-card);
+    border-radius: 8px;
+}
+.brief-home h2 { font-size: 1.25rem; margin: 0.35rem 0; }
+.brief-home p { color: var(--text-muted); margin: 0.5rem 0; }
+.brief-home .eyebrow { color: var(--accent); }
+.brief-home ul { margin: 0.75rem 0 1rem 1.2rem; }
+.brief-home li { margin: 0.3rem 0; }
+.brief-event-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+.brief-event {
+    min-width: 0;
+    padding: 1.15rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    overflow-wrap: anywhere;
+}
+.brief-event-meta { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.5rem; }
+.brief-event h3 { font-size: 1rem; line-height: 1.45; margin-bottom: 0.5rem; }
+.brief-event p { font-size: 0.88rem; }
+.brief-event-links { margin-top: 0.9rem; }
+@media (max-width: 760px) { .brief-event-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .brief-home { padding: 1rem; } }
