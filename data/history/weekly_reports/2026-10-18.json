@@ -1,0 +1,305 @@
+{
+  "created_utc": "2026-10-20T15:18:58.060548+00:00",
+  "end": "2026-10-18",
+  "events": [
+    {
+      "category": "compatibility",
+      "detail": "Recorded requirement: >=3.10 → >=3.11.",
+      "headline": "Python version requirement changed",
+      "observed": "2026-10-17",
+      "package": "pillow",
+      "registry": "pypi"
+    },
+    {
+      "category": "compatibility",
+      "detail": "Recorded engines: {\"node\": \">=22.18.0\"} → {\"node\": \"^22.18.0 || ^24.11.0 || >=26.0.0\"}.",
+      "headline": "Runtime engine requirement changed",
+      "observed": "2026-10-16",
+      "package": "prisma",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Optional: 0 added, 0 removed, 25 updated. Examples: @rollup/rollup-android-arm-eabi: 4.64.7 → 4.64.9; @rollup/rollup-android-arm64: 4.64.7 → 4.64.9",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-18",
+      "package": "rollup",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 13 updated. Examples: @nuxt/devtools: ^3.4.2 → ^3.4.3; @nuxt/kit: 4.6.1 → 4.6.2",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-17",
+      "package": "nuxt",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "1 added and 0 removed requirement declarations. added psutil; (sys_platform == \"linux\" or sys_platform == \"darwin\") an…",
+      "headline": "PyPI requirements changed",
+      "observed": "2026-10-17",
+      "package": "pillow",
+      "registry": "pypi"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 1 updated. Examples: @next/env: 16.4.1 → 16.4.2 Optional: 0 added, 0 removed, 8 updated. Examples: @next/swc-darwin-arm64: 16.4.1 → 16.4.2; @next/swc-darwin-x64: 16.4.1 → 16.4.2",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-16",
+      "package": "next",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 2 updated. Examples: @prisma/composer-cli: 0.29.1 → 0.30.0; @prisma/orm-toolchain: 8.0.0-rc.17 → 8.0.0-rc.18",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-16",
+      "package": "prisma",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 1 updated. Examples: @vitest/mocker: 5.0.4 → 5.0.5 Peer: 0 added, 0 removed, 5 updated. Examples: @vitest/browser-playwright: 5.0.4 → 5.0.5; @vitest/browser-preview: 5.0.4 → 5.0.5",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-16",
+      "package": "vitest",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 4 updated. Examples: enhanced-resolve: ^5.25.0 → ^5.26.0; minimizer-webpack-plugin: ^5.7.0 → ^5.13.0",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-16",
+      "package": "webpack",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "10 added and 22 removed requirement declarations. added kernels<0.18,>=0.17.2; extra == \"all\"; added kernels<0.18,>=0.17.2; extra == \"dev\"; removed dill<0.3.5; extra == \"deepspeed-testing\"; removed dill<0.3.5; extra == \"dev\"",
+      "headline": "PyPI requirements changed",
+      "observed": "2026-10-16",
+      "package": "transformers",
+      "registry": "pypi"
+    },
+    {
+      "category": "dependencies",
+      "detail": "1 added and 1 removed requirement declarations. added langgraph<1.3.0,>=1.2.12; removed langgraph<1.3.0,>=1.2.11",
+      "headline": "PyPI requirements changed",
+      "observed": "2026-10-15",
+      "package": "langchain",
+      "registry": "pypi"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 4 updated. Examples: @sindresorhus/is: ^8.0.0 → ^8.1.0; cacheable-request: ^13.0.18 → ^13.0.19",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-13",
+      "package": "got",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 1 updated. Examples: kareem: 3.4.0 → 3.4.1",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-13",
+      "package": "mongoose",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "Runtime: 0 added, 0 removed, 5 updated. Examples: @vue/compiler-dom: 3.5.43 → 3.5.44; @vue/compiler-sfc: 3.5.43 → 3.5.44",
+      "headline": "npm dependency requirements changed",
+      "observed": "2026-10-13",
+      "package": "vue",
+      "registry": "npm"
+    },
+    {
+      "category": "dependencies",
+      "detail": "1 added and 1 removed requirement declarations. added pydantic-core==2.50.1; removed pydantic-core==2.50.0",
+      "headline": "PyPI requirements changed",
+      "observed": "2026-10-12",
+      "package": "pydantic",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 4.64.7 → 4.64.9.",
+      "headline": "Version change observed",
+      "observed": "2026-10-18",
+      "package": "rollup",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 3.33.0 → 3.35.1.",
+      "headline": "Version change observed",
+      "observed": "2026-10-18",
+      "package": "openai",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 10.12.0 → 10.13.0.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "eslint",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 18.2.9 → 18.3.0.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "joi",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 4.6.1 → 4.6.2.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "nuxt",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 0.143.2 → 0.143.3.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "fastapi",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 12.3.0 → 13.0.0.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "pillow",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 2.1.4 → 2.1.5.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "sqlalchemy",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 5.20.0 → 5.20.1.",
+      "headline": "Version change observed",
+      "observed": "2026-10-17",
+      "package": "transformers",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 16.4.1 → 16.4.2.",
+      "headline": "Version change observed",
+      "observed": "2026-10-16",
+      "package": "next",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 8.0.0-rc.22 → 8.0.0-rc.23.",
+      "headline": "Version change observed",
+      "observed": "2026-10-16",
+      "package": "prisma",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 5.0.4 → 5.0.5.",
+      "headline": "Version change observed",
+      "observed": "2026-10-16",
+      "package": "vitest",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 5.111.1 → 5.112.0.",
+      "headline": "Version change observed",
+      "observed": "2026-10-16",
+      "package": "webpack",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 0.17.0 → 0.17.1.",
+      "headline": "Version change observed",
+      "observed": "2026-10-16",
+      "package": "ruff",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 19.3.0 → 19.3.1.",
+      "headline": "Version change observed",
+      "observed": "2026-10-15",
+      "package": "react",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 1.4.5 → 1.4.6.",
+      "headline": "Version change observed",
+      "observed": "2026-10-15",
+      "package": "langchain",
+      "registry": "pypi"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 5.12.5 → 5.12.7.",
+      "headline": "Version change observed",
+      "observed": "2026-10-13",
+      "package": "fastify",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 16.0.0 → 16.1.0.",
+      "headline": "Version change observed",
+      "observed": "2026-10-13",
+      "package": "got",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 9.11.1 → 9.11.2.",
+      "headline": "Version change observed",
+      "observed": "2026-10-13",
+      "package": "mongoose",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 3.5.43 → 3.5.44.",
+      "headline": "Version change observed",
+      "observed": "2026-10-13",
+      "package": "vue",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 4.6.6 → 4.6.7.",
+      "headline": "Version change observed",
+      "observed": "2026-10-13",
+      "package": "zod",
+      "registry": "npm"
+    },
+    {
+      "category": "releases",
+      "detail": "Latest registry version: 2.14.0 → 2.14.1.",
+      "headline": "Version change observed",
+      "observed": "2026-10-12",
+      "package": "pydantic",
+      "registry": "pypi"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Observed changes across 33 npm and 31 PyPI packages, not the full registries.",
+  "start": "2026-10-12"
+}
