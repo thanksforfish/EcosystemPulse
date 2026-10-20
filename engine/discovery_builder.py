@@ -151,6 +151,7 @@ class DiscoveryBuilder:
     def _nav(prefix: str = "") -> str:
         return (
             '<ul class="nav-links">'
+            f'<li><a href="{prefix}weekly.html">Weekly changes</a></li>'
             f'<li><a href="{prefix}npm.html">npm</a></li>'
             f'<li><a href="{prefix}pypi.html">PyPI</a></li>'
             f'<li><a href="{prefix}movers.html">Movers</a></li>'
