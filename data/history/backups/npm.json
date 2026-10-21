@@ -29,35 +29,35 @@
       "zero_packages": 33
     },
     "2026-10-06": {
-      "excluded_at": "2026-10-20T07:31:21.827492+00:00",
+      "excluded_at": "2026-10-20T15:18:35.145727+00:00",
       "packages_observed": 33,
       "reason": "registry-wide zero anomaly",
       "zero_fraction": 1.0,
       "zero_packages": 33
     },
     "2026-10-13": {
-      "excluded_at": "2026-10-20T07:31:21.827492+00:00",
+      "excluded_at": "2026-10-20T15:18:35.145727+00:00",
       "packages_observed": 33,
       "reason": "registry-wide zero anomaly",
       "zero_fraction": 1.0,
       "zero_packages": 33
     },
     "2026-10-14": {
-      "excluded_at": "2026-10-20T07:31:21.827492+00:00",
+      "excluded_at": "2026-10-20T15:18:35.145727+00:00",
       "packages_observed": 33,
       "reason": "registry-wide zero anomaly",
       "zero_fraction": 1.0,
       "zero_packages": 33
     },
     "2026-10-15": {
-      "excluded_at": "2026-10-20T07:31:21.827492+00:00",
+      "excluded_at": "2026-10-20T15:18:35.145727+00:00",
       "packages_observed": 33,
       "reason": "registry-wide zero anomaly",
       "zero_fraction": 1.0,
       "zero_packages": 33
     },
     "2026-10-19": {
-      "excluded_at": "2026-10-20T07:31:21.827492+00:00",
+      "excluded_at": "2026-10-20T15:18:35.145727+00:00",
       "packages_observed": 33,
       "reason": "registry-wide zero anomaly",
       "zero_fraction": 1.0,
@@ -410,7 +410,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -656,7 +656,7 @@
           "weekly_downloads": 67051799
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 4,
           "modified": "2026-09-18T13:53:57.367Z",
@@ -1702,7 +1702,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 6298067,
           "period": "last-week",
@@ -1963,7 +1963,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -2209,7 +2209,7 @@
           "weekly_downloads": 57337684
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-05-29T23:45:56.761Z",
@@ -3208,7 +3208,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 261424,
           "period": "last-week",
@@ -3469,7 +3469,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -3715,7 +3715,7 @@
           "weekly_downloads": 44108117
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-08-17T11:52:35.546Z",
@@ -4745,7 +4745,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 202439,
           "period": "last-week",
@@ -5006,7 +5006,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -5252,7 +5252,7 @@
           "weekly_downloads": 17780040
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-08T10:50:42.417Z",
@@ -6679,7 +6679,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 400678,
           "period": "last-week",
@@ -6940,7 +6940,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -7186,7 +7186,7 @@
           "weekly_downloads": 183109275
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-08-08T20:00:55.803Z",
@@ -8213,7 +8213,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 5696202,
           "period": "last-week",
@@ -8474,7 +8474,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -8720,7 +8720,7 @@
           "weekly_downloads": 95255486
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 30,
           "modified": "2026-10-16T14:24:10.969Z",
@@ -10176,7 +10176,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 12536345,
           "period": "last-week",
@@ -10437,7 +10437,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -10683,7 +10683,7 @@
           "weekly_downloads": 86916550
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 28,
           "modified": "2026-10-09T12:56:55.078Z",
@@ -11801,7 +11801,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 189535,
           "period": "last-week",
@@ -12062,7 +12062,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -12308,7 +12308,7 @@
           "weekly_downloads": 9153727
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 15,
           "modified": "2026-10-13T08:07:53.478Z",
@@ -13438,7 +13438,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 347250,
           "period": "last-week",
@@ -13699,7 +13699,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -13945,7 +13945,7 @@
           "weekly_downloads": 24161401
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 10,
           "modified": "2026-10-13T06:36:02.610Z",
@@ -15072,7 +15072,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 255310,
           "period": "last-week",
@@ -15333,7 +15333,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -15579,7 +15579,7 @@
           "weekly_downloads": 44776538
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-10T12:34:14.548Z",
@@ -16902,7 +16902,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 4793783,
           "period": "last-week",
@@ -17163,7 +17163,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -17409,7 +17409,7 @@
           "weekly_downloads": 26009195
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 4,
           "modified": "2026-09-18T13:58:07.334Z",
@@ -18449,7 +18449,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 1159046,
           "period": "last-week",
@@ -18710,7 +18710,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -18956,7 +18956,7 @@
           "weekly_downloads": 14595453
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 7,
           "modified": "2026-10-16T14:09:55.921Z",
@@ -20024,7 +20024,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 634519,
           "period": "last-week",
@@ -20285,7 +20285,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -20531,7 +20531,7 @@
           "weekly_downloads": 95765461
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-20T00:54:02.373Z",
@@ -21529,7 +21529,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 229310,
           "period": "last-week",
@@ -21790,7 +21790,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -22036,7 +22036,7 @@
           "weekly_downloads": 7348590
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 16,
           "modified": "2026-10-01T04:37:57.707Z",
@@ -23256,7 +23256,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 716946,
           "period": "last-week",
@@ -23517,7 +23517,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -23763,7 +23763,7 @@
           "weekly_downloads": 3836157
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 7,
           "modified": "2026-10-12T19:25:57.165Z",
@@ -25362,7 +25362,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 1442599,
           "period": "last-week",
@@ -25623,7 +25623,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -25869,7 +25869,7 @@
           "weekly_downloads": 40841184
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 6,
           "modified": "2026-10-20T00:03:56.900Z",
@@ -28295,7 +28295,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 7330450,
           "period": "last-week",
@@ -28556,7 +28556,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -28802,7 +28802,7 @@
           "weekly_downloads": 121345065
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 3,
           "modified": "2023-11-30T14:10:12.367Z",
@@ -29827,7 +29827,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 67065,
           "period": "last-week",
@@ -30088,7 +30088,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -30334,7 +30334,7 @@
           "weekly_downloads": 1378576
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 66,
           "modified": "2026-10-16T17:37:32.385Z",
@@ -31874,7 +31874,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 179755,
           "period": "last-week",
@@ -32135,7 +32135,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -32381,7 +32381,7 @@
           "weekly_downloads": 82282633
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-10T08:35:28.619Z",
@@ -33457,7 +33457,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 5087813,
           "period": "last-week",
@@ -33718,7 +33718,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -33964,7 +33964,7 @@
           "weekly_downloads": 11432886
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 12,
           "modified": "2026-10-20T06:47:12.825Z",
@@ -35764,7 +35764,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 1120938,
           "period": "last-week",
@@ -36025,7 +36025,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -36271,7 +36271,7 @@
           "weekly_downloads": 115387152
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-19T16:41:35.045Z",
@@ -37607,7 +37607,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 1216261,
           "period": "last-week",
@@ -37868,7 +37868,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -38114,7 +38114,7 @@
           "weekly_downloads": 75471125
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 1,
           "modified": "2026-10-20T05:36:56.834Z",
@@ -40870,7 +40870,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 17143547,
           "period": "last-week",
@@ -41131,7 +41131,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -41377,7 +41377,7 @@
           "weekly_downloads": 1522110
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 16,
           "modified": "2026-06-29T08:59:54.320Z",
@@ -42458,7 +42458,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 67305,
           "period": "last-week",
@@ -42719,7 +42719,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -42965,7 +42965,7 @@
           "weekly_downloads": 4144901
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 15,
           "modified": "2026-10-06T14:24:31.552Z",
@@ -44121,7 +44121,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 540681,
           "period": "last-week",
@@ -44382,7 +44382,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -44628,7 +44628,7 @@
           "weekly_downloads": 85265574
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-19T16:02:21.368Z",
@@ -45901,7 +45901,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 2691914,
           "period": "last-week",
@@ -46162,7 +46162,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -46408,7 +46408,7 @@
           "weekly_downloads": 2888734
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 10,
           "modified": "2026-10-20T02:24:47.501Z",
@@ -49095,7 +49095,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 93098,
           "period": "last-week",
@@ -49356,7 +49356,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -49602,11 +49602,11 @@
           "weekly_downloads": 183991498
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 20,
-          "modified": "2026-10-19T08:21:31.937Z",
-          "total_versions": 3858,
+          "modified": "2026-10-20T08:15:07.609Z",
+          "total_versions": 3859,
           "version": "7.0.2",
           "weekly_downloads": 184429796
         }
@@ -51411,6 +51411,78 @@
           },
           "state_hash": "6b4fd1823189b0e8b699c7e7eae3e874582b1ae20e1a66e14d523ade230c67a2",
           "version": "7.0.2"
+        },
+        {
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
+          "date": "2026-10-20",
+          "dependency_declarations": {
+            "bundled_dependencies": [],
+            "dependencies": {
+              "@typescript/typescript-aix-ppc64": "7.0.2",
+              "@typescript/typescript-darwin-arm64": "7.0.2",
+              "@typescript/typescript-darwin-x64": "7.0.2",
+              "@typescript/typescript-freebsd-arm64": "7.0.2",
+              "@typescript/typescript-freebsd-x64": "7.0.2",
+              "@typescript/typescript-linux-arm": "7.0.2",
+              "@typescript/typescript-linux-arm64": "7.0.2",
+              "@typescript/typescript-linux-loong64": "7.0.2",
+              "@typescript/typescript-linux-mips64el": "7.0.2",
+              "@typescript/typescript-linux-ppc64": "7.0.2",
+              "@typescript/typescript-linux-riscv64": "7.0.2",
+              "@typescript/typescript-linux-s390x": "7.0.2",
+              "@typescript/typescript-linux-x64": "7.0.2",
+              "@typescript/typescript-netbsd-arm64": "7.0.2",
+              "@typescript/typescript-netbsd-x64": "7.0.2",
+              "@typescript/typescript-openbsd-arm64": "7.0.2",
+              "@typescript/typescript-openbsd-x64": "7.0.2",
+              "@typescript/typescript-sunos-x64": "7.0.2",
+              "@typescript/typescript-win32-arm64": "7.0.2",
+              "@typescript/typescript-win32-x64": "7.0.2"
+            },
+            "dev_dependencies": {},
+            "optional_dependencies": {
+              "@typescript/typescript-aix-ppc64": "7.0.2",
+              "@typescript/typescript-darwin-arm64": "7.0.2",
+              "@typescript/typescript-darwin-x64": "7.0.2",
+              "@typescript/typescript-freebsd-arm64": "7.0.2",
+              "@typescript/typescript-freebsd-x64": "7.0.2",
+              "@typescript/typescript-linux-arm": "7.0.2",
+              "@typescript/typescript-linux-arm64": "7.0.2",
+              "@typescript/typescript-linux-loong64": "7.0.2",
+              "@typescript/typescript-linux-mips64el": "7.0.2",
+              "@typescript/typescript-linux-ppc64": "7.0.2",
+              "@typescript/typescript-linux-riscv64": "7.0.2",
+              "@typescript/typescript-linux-s390x": "7.0.2",
+              "@typescript/typescript-linux-x64": "7.0.2",
+              "@typescript/typescript-netbsd-arm64": "7.0.2",
+              "@typescript/typescript-netbsd-x64": "7.0.2",
+              "@typescript/typescript-openbsd-arm64": "7.0.2",
+              "@typescript/typescript-openbsd-x64": "7.0.2",
+              "@typescript/typescript-sunos-x64": "7.0.2",
+              "@typescript/typescript-win32-arm64": "7.0.2",
+              "@typescript/typescript-win32-x64": "7.0.2"
+            },
+            "peer_dependencies": {}
+          },
+          "mutable_metadata": {
+            "cpu": [],
+            "deprecated": null,
+            "dist_tags": {
+              "beta": "6.0.0-beta",
+              "dev": "3.9.4",
+              "insiders": "4.6.2-insiders.20220225",
+              "latest": "7.0.2",
+              "next": "7.1.0-dev.20261020.3",
+              "rc": "7.0.1-rc",
+              "tag-for-publishing-older-releases": "4.1.6"
+            },
+            "engines": {
+              "node": ">=16.20.0"
+            },
+            "os": []
+          },
+          "state_hash": "024af2c78859dbbf70be28c6f3bff8c99878ff0922915a7d6119fa116bf4ab33",
+          "version": "7.0.2"
         }
       ],
       "version_download_history": [
@@ -52378,7 +52450,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 4906112,
           "period": "last-week",
@@ -52639,7 +52711,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -52885,7 +52957,7 @@
           "weekly_downloads": 118790515
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 5,
           "modified": "2026-10-08T12:07:04.837Z",
@@ -54388,7 +54460,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 14404585,
           "period": "last-week",
@@ -54649,7 +54721,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -54895,7 +54967,7 @@
           "weekly_downloads": 76554353
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 13,
           "modified": "2026-10-19T16:53:22.209Z",
@@ -56412,7 +56484,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 3138183,
           "period": "last-week",
@@ -56673,7 +56745,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -56919,7 +56991,7 @@
           "weekly_downloads": 10336167
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 5,
           "modified": "2026-10-16T07:58:58.499Z",
@@ -58111,7 +58183,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 1033445,
           "period": "last-week",
@@ -58372,7 +58444,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -58618,7 +58690,7 @@
           "weekly_downloads": 31879524
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 17,
           "modified": "2026-10-15T22:26:48.805Z",
@@ -60043,7 +60115,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 5935335,
           "period": "last-week",
@@ -60304,7 +60376,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -60550,7 +60622,7 @@
           "weekly_downloads": 6963949
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 4,
           "modified": "2025-09-21T13:59:55.316Z",
@@ -61554,7 +61626,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 25985,
           "period": "last-week",
@@ -61815,7 +61887,7 @@
         }
       ],
       "first_seen": "2026-09-16T19:23:19.642631+00:00",
-      "last_seen": "2026-10-20T07:31:21.827492+00:00",
+      "last_seen": "2026-10-20T15:18:35.145727+00:00",
       "snapshots": [
         {
           "collected_at": "2026-09-16T21:52:49.281490+00:00",
@@ -62061,7 +62133,7 @@
           "weekly_downloads": 213499904
         },
         {
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "dependency_count": 0,
           "modified": "2026-10-12T16:29:38.042Z",
@@ -63115,7 +63187,7 @@
         },
         {
           "archived_versions": 25,
-          "collected_at": "2026-10-20T07:31:21.827492+00:00",
+          "collected_at": "2026-10-20T15:18:35.145727+00:00",
           "date": "2026-10-20",
           "other_downloads": 4445195,
           "period": "last-week",
@@ -63155,5 +63227,5 @@
   },
   "registry": "npm",
   "schema_version": 1,
-  "updated_at": "2026-10-20T07:31:21.827492+00:00"
+  "updated_at": "2026-10-20T15:18:35.145727+00:00"
 }
