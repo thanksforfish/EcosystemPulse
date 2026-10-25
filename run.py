@@ -148,7 +148,7 @@ def annotate_npm_download_quality(
             continue
         html = page.read_text(encoding="utf-8")
         result, changes = re.subn(
-            r"(<main\\b[^>]*>)", lambda match: match.group(1) + note, html, count=1
+            r"(<main\b[^>]*>)", lambda match: match.group(1) + note, html, count=1
         )
         if changes != 1:
             raise RuntimeError(f"Cannot place npm data-quality notice in {page}")
