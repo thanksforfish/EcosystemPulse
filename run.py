@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import math
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent / "engine"))
@@ -94,6 +95,67 @@ def validate_collection(data: dict) -> dict:
     return coverage
 
 
+
+def recent_npm_zero_days(history_path: Path, as_of_date: date) -> list[str]:
+    """Return known unreliable npm days in the recent seven-day reporting window."""
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+    excluded = history.get("excluded_download_days", {})
+    if not isinstance(excluded, dict):
+        return []
+    first_day = as_of_date - timedelta(days=7)
+    result = []
+    for value in excluded:
+        try:
+            observed_day = date.fromisoformat(value)
+        except (TypeError, ValueError):
+            continue
+        if first_day <= observed_day < as_of_date:
+            result.append(observed_day.isoformat())
+    return sorted(result)
+
+
+def annotate_npm_download_quality(
+    output_dir: Path, data_dir: Path, collected: dict, as_of_date: date | None = None
+) -> int:
+    """Qualify raw npm weekly totals when the registry reports missing days.
+
+    This is presentation-only: never rewrite history or estimate downloads.
+    """
+    day = as_of_date or datetime.now(timezone.utc).date()
+    missing_days = recent_npm_zero_days(data_dir / "history" / "npm.json", day)
+    if not missing_days:
+        return 0
+
+    affected = [
+        output_dir / "index.html",
+        output_dir / "npm.html",
+        output_dir / "movers.html",
+        output_dir / "comparisons.html",
+        *(output_dir / "comparisons").glob("*.html"),
+        *(output_dir / "pages" / f"{name}.html" for name in collected.get("npm", {})),
+    ]
+    note = (
+        '<p class="data-note" role="note"><strong>npm download-data warning:</strong> '
+        "The npm downloads API reported suspected registry-wide zero days "
+        f"({', '.join(missing_days)}). "
+        "Trailing-week download totals on this page may be understated, not evidence "
+        "of falling demand. EcosystemPulse excludes unreliable dates from momentum "
+        "calculations and does not invent missing counts.</p>"
+    )
+    updated = 0
+    for page in affected:
+        if not page.exists():
+            continue
+        html = page.read_text(encoding="utf-8")
+        result, changes = re.subn(
+            r"(<main\\b[^>]*>)", lambda match: match.group(1) + note, html, count=1
+        )
+        if changes != 1:
+            raise RuntimeError(f"Cannot place npm data-quality notice in {page}")
+        page.write_text(result, encoding="utf-8")
+        updated += 1
+    return updated
+
 def main() -> None:
     """Collect -> validate -> preserve -> analyze -> render -> discover -> instrument."""
     print("=" * 68)
@@ -124,7 +186,8 @@ def main() -> None:
     print("\n[7/8] Generating the completed-week change brief and frozen archives...")
     brief_result = WeeklyBrief(DATA_DIR, OUTPUT_DIR).build()
 
-    print("\n[8/8] Installing Cloudflare Web Analytics...")
+    print("\n[8/8] Installing quality notices and Cloudflare Web Analytics...")
+    quality_notice_pages = annotate_npm_download_quality(OUTPUT_DIR, DATA_DIR, data)
     analytics_pages = install_analytics(OUTPUT_DIR)
     stylesheet_pages = version_stylesheet(OUTPUT_DIR)
 
@@ -156,6 +219,7 @@ def main() -> None:
     print(f"Comparison hub: {'yes' if discovery_result['comparison_hub'] else 'no'}")
     print(f"Package pages SEO-enhanced: {discovery_result['package_pages_enhanced']}")
     print(f"Sitemap discovery URLs added: {discovery_result['sitemap_urls_added']}")
+    print(f"npm data-quality notices: {quality_notice_pages}")
     print(f"Analytics pages updated: {analytics_pages}")
     print(f"Stylesheet references versioned: {stylesheet_pages}")
     print(f"Durable history: {DATA_DIR / 'history'}")
