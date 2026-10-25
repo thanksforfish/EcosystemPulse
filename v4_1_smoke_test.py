@@ -14,6 +14,7 @@ sys.path.insert(0, str(BASE / "engine"))
 from config import TRACKED_ECOSYSTEMS
 from history_store import HistoryCorruptionError, HistoryStore, TOP_VERSION_DOWNLOADS
 from trend_analyzer import MOMENTUM_MAX_AGE_DAYS, TrendAnalyzer
+from run import annotate_npm_download_quality, recent_npm_zero_days
 
 errors = []
 
@@ -197,9 +198,60 @@ record(
     "scheduled collection runs after midnight UTC and V4.1 gates CI",
 )
 
+
+# Simulate a recent npm-wide zero-day outage without touching durable site data.
+notice_ok = False
+clear_ok = False
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
+    history_dir = root / "data" / "history"
+    history_dir.mkdir(parents=True)
+    output_dir = root / "output"
+    (output_dir / "pages").mkdir(parents=True)
+    (output_dir / "comparisons").mkdir()
+    for filename in ("index.html", "npm.html", "pypi.html", "pages/react.html", "pages/requests.html"):
+        page = output_dir / filename
+        page.write_text('<main id="main-content"><h1>Example</h1></main>', encoding="utf-8")
+
+    (history_dir / "npm.json").write_text(
+        json.dumps({"excluded_download_days": {
+            "2026-10-19": {"reason": "registry-wide zero anomaly"},
+            "2026-10-24": {"reason": "registry-wide zero anomaly"},
+            "2026-10-06": {"reason": "older anomaly"},
+        }}), encoding="utf-8"
+    )
+    flagged = recent_npm_zero_days(history_dir / "npm.json", date(2026, 10, 25))
+    touched = annotate_npm_download_quality(
+        output_dir, root / "data", {"npm": {"react": {}}}, as_of_date=date(2026, 10, 25)
+    )
+    notice_ok = (
+        flagged == ["2026-10-19", "2026-10-24"]
+        and touched == 3
+        and all(
+            "npm download-data warning:" in (output_dir / name).read_text(encoding="utf-8")
+            for name in ("index.html", "npm.html", "pages/react.html")
+        )
+        and all(
+            "npm download-data warning:" not in (output_dir / name).read_text(encoding="utf-8")
+            for name in ("pypi.html", "pages/requests.html")
+        )
+    )
+    (history_dir / "npm.json").write_text(
+        json.dumps({"excluded_download_days": {"2026-10-06": {"reason": "older anomaly"}}}),
+        encoding="utf-8",
+    )
+    clear_ok = (
+        recent_npm_zero_days(history_dir / "npm.json", date(2026, 10, 25)) == []
+        and annotate_npm_download_quality(
+            output_dir, root / "data", {"npm": {"react": {}}}, as_of_date=date(2026, 10, 25)
+        ) == 0
+    )
+record(notice_ok, "V4.1 CHECK 16", "qualify unreliable weekly npm totals only on relevant pages")
+record(clear_ok, "V4.1 CHECK 17", "automatically omit quality warning when recent outage days are absent")
+
 print("\n=== V4.1 RESULT ===")
 if errors:
     for error in errors:
         print("  " + error)
     raise SystemExit(1)
-print("ALL 15 V4.1 CHECKS PASSED")
+print("ALL 17 V4.1 CHECKS PASSED")
