@@ -286,8 +286,27 @@ record(
 )
 record(pypi_release_pages >= 25, "CHECK 27", f"{pypi_release_pages} PyPI package pages render release activity")
 
-record("Fastest-rising tracked npm packages" in index_html or "Download momentum is warming up" in index_html,
-       "CHECK 28", "homepage exposes measured momentum state")
+# A valid reliable window may contain no >=5% rises. That is a real third
+# state, not a collection failure (Nov 14-15, 2026 regression).
+npm_momentum_states = [
+    npm_trends.get(name, {}) for name in d.get("npm", {})
+]
+has_rising = any(
+    state.get("momentum_available")
+    and isinstance(state.get("change_7d_pct"), (int, float))
+    and state["change_7d_pct"] >= 5
+    for state in npm_momentum_states
+)
+has_reliable = any(state.get("momentum_available") for state in npm_momentum_states)
+expected_home_heading = (
+    "Fastest-rising tracked npm packages"
+    if has_rising
+    else "No qualifying npm download rises"
+    if has_reliable
+    else "Download momentum is warming up"
+)
+record(expected_home_heading in index_html,
+       "CHECK 28", f"homepage matches measured momentum state: {expected_home_heading}")
 
 canonical_package_pages = 0
 for f in html_files:
